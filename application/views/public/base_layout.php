@@ -1,5 +1,25 @@
 <!doctype html>
 <html lang="en">
+
+<style>
+    .logos {
+    	width: 180px;
+    	height: 80px;
+        border-radius: 100px;
+    	background-color: #FFBB13ff;
+    	overflow: hidden;
+    }
+
+    .logos video {
+    	/* position: absolute;
+    	top: 0;
+    	left: 0; */
+        object-fit: revert;
+    	width: 185px;
+    	height: 100%;
+    	transform: scale(1.2);
+    }
+</style>
   
 <!-- head -->
 <?php include('partials/head.php') ?>
@@ -14,7 +34,13 @@
                 </div>
                 <div class="col-4 col-lg-2">
                     <div class="logo-area">
-                        <a href="#"><img src="<?= base_url() ?>assets/public/assets/img/logo-top.png" alt=""></a>
+                        <a href="#">
+                        	<div class="logos">
+                            <video src="<?= base_url() ?>assets/public/assets/img/logo.mp4" type="video/mp4" autoplay muted loop></video>
+                        	</div>
+                            <!-- <img src="<?= base_url() ?>assets/public/assets/img/logo-top.png" alt=""> -->
+                            <!-- <video src="<?= base_url() ?>assets/public/assets/img/logo.mp4" type="video/mp4" autoplay muted loop width="210" height="60" style="border-radius:90px;"></video> -->
+                        </a>
                     </div>
                 </div>
                 <div class="col-4 col-lg-8 d-none d-lg-block">
@@ -71,7 +97,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="heading">
-                        <h5>We are featured in</h5>
+                        <h5>Store</h5>
+                        <p>Kami Mendistribusikan Musik Anda ke Store-Store Di Bawah ini</p>
                     </div>
                     <div class="space-30"></div>
                 </div>
@@ -81,42 +108,27 @@
                     <div class="logo-carousel owl-carousel text-center">
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <i class="fa fa-spotify" aria-hidden="true" style="font-size:32px"></i><span style="font-size:28px; font-weight:500; padding-left:10px">Spotify</span>
+                                <i class="fa fa-spotify" aria-hidden="true" style="font-size:34px"></i><span style="font-size:32px; font-weight:700; padding-left:10px">Spotify</span>
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <!-- <img src="<?= base_url() ?>assets/public/assets/img/logo2.png" alt=""> -->
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo1.png" alt="" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <!-- <img src="<?= base_url() ?>assets/public/assets/img/logo3.png" alt=""> -->
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo2.png" alt="" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/c-logo-4.png" alt="">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo3.png" alt="" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/c-logo-5.png" alt="">
-                            </div>
-                        </div>
-                        <div class="single-logo-wrapper">
-                            <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/c-logo-3.png" alt="">
-                            </div>
-                        </div>
-                        <div class="single-logo-wrapper">
-                            <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/c-logo-2.png" alt="">
-                            </div>
-                        </div>
-                        <div class="single-logo-wrapper">
-                            <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/c-logo-5.png" alt="">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo4.png" alt="" height="50">
                             </div>
                         </div>
                     </div>
@@ -124,23 +136,81 @@
             </div>
             <div class="space-90"></div>
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="about-mid-img">
-                        <img src="<?= base_url() ?>assets/public/assets/img/about-left.png" alt="">
+                <div class="col-12 text-center">
+                    <div class="heading">
+                        <h1>Our Services</h1>
+                        <p>Layanan Yang Di Sediakan oleh Tomoko Yuki</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 align-self-center">
-                    <div class="heading">
-                        <h5>We are featured in</h5>
-                    </div>
-                    <div class="about-mid-text">
-                        <h1>A Platform for Exchange 
-                        Cyrptocurrency and shares</h1>
-                        <div class="space-10"></div>
-                        <p>Mauna Loa, the biggest volcano on Earth  half the Island of Hawaii. Just 35 miles to the northeast, Mauna Kea, known to native Hawaiians as Mauna a Wakea, rises nearly 14,000 feet above sea level.  If they are so close together, how did they develop in two parallel tracks .Sifting through teaspoons of clay and sand scraped from the floors of caves.</p>
-                    </div>
-                    <div class="space-30"></div>
-                    <a href="#" class="gradient-btn v2 about-btn"> <i class="fa fa-send-o"></i> join us on telegraph</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-1.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Distribusi</h4>
+                            <p>Sebagai Aggregator kami mendistribusikan karya lagu kalian ke seluruh toko musik digital seluruh dunia seperti iTunes, Spotify, Joox, Deezer, dll</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-2.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Publishing</h4>
+                            <p>Kami mengumpulkan royalti dari artis yang meng-cover lagu kalian, youtube, facebook, tv, radio, hotel, cafe, restoran bahkan dari film atau iklan yang memakai lagu kalian</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-3.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Mixing Mastering Online</h4>
+                            <p>Bagi yang ingin memiliki kualitas audio yang standart international, kami memiliki servis untuk produksi Mixing Mastering secara online. Kalian bisa nurut menyaksikan proses Mixing Mastering secara online via Zoom/Google Meet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-1.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Copyrights Service</h4>
+                            <p>Kami Memonetisasi lagu kalian yang beredar diseluruh content di YOUTUBE, INSTAGRAM, FACEBOOK, dan TIKTOK. Kalian juga bisa mengecualikan claim hak cipta di channel sendiri</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-2.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Promosi</h4>
+                            <p>Bagi yang ingin memiliki kualitas audio yang standart international, kami memiliki servis untuk produksi Mixing Mastering secara online. Kalian bisa nurut menyaksikan proses Mixing Mastering secara online via Zoom/Google Meet.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="#" class="single-about">
+                        <div class="single-about-img">
+                            <img src="<?= base_url() ?>assets/public/assets/img/about-icon-3.png" alt="">
+                        </div>
+                        <div class="single-about-text">
+                            <h4>Production Tools</h4>
+                            <p>Kami mempunyai tim yang akan membantu kalian dalam : Membuat Video Klip/Video Lirik, Cetak CD, Merchandise, Press Release, Manage Content Social Media, pembuatan website, dan album digital (Android & IoS)</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
