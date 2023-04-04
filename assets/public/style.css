@@ -151,9 +151,9 @@ a.single-about,
 =====================*/
 
 .logo-area img {
-    width: 100px;
+    width: 200px!important;
     margin-top: 7px;
-    height: 30px;
+    height: 100px;
 }
 
 .header-area {
@@ -343,8 +343,8 @@ a.single-about,
 }
 
 .single-about-img img {
-    width: 162px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
 }
 
 .single-about-text h4 {
