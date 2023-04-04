@@ -343,8 +343,8 @@ a.single-about,
 }
 
 .single-about-img img {
-    width: 120px;
-    height: 120px;
+    width: 162px;
+    height: 110px;
 }
 
 .single-about-text h4 {
@@ -1834,8 +1834,8 @@ a.gradient-btn:hover:after {
 .document-flag img,
 .single-team-img img,
 .welcome-img img {
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
 }
 
 ::-webkit-input-placeholder {
