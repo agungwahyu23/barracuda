@@ -1,5 +1,5 @@
 <head>
-    <title>Cyptian</title>
+    <title>Tomoko Yuki</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,7 +7,7 @@
     <!-- carousel CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/public/assets/css/owl.carousel.min.css">
     <!--header icon CSS -->
-    <link rel="icon" href="<?= base_url() ?>assets/public/assets/img/fabicon.png">
+    <link rel="icon" href="<?= base_url() ?>assets/public/assets/img/logo-removebg-preview.png">
     <!-- animations CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/public/assets/css/animate.min.css">
     <!-- font-awsome CSS -->
