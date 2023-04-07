@@ -31,9 +31,14 @@ class Login extends CI_Controller {
 
 	public function proses_register()
 	{
+		$random_chr = uniqid();
+		$password = md5($random_chr);
+
 		$data = [
 			'name' 			=> $this->input->post('name'),
 			'email' 		=> $this->input->post('email'),
+			'username' 		=> $this->input->post('email'),
+			'password' 		=> $password,
 			'gender' 		=> $this->input->post('gender'),
 			'phone' 		=> $this->input->post('phone'),
 			'address' 		=> $this->input->post('address'),

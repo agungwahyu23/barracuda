@@ -136,7 +136,7 @@
 					var result = jQuery.parseJSON(data);
 					console.log(data);
 					if (result.status == 'berhasil') {
-						document.getElementById("register").reset();
+						document.getElementById("login").reset();
 						Swal.fire({
 							title: "Login Berhasil!",
 							text: "Klik Ok untuk melanjutkan!",
