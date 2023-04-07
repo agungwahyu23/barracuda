@@ -1,25 +1,41 @@
-<!-- Bootstrap core JavaScript-->
-<!-- <script src="<?= base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script> -->
-<script src="<?= base_url() ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Jquery Core Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="<?= base_url() ?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Bootstrap Core Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="<?= base_url() ?>assets/admin/js/sb-admin-2.min.js"></script>
+<!-- Select Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Page level plugins -->
-<!-- <script src="<?= base_url() ?>assets/admin/vendor/chart.js/Chart.min.js"></script> -->
-<!-- Page level plugins -->
-<script src="<?= base_url() ?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url() ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Page level custom scripts -->
-<!-- <script src="<?= base_url() ?>assets/admin/js/demo/chart-area-demo.js"></script>
-<script src="<?= base_url() ?>assets/admin/js/demo/chart-pie-demo.js"></script> -->
-<script src="<?= base_url() ?>assets/admin/js/demo/datatables-demo.js"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/node-waves/waves.js"></script>
 
-<script src="<?php echo base_url(); ?>assets/admin/vendor/select2/select2.full.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-<script src="<?php echo base_url(); ?>assets/admin/js/sweealert.js"></script>
-<script src="<?php echo base_url(); ?>assets/admin/vendor/sweetalert/sweetalert.min.js"></script>
+<!-- Jquery CountTo Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-countto/jquery.countTo.js"></script>
+
+<!-- Morris Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/raphael/raphael.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/morrisjs/morris.js"></script>
+
+<!-- ChartJs -->
+<script src="<?= base_url() ?>assets/admin/plugins/chartjs/Chart.bundle.js"></script>
+
+<!-- Flot Charts Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/flot-charts/jquery.flot.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/flot-charts/jquery.flot.resize.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/flot-charts/jquery.flot.pie.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/flot-charts/jquery.flot.categories.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/flot-charts/jquery.flot.time.js"></script>
+
+<!-- Sparkline Chart Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+<!-- Custom Js -->
+<script src="<?= base_url() ?>assets/admin/js/admin.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/pages/index.js"></script>
+
+<!-- Demo Js -->
+<script src="<?= base_url() ?>assets/admin/js/demo.js"></script>

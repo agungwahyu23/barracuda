@@ -7,8 +7,8 @@
 			<link rel="icon" href="<?= base_url() ?>assets/public/assets/img/logo-removebg-preview.png">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	  <link rel="stylesheet" href="<?= base_url() ?>assets/public/mystyle.css">
-	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendor/sweetalert/sweetalert.css">
-	  <script src="<?= base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script>
+	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/public/vendor/sweetalert/sweetalert.css">
+	  <script src="<?= base_url() ?>assets/public/vendor/jquery/jquery.min.js"></script>
     </head>
     <body>
      <section class="abovefold overflow-hidden">
@@ -122,9 +122,9 @@
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 	  <!-- <script src="<?= base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script> -->
-	  <script src="<?= base_url() ?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-	  <script src="<?php echo base_url(); ?>assets/admin/js/sweealert.js"></script>
-	  <script src="<?php echo base_url(); ?>assets/admin/vendor/sweetalert/sweetalert.min.js"></script>
+	  <script src="<?= base_url() ?>assets/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+	  <script src="<?php echo base_url(); ?>assets/public/js/sweealert.js"></script>
+	  <script src="<?php echo base_url(); ?>assets/public/vendor/sweetalert/sweetalert.min.js"></script>
     </body>
   </html>
 
