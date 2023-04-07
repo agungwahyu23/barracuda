@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model('M_user');
+		$this->load->model('M_auth');
 	}
 
 	public function loadkonten($page, $data) {
@@ -28,25 +29,46 @@ class Login extends CI_Controller {
 		$this->loadkonten('public/register',$data);
 	}
 
+	public function proses_register()
+	{
+		$data = [
+			'name' 			=> $this->input->post('name'),
+			'email' 		=> $this->input->post('email'),
+			'gender' 		=> $this->input->post('gender'),
+			'phone' 		=> $this->input->post('phone'),
+			'address' 		=> $this->input->post('address'),
+			'level' 		=> '2',
+			
+		];
+		$result = $this->M_auth->register($data);
+
+		if ($result > 0) {
+			$out = array('status'=>'berhasil');
+		} else {
+			$out['status'] = 'gagal';
+		}
+
+		echo json_encode($out);
+	}
+
     public function cek_login()
     {
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
-		$cek = $this->M_user->cek_login($username, $password);
-		
+		$cek = $this->M_auth->cek_login($username, $password);
 		if(!empty($cek)){
 			foreach($cek as $user) {
 				$session_data = [
+				'email' => $user['email'],
 				'username' => $user['username'],
-				'code_employee' => $user['code_employee'],
-				'name_of_employee' => $user['name_of_employee'],
+				'name' => $user['name'],
+				'email' => $user['email'],
+				'gender' => $user['gender'],
 				'level' => $user['level'],
-				'id' => $user['id'],
-				'company' => $user['company'],
 			];
 				$this->session->set_userdata($session_data);
-				if ($user['level'] == '1' || $user['level'] == '2' || $user['level'] == '3') {
+				if ($user['level'] == '2') {
 					$out['status'] = 'berhasil';
 				}else{
 					$out['status'] = 'gagal';
@@ -61,7 +83,7 @@ class Login extends CI_Controller {
 
 	public function logout()
     {
-        $params = array('id_user', 'username');
+        $params = array('username', 'email', 'gender', 'level');
         $this->session->unset_userdata($params);
         redirect('login');
     }
