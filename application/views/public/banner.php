@@ -11,7 +11,7 @@
 							Worldwide Lainnya</h4>
 					</div>
 					<div class="welcome-btn">
-						<a href="#" class="gradient-btn v2 mr-20">Daftar Sekarang</a>
+						<a href="<?= site_url('register') ?>" class="gradient-btn v2 mr-20">Daftar Sekarang</a>
 					</div>
 				</div>
 			</div>

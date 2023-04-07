@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-4 col-lg-2 text-right">
-                    <a href="#" class="logibtn gradient-btn">login</a>
+                    <a href="<?= site_url('login') ?>" class="logibtn gradient-btn">login</a>
                 </div>
                 
             </div>

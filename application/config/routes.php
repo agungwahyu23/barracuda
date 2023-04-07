@@ -59,6 +59,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] =   'Dashboard/index';
 $route['log-sign'] =   'Auth/index';
 
+$route['login'] =   'Login/index';
+$route['register'] =   'Login/register';
+
+//be
 /* item manajemen */
 $route['item'] =   'Item/index';
 $route['item-add'] =   'Item/add';
