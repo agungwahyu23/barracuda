@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<div class="col-12 col-md-6 col-lg-3 px-4">
+			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
 						<img src="<?= base_url() ?>assets/public/assets/img/icon/fast-processing.png" alt=""
@@ -20,11 +20,11 @@
 					<div class="space-30"></div>
 					<div class="single-team-content">
 						<h5>PROSES CEPAT</h5>
-						<p>Proses Submit cepat, minimal 7 hari lagumu sudah tayang di platform musik dunia.</p>
+						<p>Proses publish single atau album yang cepat dan mudah di Tomoko Yuki. Sehingga musik anda akan segera tersebar keseluruh dunia.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6 col-lg-3 px-4">
+			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
 						<img src="<?= base_url() ?>assets/public/assets/img/icon/headphones.png" alt=""
@@ -32,28 +32,14 @@
 					</div>
 					<div class="space-30"></div>
 					<div class="single-team-content">
-						<h5>20+ PLATFORM MUSIC</h5>
-						<p>Dengan bekerjasama dengan Believe Music, Lagumu akan tampil di 20+ Platform Music seperti
+						<h5>BERBAGAI JENIS PLATFORM MUSIC</h5>
+						<p>Kami bekerja sama dengan perusahaan musik terkemuka didunia sehingga lagumu akan dipublish diberbagai Platform Music seperti
 							Spotify, Joox, Apple Music, Tiktok, Instagram Music, Content ID Youtube dan lain-lain.
 						</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6 col-lg-3 px-4">
-				<div class="single-team">
-					<div class="single-team-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/microphone.png" alt=""
-							style="width: 100px!important">
-					</div>
-					<div class="space-30"></div>
-					<div class="single-team-content">
-						<h5>PERFORMING RIGHT MANAGEMENT</h5>
-						<p>Dengan bekerjasama dengan WAMI, Lagumu akan di kelola pengumpulan royaltinya dari
-							Performing Right</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 px-4">
+			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
 						<img src="<?= base_url() ?>assets/public/assets/img/icon/tag.png" alt=""
