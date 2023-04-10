@@ -62,6 +62,13 @@ $route['log-sign'] =   'Auth/index';
 $route['login'] =   'Login/index';
 $route['register'] =   'Login/register';
 
+//member area
+/* single */
+$route['user/single'] =   'Single/index';
+$route['user/single-add'] =   'Single/add';
+$route['user/single-update/(:any)'] =   'Single/update/$1';
+$route['user/single-detail/(:any)'] =   'Single/detail/$1';
+
 //be
 /* item manajemen */
 $route['item'] =   'Item/index';

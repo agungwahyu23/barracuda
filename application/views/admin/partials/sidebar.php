@@ -24,25 +24,25 @@
 		<ul class="list">
 			<li class="header">MAIN NAVIGATION</li>
 			<li class="active">
-				<a href="index.html">
+				<a href="<?= site_url('') ?>">
 					<i class="material-icons">home</i>
 					<span>Home</span>
 				</a>
 			</li>
 			<li>
-				<a href="pages/typography.html">
+				<a href="<?= site_url('user/single') ?>">
 					<i class="material-icons">music_note</i>
 					<span>Single</span>
 				</a>
 			</li>
 			<li>
-				<a href="pages/helper-classes.html">
+				<a href="<?= site_url('user/album') ?>">
 					<i class="material-icons">library_music</i>
 					<span>Album</span>
 				</a>
 			</li>
 			<li>
-				<a href="pages/helper-classes.html">
+				<a href="https://id.postermywall.com/index.php/sizes/album-cover-maker" target="_blank">
 					<i class="material-icons">broken_image</i>
 					<span>Buat Cover</span>
 				</a>
@@ -54,15 +54,15 @@
 				</a>
 				<ul class="ml-menu">
 					<li>
-						<a href="#">Request Takedown</a>
+						<a href="<?= site_url('user/takedown') ?>">Request Takedown</a>
 					</li>
 					<li>
-						<a href="#">Request Report</a>
+						<a href="<?= site_url('user/report') ?>">Request Report</a>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a href="pages/helper-classes.html">
+				<a href="#">
 					<i class="material-icons">headset_mic</i>
 					<span>Chat Admin</span>
 				</a>

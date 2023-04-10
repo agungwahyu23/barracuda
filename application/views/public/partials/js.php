@@ -16,3 +16,4 @@
 <script src="<?= base_url() ?>assets/public/assets/js/particles.min.js"></script>
 <!-- main js-->
 <script src="<?= base_url() ?>assets/public/assets/js/main.js"></script>
+	

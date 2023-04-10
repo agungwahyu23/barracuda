@@ -65,6 +65,7 @@ class Login extends CI_Controller {
 		if(!empty($cek)){
 			foreach($cek as $user) {
 				$session_data = [
+				'id' => $user['id'],
 				'email' => $user['email'],
 				'username' => $user['username'],
 				'name' => $user['name'],

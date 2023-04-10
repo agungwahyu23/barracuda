@@ -1,19 +1,25 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_return extends CI_Model
+class M_single extends CI_Model
 {
 
 	public function getData()
 	{
-		$sql = "SELECT * FROM tb_item ORDER BY id ASC";
+		$sql = "SELECT * FROM single ORDER BY id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
 	public function save_data($data)
 	{
-		$result = $this->db->insert('tb_item', $data);
+		$result = $this->db->insert('single', $data);
+		return $result;
+	}
+	
+	public function save_data_material($data)
+	{
+		$result = $this->db->insert('tb_item_material', $data);
 		return $result;
 	}
 
@@ -33,6 +39,15 @@ class M_return extends CI_Model
 	public function hapus($id)
 	{
 		$sql = "DELETE FROM tb_item WHERE id='" . $id . "'";
+
+		$this->db->query($sql);
+
+		return $this->db->affected_rows();
+	}
+
+	public function hapus_detail($id)
+	{
+		$sql = "DELETE FROM tb_item_material WHERE id='" . $id . "'";
 
 		$this->db->query($sql);
 

@@ -16,20 +16,37 @@
     <!-- Bootstrap Core Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+	<!-- Custom styles for this template-->
+    <link href="<?= base_url() ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <!-- Waves Effect Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Morris Chart Css-->
-    <link href="<?= base_url() ?>assets/admin/plugins/morrisjs/morris.css" rel="stylesheet" />
-
     <!-- Custom Css -->
     <link href="<?= base_url() ?>assets/admin/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?= base_url() ?>assets/admin/css/themes/all-themes.css" rel="stylesheet" />
+
+	<!-- Jquery Core Js -->
+	<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+
+	<style>
+		.swal2-popup {
+			font-size: 1.6rem !important;
+		}
+	</style>
+
 </head>
 
 <body class="theme-red">
