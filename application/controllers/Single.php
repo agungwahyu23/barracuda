@@ -38,22 +38,33 @@ class Single extends CI_Controller {
 			$row[] = $single->title;
 			$row[] = $single->artist;
 			$row[] = $single->created_at;
-			$row[] = $single->status;
+			
+			$status = '';
+			if ($single->status == 0) {
+				$status = "Pending";
+			}elseif ($single->status == 1) {
+				$status = "Sukses";
+			}else{
+				$status = "-";
+			}
+			$row[] = $status;
 
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			INFO <span class="caret"></span></button>';
+			Aksi <span class="caret"></span></button>';
 
 			$action .= '<ul class="dropdown-menu">';
 			
-			$action .= '<li><a href="' . base_url('single-detail') . "/" . 
+			$action .= '<li><a href="' . base_url('user/single-detail') . "/" . 
 			$single->id . '">Detail</a></li>';
 
-			$action .= '<li><a href="' . base_url('single-update') . "/" . 
-			$single->id . '">Edit</a></li>';
+			if ($single->status != 1) {
+				$action .= '<li><a href="' . base_url('user/single-update') . "/" . 
+				$single->id . '">Edit</a></li>';
+				
+				$action .= '<li><a href="#" class="delete-single" data-id='."'".$single->id."'".'>Hapus</a></li>';
+			}
 
-			$action .= '<li><a href="#" data-id='."'".
-			$single->id."'".'>Hapus</a></li>';
 
 			$action .= '</ul>';
 			$action .= '</div>';
@@ -85,48 +96,81 @@ class Single extends CI_Controller {
 
 	public function prosesAdd()
 	{
-			$id_user 	= $this->session->userdata('id_user');
+		$id_user 	= $this->session->userdata('id_user');
+		$judul = $this->input->post('title');
+		$newnamefile = 'single_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
+		$config['upload_path'] = './upload/single';
+		$config['allowed_types'] = 'wav';
+		$config['max_size'] = '102400';
+		$config['max_width'] = 0;
+		$config['max_height'] = 0;
+		$config['overwrite'] = TRUE;
+		$config['remove_spaces'] = TRUE;
+		$config['file_ext_tolower'] = TRUE;
+		$config['file_name'] = $newnamefile;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		if ($this->upload->do_upload('file')){
+			$single_file = $this->upload->data();
+			$path['link']= "upload/single/";
+
 			$data = [
-				'title' 			=> $this->input->post('title'),
-				'artist' 			=> $this->input->post('artist'),
-				'description' 		=> $this->input->post('description'),
-				'language' 		=> $this->input->post('language'),
-				'genre_id' 			=> $this->input->post('genre_id'),
-				'first_name_composer	' 	=> $this->input->post('first_composer'),
-				'last_name_composer	' 	=> $this->input->post('last_composer'),
-				'arranger' 	=> $this->input->post('arranger'),
-				'produser' 	=> $this->input->post('produser'),
-				'year_production' 	=> $this->input->post('year_production'),
-				'created_at' 	=> date('Y-m-d H:i:s'),
-				'created_by' 	=> $id_user,
+				'title' 				=> $this->input->post('title'),
+				'artist' 				=> $this->input->post('artist'),
+				'description' 			=> $this->input->post('description'),
+				'language' 				=> $this->input->post('language'),
+				'genre_id' 				=> $this->input->post('genre_id'),
+				'first_name_composer' 	=> $this->input->post('first_composer'),
+				'last_name_composer' 	=> $this->input->post('last_composer'),
+				'arranger' 				=> $this->input->post('arranger'),
+				'produser' 				=> $this->input->post('produser'),
+				'year_production' 		=> $this->input->post('year_production'),
+				'created_at' 			=> date('Y-m-d H:i:s'),
+				'created_by' 			=> $id_user,
+				'status' 				=> 0,
+				'file'            		=> $path['link'] . ''. $single_file['file_name'],
 				
 			];
 			
-		$result = $this->M_single->save_data($data);
+			$result = $this->M_single->save_data($data);
 
-		if ($result > 0) {
-			$out = array('status'=>'berhasil');
-		} else {
-			$out['status'] = 'gagal';
-		}
-
-		echo json_encode($out);
-	}
-
-	public function prosesAddMaterial()
-	{
+			if ($result > 0) {
+				$out = array('status'=>'berhasil');
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}else{
 			$data = [
-				'single_id' 			=> $this->input->post('single_id'),
-				'raw_material_id' 	=> $this->input->post('raw_material_id'),				
+				'title' 				=> $this->input->post('title'),
+				'artist' 				=> $this->input->post('artist'),
+				'description' 			=> $this->input->post('description'),
+				'language' 				=> $this->input->post('language'),
+				'genre_id' 				=> $this->input->post('genre_id'),
+				'first_name_composer' 	=> $this->input->post('first_composer'),
+				'last_name_composer' 	=> $this->input->post('last_composer'),
+				'arranger' 				=> $this->input->post('arranger'),
+				'produser' 				=> $this->input->post('produser'),
+				'year_production' 		=> $this->input->post('year_production'),
+				'created_at' 			=> date('Y-m-d H:i:s'),
+				'created_by' 			=> $id_user,
+				'status' 				=> 0,
+				
 			];
 			
-		$result = $this->M_single->save_data_material($data);
+			$result = $this->M_single->save_data($data);
 
-		if ($result > 0) {
-			$out = array('status'=>'berhasil');
-		} else {
+			if ($result > 0) {
+				$out = array('status'=>'berhasil');
+			} else {
+				$out['status'] = 'gagal';
+			}
+
 			$out['status'] = 'gagal';
 		}
+
+			
 
 		echo json_encode($out);
 	}
@@ -146,6 +190,7 @@ class Single extends CI_Controller {
 	{
 		$data['page'] = "Update Single";
 		$data['single'] = $this->M_single->select_by_id($id);
+		$data['id'] = $id;
 
 		$data['content'] 	= "admin/v_single/update";
 
@@ -157,21 +202,75 @@ class Single extends CI_Controller {
 			$where = [
 				'id' 		   => $this->input->post('id')
 			];
-			$data = [
-				'code' 			=> $this->input->post('code'),
-				'name' 			=> $this->input->post('name'),
-				'price' 		=> $this->input->post('price'),
-				'stock' 		=> $this->input->post('stock'),
-				'unit' 			=> $this->input->post('unit'),
-				'warehouse_id' 	=> $this->input->post('warehouse_id'),
-				
-			];
-			$result = $this->M_single->update($data, $where);
 
-			if ($result > 0) {
-				$out['status'] = 'berhasil';
-			} else {
-				$out['status'] = 'gagal';
+			$id_user 	= $this->session->userdata('id');
+
+			$judul = $this->input->post('title');
+			$newnamefile = 'single_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
+			$config['upload_path'] = './upload/single';
+			$config['allowed_types'] = 'wav';
+			$config['max_size'] = '102400';
+			$config['max_width'] = 0;
+			$config['max_height'] = 0;
+			$config['overwrite'] = TRUE;
+			$config['remove_spaces'] = TRUE;
+			$config['file_ext_tolower'] = TRUE;
+			$config['file_name'] = $newnamefile;
+
+			if ($this->upload->do_upload('file')){
+				$single_file = $this->upload->data();
+				$path['link']= "upload/single/";
+	
+				$data = [
+					'title' 				=> $this->input->post('title'),
+					'artist' 				=> $this->input->post('artist'),
+					'description' 			=> $this->input->post('description'),
+					'language' 				=> $this->input->post('language'),
+					'genre_id' 				=> $this->input->post('genre_id'),
+					'first_name_composer' 	=> $this->input->post('first_composer'),
+					'last_name_composer' 	=> $this->input->post('last_composer'),
+					'arranger' 				=> $this->input->post('arranger'),
+					'produser' 				=> $this->input->post('produser'),
+					'year_production' 		=> $this->input->post('year_production'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $id_user,
+					'status' 				=> $this->input->post('status'),
+					'file'            		=> $path['link'] . ''. $single_file['file_name'],
+					
+				];
+				
+				$result = $this->M_single->update($data, $where);
+	
+				if ($result > 0) {
+					$out = array('status'=>'berhasil');
+				} else {
+					$out['status'] = 'gagal';
+				}
+			}else{
+				$data = [
+					'title' 				=> $this->input->post('title'),
+					'artist' 				=> $this->input->post('artist'),
+					'description' 			=> $this->input->post('description'),
+					'language' 				=> $this->input->post('language'),
+					'genre_id' 				=> $this->input->post('genre_id'),
+					'first_name_composer' 	=> $this->input->post('first_composer'),
+					'last_name_composer' 	=> $this->input->post('last_composer'),
+					'arranger' 				=> $this->input->post('arranger'),
+					'produser' 				=> $this->input->post('produser'),
+					'year_production' 		=> $this->input->post('year_production'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $id_user,
+					'status' 				=> $this->input->post('status'),
+					
+				];
+				
+				$result = $this->M_single->update($data, $where);
+	
+				if ($result > 0) {
+					$out = array('status'=>'berhasil');
+				} else {
+					$out['status'] = 'gagal';
+				}
 			}
 
 		echo json_encode($out);
@@ -181,19 +280,6 @@ class Single extends CI_Controller {
 	{
 		$id = $_POST['id'];
 		$result = $this->M_single->hapus($id);
-
-		if ($result > 0) {
-			$out['status'] = 'berhasil';
-		} else {
-			$out['status'] = 'gagal';
-		}
-	}
-
-	public function delete_detail()
-	{
-		$id = $_POST['id'];
-
-		$result = $this->M_single->hapus_detail($id);
 
 		if ($result > 0) {
 			$out['status'] = 'berhasil';

@@ -1,83 +1,106 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- card untuk tambah data -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <form id="form-update" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" name="id" id="id" value="<?= $user->id ?>">
-                        <div class="form-group">
-                            <label for="code">Code</label>
-                            <input type="text" class="form-control" name="code_employee" id="code_employee" autocomplete="off"
-                                placeholder="Code Employee" value="<?= $user->code_employee ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="name_of_employee">Name*</label>
-                            <input type="text" class="form-control" name="name_of_employee" id="name_of_employee" autocomplete="off"
-                                placeholder="Enter Name" required value="<?= $user->name_of_employee ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="no_telp">Telp</label>
-                            <input type="text" class="form-control" name="no_telp" id="no_telp" autocomplete="off"
-                                placeholder="Enter Telp" value="<?= $user->no_telp ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="part_of">Part Of</label>
-                           	<select name="part_of" id="part_of" class="form-control">
-								<option value="PRODUKSI" <?= $user->part_of == 'PRODUKSI' ? 'selected' : '' ?>>Production</option>
-								<option value="GUDANG" <?= $user->part_of == 'GUDANG' ? 'selected' : '' ?>>Warehouse</option>
-							</select>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" class="form-control" name="company" id="company" autocomplete="off"
-                                placeholder="Enter company" value="<?= $user->company ?>">
-                        </div>
-						<div class="form-group">
-                            <label for="status">Status</label>
-                           	<select name="status" id="status" class="form-control">
-								<option value="1" <?= $user->status == '1' ? 'selected' : '' ?>>Active</option>
-								<option value="0" <?= $user->status == '0' ? 'selected' : '' ?>>Nonactive</option>
-							</select>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Username*</label>
-                            <input type="text" class="form-control" name="username" id="username" autocomplete="off"
-                                placeholder="Enter Username" required value="<?= $user->username ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="password" id="myInput"
-                                placeholder="Enter Password" required value="">
-                            <input type="checkbox" onclick="myFunction()">Show Password
-                        </div>
-						<div class="form-group">
-                            <label for="level">Level*</label>
-                           	<select name="level" id="level" class="form-control">
-								<option value="0" <?= $user->level == '0' ? 'selected' : '' ?>>Employee</option>
-								<option value="1" <?= $user->level == '1' ? 'selected' : '' ?>>Production</option>
-								<option value="2" <?= $user->level == '2' ? 'selected' : '' ?>>Warehouse</option>
-							</select>
-                        </div>
-                        <button class=" btn btn-primary mr-2" type="submit" id="btnSubmit" name="submit"><i
-                                class="fas fa-save"></i>
-                            Save</button>
-
-                        <a href="javascript:history.go(-1)" class="btn btn-danger" type="submit" name="submit"><i
-                                class="fas fa-chevron-left"></i> Back
-                        </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- akhir card -->
+<div class="block-header">
+	<h2>
+		Edit Single
+	</h2>
 </div>
-<!-- /.container-fluid -->
+<!-- Basic Validation -->
+<div class="row clearfix">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card">
+			<div class="header">
+				<h2>Edit Data Single</h2>
+			</div>
+			<div class="body">
+				<form id="form_validation" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="id" id="id" value="<?= $id ?>">
+					<input type="hidden" name="status" id="status" value="<?= $single->status ?>">
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="title" value="<?= $single->title ?>" required>
+							<label class="form-label">Judul*</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="artist" value="<?= $single->artist ?>" required>
+							<label class="form-label">Nama Artis*</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="language" value="<?= $single->language ?>">
+							<label class="form-label">Bahasa</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<label class="form-label">Genre</label>
+						<div class="form-line">
+							<select name="genre_id" id="genre_id" class="form-control show-tick">
+								<option value="">Pop</option>
+								<option value="">Rock</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group form-float">
+						<div class="form-line">
+							<textarea name="description" cols="30" rows="5" class="form-control no-resize"
+							><?= $single->description ?></textarea>
+							<label class="form-label">Description</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="first_composer" value="<?= $single->first_name_composer ?>" required>
+							<label class="form-label">Nama Depan Komposer*</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_composer" value="<?= $single->last_name_composer ?>" required>
+							<label class="form-label">Nama Belakang Komposer*</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="arranger" value="<?= $single->arranger ?>">
+							<label class="form-label">Arranger</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="produser" value="<?= $single->produser ?>">
+							<label class="form-label">Produser</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="date-own form-control" name="year_production" value="<?= $single->year_production ?>">
+							<label class="form-label">Tahun Produksi</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<span>Unggah File Musik</span>
+                        <input name="file" id="file" type="file" multiple style="padding-top:10px!important"/>
+						<small style="color:red">*Biarkan kosong jika anda tidak ingin mengubah file yang telah diupload</small>
+					</div>
+					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Kembali</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- #END# Basic Validation -->
 
 <script type="text/javascript">
+$('.date-own').datepicker({
+	format: "yyyy",
+	viewMode: "years",
+	minViewMode: "years",
+	autoclose: true //to close picker once year is selected
+});
+
 function myFunction() {
     var x = document.getElementById("myInput");
     if (x.type === "password") {
@@ -87,8 +110,7 @@ function myFunction() {
     }
 }
 
-
-$('#form-update').submit(function(e) {
+$('#form_validation').submit(function(e) {
     var data = $(this).serialize();
     // var data = new FormData($(this)[0]);
     $.ajax({
@@ -97,7 +119,7 @@ $('#form-update').submit(function(e) {
                 $(".loading2").show();
                 $(".loading2").modal('show');
             },
-            url: '<?php echo base_url('User/prosesUpdate'); ?>',
+            url: '<?php echo base_url('Single/prosesUpdate'); ?>',
             type: "post",
             enctype: "multipart/form-data",
             // data: data,
@@ -110,7 +132,7 @@ $('#form-update').submit(function(e) {
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
-                document.getElementById("form-update").reset();
+                document.getElementById("form_validation").reset();
                 save_berhasil();
             } else {
                 $(".loading2").hide();
@@ -126,21 +148,21 @@ $('#form-update').submit(function(e) {
 <script>
 function save_berhasil() {
     Swal.fire({
-        title: "Data saved successfully!",
-        text: "Click the Ok button to continue!",
+        title: "Data berhasil disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
         icon: "success",
         button: "Ok",
     }).then(function() {
-        var link = '<?php echo base_url("user") ?>';
+        var link = '<?php echo base_url("single") ?>';
         window.location.replace(link);
     });
 }
 
 function gagal() {
-    swal({
-        title: "Data failed to save!",
-        text: "Click the Ok button to continue!",
-        icon: "danger",
+    Swal.fire({
+        title: "Data gagal disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
+        icon: "warning",
         button: "Ok",
         dangerMode: true,
     });

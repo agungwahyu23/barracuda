@@ -1,56 +1,109 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- card untuk tambah data -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <form id="form-update" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" readonly value="<?= $user->username ?>">
-                        </div>
-                        <div class=" form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" readonly value="<?= $user->email ?>">
-                        </div>
-                        <div class=" form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="text" readonly value="<?= $user->password ?>">
-                        </div>
-                        <div class=" form-group">
-                            <label>User Group</label>
-                            <input type="text" class="form-control" value="<?= $user->level ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <input type="text" class="form-control" value="<?php
-                            if ($user->gender==0){
-                                echo 'Female';
-                            }elseif ($user->gender==1) {
-                                echo 'Male';
-                            }
-                            ?>" readonly>
-
-                        </div>
-                        <button class=" btn btn-primary mr-2" type="submit" id="btnSubmit" name="submit"><i
-                                class="fas fa-save"></i>
-                            Save</button>
-
-                        <a href="javascript:history.go(-1)" class="btn btn-danger" type="submit" name="submit"><i
-                                class="fas fa-chevron-left"></i> Back
-                        </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- akhir card -->
+<div class="block-header">
+	<h2>
+		Tambah Single
+	</h2>
 </div>
-<!-- /.container-fluid -->
+<!-- Basic Validation -->
+<div class="row clearfix">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card">
+			<div class="header">
+				<h2>Tambah Data Single</h2>
+			</div>
+			<div class="body">
+				<form id="form_validation" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="id" id="id" value="<?= $id ?>">
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="title" value="<?= $single->title ?>" disabled>
+							<label class="form-label">Judul</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="artist" value="<?= $single->artist ?>" disabled>
+							<label class="form-label">Nama Artis</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="language" value="<?= $single->language ?>" disabled>
+							<label class="form-label">Bahasa</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<label class="form-label">Genre</label>
+						<div class="form-line">
+							<select name="genre_id" id="genre_id" class="form-control show-tick">
+								<option value="">Pop</option>
+								<option value="">Rock</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group form-float">
+						<div class="form-line">
+							<textarea name="description" cols="30" rows="5" class="form-control no-resize"
+								disabled><?= $single->description ?></textarea>
+							<label class="form-label">Description</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="first_composer" value="<?= $single->first_name_composer ?>" disabled>
+							<label class="form-label">Nama Depan Komposer</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_composer" value="<?= $single->last_name_composer ?>" disabled>
+							<label class="form-label">Nama Belakang Komposer</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="arranger" value="<?= $single->arranger ?>" disabled>
+							<label class="form-label">Arranger</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="produser" value="<?= $single->produser ?>" disabled>
+							<label class="form-label">Produser</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="date-own form-control" name="year_production" value="<?= $single->year_production ?>" disabled>
+							<label class="form-label">Tahun Produksi</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<span>File Musik</span><br>
+						<?php
+						if (isset($single->file)) {?>
+							<span class="label bg-green">Anda sudah upload file musik</span> <br><br>
+							<a href="<?= $single->file ?>" download>Unduh file</a>
+						<?php }else{ ?>
+							<span class="label bg-deep-orange">Anda belum upload file musik</span>
+						<?php } ?>
+					</div>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Kembali</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- #END# Basic Validation -->
 
 <script type="text/javascript">
+$('.date-own').datepicker({
+	format: "yyyy",
+	viewMode: "years",
+	minViewMode: "years",
+	autoclose: true //to close picker once year is selected
+});
+
 function myFunction() {
     var x = document.getElementById("myInput");
     if (x.type === "password") {
@@ -60,13 +113,7 @@ function myFunction() {
     }
 }
 
-$(function() {
-    $(".selek-group").select2({
-        placeholder: " -- Select Group User -- "
-    });
-});
-
-$('#form-update').submit(function(e) {
+$('#form_validation').submit(function(e) {
     var data = $(this).serialize();
     // var data = new FormData($(this)[0]);
     $.ajax({
@@ -75,7 +122,7 @@ $('#form-update').submit(function(e) {
                 $(".loading2").show();
                 $(".loading2").modal('show');
             },
-            url: '<?php echo base_url('User/prosesUpdate'); ?>',
+            url: '<?php echo base_url('Single/prosesAdd'); ?>',
             type: "post",
             enctype: "multipart/form-data",
             // data: data,
@@ -88,7 +135,7 @@ $('#form-update').submit(function(e) {
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
-                document.getElementById("form-update").reset();
+                document.getElementById("form_validation").reset();
                 save_berhasil();
             } else {
                 $(".loading2").hide();
@@ -104,21 +151,21 @@ $('#form-update').submit(function(e) {
 <script>
 function save_berhasil() {
     Swal.fire({
-        title: "Data saved successfully!",
-        text: "Click the Ok button to continue!",
+        title: "Data berhasil disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
         icon: "success",
         button: "Ok",
     }).then(function() {
-        var link = '<?php echo base_url("user.html") ?>';
+        var link = '<?php echo base_url("single") ?>';
         window.location.replace(link);
     });
 }
 
 function gagal() {
-    swal({
-        title: "Data failed to save!",
-        text: "Click the Ok button to continue!",
-        icon: "danger",
+    Swal.fire({
+        title: "Data gagal disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
+        type: "danger",
         button: "Ok",
         dangerMode: true,
     });

@@ -11,10 +11,10 @@
 				<h2>Tambah Data Single</h2>
 			</div>
 			<div class="body">
-				<form id="form_validation" method="POST">
+				<form id="form_validation" method="POST" enctype="multipart/form-data">
 					<div class="form-group form-float">
 						<div class="form-line">
-							<input type="text" class="form-control" name="judul" required>
+							<input type="text" class="form-control" name="title" required>
 							<label class="form-label">Judul*</label>
 						</div>
 					</div>
@@ -42,8 +42,7 @@
 					
 					<div class="form-group form-float">
 						<div class="form-line">
-							<textarea name="description" cols="30" rows="5" class="form-control no-resize"
-								required></textarea>
+							<textarea name="description" cols="30" rows="5" class="form-control no-resize"></textarea>
 							<label class="form-label">Description</label>
 						</div>
 					</div>
@@ -76,6 +75,10 @@
 							<input type="text" class="date-own form-control" name="year_production">
 							<label class="form-label">Tahun Produksi</label>
 						</div>
+					</div>
+					<div class="form-group form-float">
+						<span>Unggah File Musik</span>
+                        <input name="file" id="file" type="file" multiple />
 					</div>
 					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
 					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Batal</a>
@@ -155,7 +158,7 @@ function gagal() {
     Swal.fire({
         title: "Data gagal disimpan!",
         text: "Klik Ok untuk melanjutkan!",
-        type: "danger",
+        icon: "danger",
         button: "Ok",
         dangerMode: true,
     });

@@ -16,38 +16,23 @@ class M_single extends CI_Model
 		$result = $this->db->insert('single', $data);
 		return $result;
 	}
-	
-	public function save_data_material($data)
-	{
-		$result = $this->db->insert('tb_item_material', $data);
-		return $result;
-	}
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT * FROM tb_item where id = ?";
+		$sql = "SELECT * FROM single where id = ?";
 		$data = $this->db->query($sql, array($id));
 		return $data->row();
 	}
 
 	public function update($data, $where)
 	{
-		$result = $this->db->update('tb_item', $data, $where);
+		$result = $this->db->update('single', $data, $where);
 		return $result;
 	}
 
 	public function hapus($id)
 	{
-		$sql = "DELETE FROM tb_item WHERE id='" . $id . "'";
-
-		$this->db->query($sql);
-
-		return $this->db->affected_rows();
-	}
-
-	public function hapus_detail($id)
-	{
-		$sql = "DELETE FROM tb_item_material WHERE id='" . $id . "'";
+		$sql = "DELETE FROM single WHERE id='" . $id . "'";
 
 		$this->db->query($sql);
 

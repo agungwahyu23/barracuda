@@ -90,8 +90,8 @@ function reload_table() {
 $(document).on("click", ".delete-single", function() {
     var id = $(this).attr("data-id");
     Swal.fire({
-        title: 'Delete data?',
-        text: "Sure you will delete the data?",
+        title: 'Hapus data?',
+        text: "Data yang telah dihapus tidak dapat dikembalikan. Anda Yakin?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -118,8 +118,8 @@ $(document).on("click", ".delete-single", function() {
 
 function hapus_berhasil() {
     Swal.fire({
-        title: "Deleted data successfully!",
-        text: "Click the Ok button to continue!",
+        title: "Data berhasil dihapus!",
+        text: "Klik Ok untuk melanjutkan!",
         icon: "success",
         button: "Ok",
     })
