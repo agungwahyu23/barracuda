@@ -289,7 +289,7 @@ a.single-about,
 }
 
 .about-area::after {
-    position: absolute;
+    position: relative;
     content: "";
     height: 140%;
     width: 100%;

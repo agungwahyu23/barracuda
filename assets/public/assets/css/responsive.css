@@ -312,7 +312,7 @@
         margin: 0;
     }
     .logo-area.footer {
-        text-align: unset;
+        text-align: center;
     }
     .apps-area.section-padding{
         padding-top: 0;
@@ -340,7 +340,7 @@
     }
     .logo-area img {
         width: 80px;
-        height: 25px;
+        height: 80px;
     }
     a.gradient-btn {
         font-size: 6px;
@@ -391,7 +391,7 @@
     }
     .single-about-img img {
         width: 110px;
-        height: 70px;
+        height: auto;
     }
     .single-about-text h4 {
         font-size: 14px;
@@ -799,7 +799,7 @@
     }
     .single-about-img img {
         width: 130px;
-        height: 90px;
+        height: auto;
     }
     .single-team {
         width: 350px;
