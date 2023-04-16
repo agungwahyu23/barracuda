@@ -21,7 +21,7 @@
     }
 
     .apps-img {
-        width: 400px;
+        /* width: 400px; */
     	height: 450px;
         border-radius: 100px;
     	background-color: #FFBB13ff;

@@ -11,13 +11,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12 col-lg-5 offset-1">
+				<div class="col-12 col-lg-5 mb-3">
 					<div class="apps-img">
 						<video src="<?= base_url() ?>assets/public/assets/img/logo.mp4" type="video/mp4" autoplay muted
 							loop></video>
 					</div>
 				</div>
-				<div class="col-12 col-lg-5 offset-1 align-self-center">
+				<div class="col-12 col-lg-5 align-self-center">
 					<div class="heading">
 						<h1>Publish Musik Anda Ke Seluruh Dunia Dengan Mudah</h1>
 						<div class="space-20"></div>

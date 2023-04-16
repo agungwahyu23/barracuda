@@ -34,8 +34,10 @@
 						<label class="form-label">Genre</label>
 						<div class="form-line">
 							<select name="genre_id" id="genre_id" class="form-control show-tick">
-								<option value="">Pop</option>
-								<option value="">Rock</option>
+								<?php
+								foreach ($genre as $key => $value) {?>
+									<option value="<?= $value->id ?>"><?= $value->genre ?></option>
+								<?php } ?>
 							</select>
 						</div>
 					</div>

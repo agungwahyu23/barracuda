@@ -41,6 +41,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/toastr/toastr.css">
+    <script src="<?php echo base_url(); ?>assets/admin/toastr/toastr.js"></script>
+
 	<style>
 		.swal2-popup {
 			font-size: 1.6rem !important;

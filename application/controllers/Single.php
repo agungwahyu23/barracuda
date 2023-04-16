@@ -62,7 +62,7 @@ class Single extends CI_Controller {
 				$action .= '<li><a href="' . base_url('user/single-update') . "/" . 
 				$single->id . '">Edit</a></li>';
 				
-				$action .= '<li><a href="#" class="delete-single" data-id='."'".$single->id."'".'>Hapus</a></li>';
+				// $action .= '<li><a href="#" class="delete-single" data-id='."'".$single->id."'".'>Hapus</a></li>';
 			}
 
 
@@ -85,6 +85,7 @@ class Single extends CI_Controller {
 	{
 		$data['page'] 		= "Add Single";
 		$data['content'] 	= "admin/v_single/add";
+		$data['genre'] 	= $this->M_single->getGenre();
 
 		// generate code with format ITEM-random code
 		$random = mt_rand(1111,9999);
@@ -96,7 +97,7 @@ class Single extends CI_Controller {
 
 	public function prosesAdd()
 	{
-		$id_user 	= $this->session->userdata('id_user');
+		$id_user 	= $this->session->userdata('id');
 		$judul = $this->input->post('title');
 		$newnamefile = 'single_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
 		$config['upload_path'] = './upload/single';

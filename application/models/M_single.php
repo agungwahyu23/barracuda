@@ -11,6 +11,13 @@ class M_single extends CI_Model
 		return $data->result();
 	}
 
+	public function getGenre()
+	{
+		$sql = "SELECT * FROM genre ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	public function save_data($data)
 	{
 		$result = $this->db->insert('single', $data);
