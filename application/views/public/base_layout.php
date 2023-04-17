@@ -2,23 +2,47 @@
 <html lang="en">
 
 <style>
-    .logos {
-    	width: 180px;
-    	height: 80px;
-        border-radius: 100px;
-    	background-color: #FFBB13ff;
-    	overflow: hidden;
-    }
+	/* @media only screen and (min-width: 991px) { */
+		.logos {
+			width: 180px;
+			height: 80px;
+			border-radius: 100px;
+			background-color: #FFBB13ff;
+			overflow: hidden;
+		}
 
-    .logos video {
-    	/* position: absolute;
+		.logos video {
+			/* position: absolute;
     	top: 0;
     	left: 0; */
-        object-fit: revert;
-    	width: 185px;
-    	height: 100%;
-    	transform: scale(1.2);
-    }
+			object-fit: revert;
+			width: 185px;
+			height: 100%;
+			transform: scale(1.2);
+		}
+	/* } */
+
+	@media (max-width: 991px) {
+		.goog-te-combo {
+			display: none;
+		}
+		.goog-te-combo option {
+			display: none;
+		}
+		.goog-te-gadget {
+			display: none;
+		}
+
+		.logos {
+			width: 90px;
+			height: 40px;
+		}
+
+		.logos video{
+			width: 90px;
+		}
+	}
+    
 
     .apps-img {
         /* width: 400px; */
@@ -57,7 +81,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-4 col-lg-8 d-none d-lg-block">
+                <div class="col-2 col-lg-6 d-none d-lg-block">
                     <div class="main-menu text-center">
                         <nav>
                             <ul id="slick-nav">
@@ -69,8 +93,11 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-4 col-lg-2 text-right">
+                <div class="col-1 col-lg-2 text-right">
                     <a href="<?= site_url('login') ?>" class="logibtn gradient-btn">login</a>
+                </div>
+                <div class="col-4 col-lg-2 text-right">
+					<div id="google_translate_element"></div>
                 </div>
                 
             </div>
