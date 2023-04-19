@@ -61,6 +61,7 @@ $route['log-sign'] =   'Login/index';
 
 $route['login'] =   'Login/index';
 $route['register'] =   'Login/register';
+$route['test_email'] =   'Login/send_example_email';
 
 //member area
 /* single */

@@ -6,7 +6,8 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('session');
+		$this->load->library('session', 'email');
+		$this->load->helper('email');
 		$this->load->model('M_user');
 		$this->load->model('M_auth');
 	}
@@ -46,6 +47,15 @@ class Login extends CI_Controller {
 			
 		];
 		$result = $this->M_auth->register($data);
+		$data_mail = [
+			'email' 		=> $this->input->post('email'),
+			'password' 		=> $random_chr
+		];
+
+		$to = 'agungwahyu23699@gmail.com';
+        $subject = 'Pembuatan Akun Baru';
+		$message_template = $this->load->view('public/email_template', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
 
 		if ($result > 0) {
 			$out = array('status'=>'berhasil');
@@ -93,4 +103,28 @@ class Login extends CI_Controller {
         $this->session->unset_userdata($params);
         redirect('login');
     }
+
+	public function send_example_email() {
+		$email = 'email@email.com';
+		$random_chr = uniqid();
+		$password = md5($random_chr);
+
+		$data = [
+			'email' 			=> $email,
+			'password' 		=> $random_chr,
+			
+		];
+
+		$to = 'agungwahyu23699@gmail.com';
+        $subject = 'Test Email';
+		$message_template = $this->load->view('public/email_template', $data, TRUE);
+
+		if (send_email($to, $subject, $message_template)) {
+            $out = array('status'=>'berhasil');
+        } else {
+            $out['status'] = 'gagal';
+        }
+
+		echo json_encode($out);
+	}
 }
