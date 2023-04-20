@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 
 	public function proses_register()
 	{
+		$email = $this->input->post('email');
 		$random_chr = uniqid();
 		$password = md5($random_chr);
 
@@ -52,7 +53,7 @@ class Login extends CI_Controller {
 			'password' 		=> $random_chr
 		];
 
-		$to = 'agungwahyu23699@gmail.com';
+		$to = $email;
         $subject = 'Pembuatan Akun Baru';
 		$message_template = $this->load->view('public/email_template', $data_mail, TRUE);
 		send_email($to, $subject, $message_template);
