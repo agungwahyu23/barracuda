@@ -76,6 +76,16 @@ $route['user/album-add'] =   'Album/add';
 $route['user/album-update/(:any)'] =   'Album/update/$1';
 $route['user/album-detail/(:any)'] =   'Album/detail/$1';
 
+/* takedown */
+$route['user/takedown'] =   'Takedown/index';
+$route['user/takedown-add'] =   'Takedown/add';
+$route['user/takedown-detail/(:any)'] =   'Takedown/detail/$1';
+
+/* withdraw */
+$route['user/withdraw'] =   'Withdraw/index';
+$route['user/withdraw-add'] =   'Withdraw/add';
+$route['user/withdraw-detail/(:any)'] =   'Withdraw/detail/$1';
+
 //be
 /* item manajemen */
 $route['item'] =   'Item/index';

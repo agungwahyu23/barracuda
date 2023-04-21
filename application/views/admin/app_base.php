@@ -15,6 +15,11 @@
 
     <!-- Bootstrap Core Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<style>
+		.form-label{
+			font-weight: normal!important;
+		}
+	</style>
 
 	<!-- Custom styles for this template-->
     <link href="<?= base_url() ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">

@@ -57,7 +57,7 @@
 						<a href="<?= site_url('user/takedown') ?>">Request Takedown</a>
 					</li>
 					<li>
-						<a href="<?= site_url('user/report') ?>">Request Report</a>
+						<a href="<?= site_url('user/withdraw') ?>">Request Withdraw</a>
 					</li>
 				</ul>
 			</li>
