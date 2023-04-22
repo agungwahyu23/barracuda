@@ -62,7 +62,7 @@
 				</ul>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://wa.me/6281357748220">
 					<i class="material-icons">headset_mic</i>
 					<span>Chat Admin</span>
 				</a>
