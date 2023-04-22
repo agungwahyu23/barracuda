@@ -7,6 +7,7 @@ class Withdraw extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('app');
 		$this->load->library('session');
 		$this->load->model('M_withdraw');
 	}
@@ -36,8 +37,24 @@ class Withdraw extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $withdraw->amount;
-			$row[] = $withdraw->status;
-			$row[] = $withdraw->attachment;
+
+			$status = '';
+			if ($withdraw->status == '0') {
+				$status = '<span class="badge bg-yellow">Pending</span>';
+			}elseif ($withdraw->status == '1') {
+				$status = '<span class="badge bg-green">Success</span>';
+			}else{
+				$status = '<span class="badge bg-red">Rejected</span>';
+			}
+			$row[] = $status;
+
+			$attachment = '';
+			if (isset($withdraw->attachment)) {
+				$attachment = '<a href="#" data-toggle="modal" data-target="#defaultModal" data-image="'.$withdraw->attachment.'" id="attachment" class="badge bg-green">Show Attachment</a>';
+			}else{
+				$attachment = '<span class="badge bg-red">No Attachment</span>';
+			}
+			$row[] = $attachment;
 			
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

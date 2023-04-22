@@ -26,11 +26,10 @@ class M_withdraw extends CI_Model
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT r.*, a.title, s.title FROM request r
-				LEFT JOIN album a on a.id = r.album_id
-				LEFT JOIN single s on s.id = r.single_id
-				WHERE r.id = '".$id."'
-				ORDER BY r.id ASC";
+		$sql = "SELECT id, user_id, amount, attachment, created_at, created_by, updated_at, updated_by, status
+				FROM withdraw
+				WHERE id = '".$id."'
+				ORDER BY id ASC";
 		$data = $this->db->query($sql);
 		return $data->row();
 	}

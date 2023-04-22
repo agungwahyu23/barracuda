@@ -24,7 +24,7 @@
 		<ul class="list">
 			<li class="header">MAIN NAVIGATION</li>
 			<li class="active">
-				<a href="<?= site_url('') ?>">
+				<a href="<?= site_url('dashboard') ?>">
 					<i class="material-icons">home</i>
 					<span>Home</span>
 				</a>

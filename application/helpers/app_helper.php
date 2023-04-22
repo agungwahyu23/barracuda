@@ -99,3 +99,8 @@ function setExcelHeader($excel_file_name)//this function used to set the header 
 	header("Pragma: no-cache");//Prevent Caching
 	header("Expires: 0");//Expires and 0 mean that the browser will not cache the page on your hard drive
 }
+
+function format_rupiah($angka){
+    $rupiah = number_format($angka,0,',','.');
+    return "Rp ".$rupiah;
+}

@@ -34,6 +34,22 @@
 </div>
 <!-- #END# Basic Examples -->
 
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">Preview Attachment</h4>
+			</div>
+			<div class="modal-body">
+				<img class="img-thumbnail" src="" alt="" id="imageholder" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 //untuk load data table ajax	
 var table;
@@ -73,5 +89,21 @@ $(document).ready(function() {
 function reload_table() {
     table.ajax.reload(null, false); //reload datatable ajax 
 }
+</script>
+
+<script>
+	$('#defaultModal').on('show.bs.modal', function(event) {
+		var domainWithProtocol = window.location.origin;
+		let image = $(event.relatedTarget).data('image');
+		
+		var pathImage = domainWithProtocol + '/barracuda/upload/withdraw_attachment/' + image
+		console.log(pathImage);
+
+		 // image holder
+		 var imageholder = document.getElementById('imageholder')
+            imageholder.style.width = '100%';
+            imageholder.src = pathImage;
+            imageholder.alt = "Image";
+	});
 </script>
 
