@@ -87,6 +87,8 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($session_data);
 				if ($user['level'] == '2') {
 					$out['status'] = 'berhasil';
+				}elseif ($user['level'] == '1') {
+					$out['status'] = 'berhasil';
 				}else{
 					$out['status'] = 'gagal';
 				} 
