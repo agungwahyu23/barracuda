@@ -33,7 +33,12 @@
 			</div>
 			<div class="content">
 				<div class="text">TOTAL INCOME</div>
-				<div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"><?= format_rupiah($income->result) ?></div>
+				<div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">
+					<?= 
+					// format_rupiah($income->result)
+					isset($income->result) ? format_rupiah($income->result) : format_rupiah(0) 
+					?>
+				</div>
 			</div>
 		</div>
 	</div>
