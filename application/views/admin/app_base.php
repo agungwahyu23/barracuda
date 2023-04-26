@@ -30,6 +30,9 @@
     <!-- Animation Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/animate-css/animate.css" rel="stylesheet" />
 
+	<!-- Light Gallery Plugin Css -->
+    <link href="<?= base_url() ?>assets/admin/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url() ?>assets/admin/css/style.css" rel="stylesheet">
 

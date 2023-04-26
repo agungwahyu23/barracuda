@@ -25,3 +25,8 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url() ?>assets/admin/js/demo/datatables-demo.js"></script>
 
+<!-- Light Gallery Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/light-gallery/js/lightgallery-all.js"></script>
+
+<!-- Custom Js -->
+<script src="<?= base_url() ?>assets/admin/js/pages/medias/image-gallery.js"></script>

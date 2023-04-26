@@ -94,6 +94,12 @@ $route['v2/user-add-detail/(:any)'] =   'Admin_user/index_material/$1';
 $route['v2/user-update/(:any)'] =   'Admin_user/update/$1';
 $route['v2/user-detail/(:any)'] =   'Admin_user/detail/$1';
 
+/* single */
+$route['v2/user/single'] =   'Admin_single/index';
+$route['v2/user/single-add'] =   'Admin_single/add';
+$route['v2/user/single-update/(:any)'] =   'Admin_single/update/$1';
+$route['v2/user/single-detail/(:any)'] =   'Admin_single/detail/$1';
+
 
 /* item manajemen */
 $route['item'] =   'Item/index';
