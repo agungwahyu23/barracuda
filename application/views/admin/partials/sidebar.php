@@ -87,7 +87,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('dashboard') ?>">
+					<a href="<?= site_url('v2/user') ?>">
 						<i class="material-icons">group</i>
 						<span>User</span>
 					</a>

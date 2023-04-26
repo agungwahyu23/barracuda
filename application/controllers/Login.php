@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session', 'email');
 		$this->load->helper('email');
-		$this->load->model('M_user');
+		$this->load->model('Ma_user');
 		$this->load->model('M_auth');
 	}
 
