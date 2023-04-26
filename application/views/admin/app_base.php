@@ -30,6 +30,9 @@
     <!-- Animation Css -->
     <link href="<?= base_url() ?>assets/admin/plugins/animate-css/animate.css" rel="stylesheet" />
 
+	<!-- Light Gallery Plugin Css -->
+    <link href="<?= base_url() ?>assets/admin/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url() ?>assets/admin/css/style.css" rel="stylesheet">
 
@@ -39,12 +42,12 @@
 	<!-- Jquery Core Js -->
 	<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+	<link href="<?= base_url() ?>assets/admin/css/datepicker.css" rel="stylesheet">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="<?= base_url() ?>assets/admin/js/bootstrap-datepicker.min.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+	<script src="<?= base_url() ?>assets/admin/js/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/css/sweetalert2.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/toastr/toastr.css">
     <script src="<?php echo base_url(); ?>assets/admin/toastr/toastr.js"></script>

@@ -32,6 +32,26 @@
 					</a>
 				</li>
 				<li>
+					<a href="javascript:void(0);" class="menu-toggle">
+						<i class="material-icons">cloud_upload</i>
+						<span>Submitted Store</span>
+					</a>
+					<ul class="ml-menu">
+						<li>
+							<a href="<?= site_url('user/single') ?>">
+								<i class="material-icons">music_note</i>
+								<span>Single</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= site_url('user/album') ?>">
+								<i class="material-icons">library_music</i>
+								<span>Album</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- <li>
 					<a href="<?= site_url('user/single') ?>">
 						<i class="material-icons">music_note</i>
 						<span>Single</span>
@@ -42,7 +62,7 @@
 						<i class="material-icons">library_music</i>
 						<span>Album</span>
 					</a>
-				</li>
+				</li> -->
 				<li>
 					<a href="https://id.postermywall.com/index.php/sizes/album-cover-maker" target="_blank">
 						<i class="material-icons">broken_image</i>
@@ -87,19 +107,19 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('dashboard') ?>">
+					<a href="<?= site_url('v2/user') ?>">
 						<i class="material-icons">group</i>
 						<span>User</span>
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('user/single') ?>">
+					<a href="<?= site_url('v2/user/single') ?>">
 						<i class="material-icons">music_note</i>
 						<span>Single Submitted</span>
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('user/album') ?>">
+					<a href="<?= site_url('v2/user/album') ?>">
 						<i class="material-icons">library_music</i>
 						<span>Album Submitted</span>
 					</a>
@@ -111,21 +131,21 @@
 					</a>
 					<ul class="ml-menu">
 						<li>
-							<a href="<?= site_url('user/takedown') ?>">Request Takedown</a>
+							<a href="<?= site_url('v2/user/takedown') ?>">Request Takedown</a>
 						</li>
 						<li>
-							<a href="<?= site_url('user/withdraw') ?>">Request Withdraw</a>
+							<a href="<?= site_url('v2/user/withdraw') ?>">Request Withdraw</a>
 						</li>
 					</ul>
 				</li>
 				<li>
-					<a href="<?= site_url('user/album') ?>">
+					<a href="<?= site_url('v2/user/album') ?>">
 						<i class="material-icons">list</i>
 						<span>News</span>
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('user/album') ?>">
+					<a href="<?= site_url('v2/user/album') ?>">
 						<i class="material-icons">settings</i>
 						<span>Settings</span>
 					</a>
