@@ -32,6 +32,26 @@
 					</a>
 				</li>
 				<li>
+					<a href="javascript:void(0);" class="menu-toggle">
+						<i class="material-icons">cloud_upload</i>
+						<span>Submitted Store</span>
+					</a>
+					<ul class="ml-menu">
+						<li>
+							<a href="<?= site_url('user/single') ?>">
+								<i class="material-icons">music_note</i>
+								<span>Single</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= site_url('user/album') ?>">
+								<i class="material-icons">library_music</i>
+								<span>Album</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- <li>
 					<a href="<?= site_url('user/single') ?>">
 						<i class="material-icons">music_note</i>
 						<span>Single</span>
@@ -42,7 +62,7 @@
 						<i class="material-icons">library_music</i>
 						<span>Album</span>
 					</a>
-				</li>
+				</li> -->
 				<li>
 					<a href="https://id.postermywall.com/index.php/sizes/album-cover-maker" target="_blank">
 						<i class="material-icons">broken_image</i>
