@@ -59,6 +59,14 @@
         transform: scale(1.2);
         padding-left: 35px;
     }
+
+	#text{
+		color: white;
+		font-size: 40px;
+		text-align: left;
+		font-family: "Montserrat";
+		font-weight: 700;
+	}
 </style>
   
 <!-- head -->
