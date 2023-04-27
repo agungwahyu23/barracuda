@@ -5,8 +5,10 @@
 		<div class="row">
 			<div class="col-12 col-md-6 align-self-center">
 				<div class="welcome-right">
-					<div class="welcome-text">
-						<h1>Publish Musik Anda ke Seluruh Dunia </h1>
+				<div id="text">
+      			</div>
+				  <div class="welcome-text">
+						<!-- <h1>Publish Musik Anda ke Seluruh Dunia </h1> -->
 						<h4>Rilis musik & lagu ke Spotify, Apple Music, Deezer, Amazon Music dan Digital Music Platform
 							Worldwide Lainnya</h4>
 					</div>

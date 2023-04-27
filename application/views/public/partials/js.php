@@ -17,3 +17,16 @@
 <!-- main js-->
 <script src="<?= base_url() ?>assets/public/assets/js/main.js"></script>
 	
+<script>
+	var i=0,text;
+         text = "Publish Musik Anda ke Seluruh Dunia"
+         
+         function typing() {
+           if(i<text.length){
+             document.getElementById("text").innerHTML += text.charAt(i);
+             i++;
+             setTimeout(typing,80);
+           }
+         }
+         typing();
+</script>
