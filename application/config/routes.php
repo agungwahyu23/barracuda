@@ -64,6 +64,12 @@ $route['register'] =   'Login/register';
 $route['test_email'] =   'Login/send_example_email';
 
 //member area
+/* user */
+$route['user/profile'] =   'Profile/index';
+$route['user/profile-add'] =   'Profile/add';
+$route['user/profile-update/(:any)'] =   'Profile/update/$1';
+$route['user/profile-detail/(:any)'] =   'Profile/detail/$1';
+
 /* single */
 $route['user/single'] =   'Single/index';
 $route['user/single-add'] =   'Single/add';
@@ -99,6 +105,12 @@ $route['v2/user/single'] =   'Admin_single/index';
 $route['v2/user/single-add'] =   'Admin_single/add';
 $route['v2/user/single-update/(:any)'] =   'Admin_single/update/$1';
 $route['v2/user/single-detail/(:any)'] =   'Admin_single/detail/$1';
+
+/* album */
+$route['v2/user/album'] =   'Admin_album/index';
+$route['v2/user/album-add'] =   'Admin_album/add';
+$route['v2/user/album-update/(:any)'] =   'Admin_album/update/$1';
+$route['v2/user/album-detail/(:any)'] =   'Admin_album/detail/$1';
 
 
 /* item manajemen */
