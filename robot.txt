@@ -1,0 +1,13 @@
+User-agent: *
+# disallow all files in these directories
+Disallow: /system/
+Disallow: /asset/admin/
+Disallow: /application/views/admin/
+Disallow: /application/views/errors/
+Disallow: /application/config/
+Disallow: /application/controllers/
+Disallow: /application/helpers/
+Disallow: /application/libraries/
+Disallow: /application/models/
+ 
+Sitemap: https://tomokoyuki.com/sitemap.xml

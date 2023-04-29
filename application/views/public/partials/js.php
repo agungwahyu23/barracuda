@@ -18,15 +18,40 @@
 <script src="<?= base_url() ?>assets/public/assets/js/main.js"></script>
 	
 <script>
-	var i=0,text;
-         text = "Publish Musik Anda ke Seluruh Dunia"
-         
-         function typing() {
-           if(i<text.length){
-             document.getElementById("text").innerHTML += text.charAt(i);
-             i++;
-             setTimeout(typing,80);
-           }
-         }
-         typing();
+				window.addEventListener('load', function() {
+					// setTimeout(function() {
+						window.requestCloseWelcomeScreen();
+
+						var i=0,text;
+						text = "Publish Musik Anda ke Seluruh Dunia"
+						var isAnimating = true;
+
+						function typing() {
+							if(i<text.length){
+								document.getElementById("text").innerHTML += text.charAt(i);
+								i++;
+								setTimeout(typing,90);
+							}else{
+								isAnimating = false;
+								setTimeout(looping, 1000);
+							}
+						}
+
+						function looping() {
+							isAnimating = true;
+							i = 0;
+							document.getElementById("text").innerHTML = "";
+							setTimeout(typing, 0); 
+						}
+						
+						typing();
+
+						setTimeout(function() {
+							if (!isAnimating) {
+								looping();
+							}
+						}, 1000);
+					// }, 2000); // 2 detik
+				});
+
 </script>
