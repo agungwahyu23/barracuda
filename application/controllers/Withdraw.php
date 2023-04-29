@@ -20,7 +20,9 @@ class Withdraw extends CI_Controller {
 
 	public function index()
 	{
+		$id 	= $this->session->userdata('id');
 		$data['page'] 		= "Withdraw";
+		$data['user'] = $this->M_withdraw->getUser($id);
 		$data['content'] 	= "admin/v_withdraw/home";
 
 		$this->loadkonten('admin/app_base',$data);
@@ -37,6 +39,7 @@ class Withdraw extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $withdraw->amount;
+			$row[] = $withdraw->created_at;
 
 			$status = '';
 			if ($withdraw->status == '0') {
