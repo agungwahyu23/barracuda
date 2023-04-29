@@ -5,7 +5,7 @@
 			<div class="col-12 text-center">
 				<div class="heading">
 					<h1>Our Services</h1>
-					<p>Layanan Yang Di Sediakan oleh Tomoko Yuki</p>
+					<p>Services Provided by Tomoko Yuki</p>
 				</div>
 			</div>
 		</div>
@@ -17,7 +17,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Publish Single</h4>
-						<p>Publish single anda dengan mudah di Tomoko Yuki. Kami memberikan kemudahan kepada artist untuk publish single mereka dan akan kami distribusikan ke berbagai platform.</p>
+						<p>Publish your single easily on Tomoko Yuki. We make it easy for artists to publish their singles and we will distribute them to various platforms.</p>
 					</div>
 				</a>
 			</div>
@@ -28,7 +28,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Publish Album</h4>
-						<p>Fitur publish album merupakan fitur untuk para artis mengunggah album mereka dengan mudah di Tomoko Yuki yang kemudian akan kami distribusikan ke berbagai platform.</p>
+						<p>The publish album feature is a feature for artists to easily upload their albums on Tomoko Yuki which we will then distribute to various platforms.</p>
 					</div>
 				</a>
 			</div>
@@ -39,8 +39,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Distribusi</h4>
-						<p>Kami mendistribusikan karya lagu kalian ke berbagai digital music store
-							seluruh dunia seperti iTunes, Spotify, Joox, Deezer, dll</p>
+						<p>We distribute your songs to various digital music stores around the world such as iTunes, Spotify, Joox, Deezer, etc</p>
 					</div>
 				</a>
 			</div>
@@ -53,7 +52,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Customer Service Support</h4>
-						<p>Kami memberikan layanan customer service support maksimal untuk membantu para pengguna dalam mengatasi kendala yang ditemukan.</p>
+						<p>We provide maximum customer service support to help users overcome the problems they encounter.</p>
 					</div>
 				</a>
 			</div>
@@ -64,7 +63,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Promosi</h4>
-						<p>Tomoko Yuki memiliki fitur promosi yang dapat anda gunakan untuk mengenalkan karya anda ke market yang lebih luas.</p>
+						<p>Tomoko Yuki has a promotional feature that you can use to introduce your work to a wider market.</p>
 					</div>
 				</a>
 			</div>
@@ -75,7 +74,7 @@
 					</div>
 					<div class="single-about-text">
 						<h4>Request Report</h4>
-						<p>Dengan fitur request report anda dapat mengajukan permintaan laporan rilis secara transparan dengan mudah.</p>
+						<p>With the request report feature, you can easily submit a request for a release report transparently.</p>
 					</div>
 				</a>
 			</div>
