@@ -384,7 +384,7 @@
                 <div class="col-12 text-center">
                     <div class="heading">
                         <h5>Store</h5>
-                        <p>Kami Mendistribusikan Musik Anda ke Store-Store Di Bawah ini</p>
+                        <p>We Distribute Your Music to the Stores Below</p>
                     </div>
                     <div class="space-30"></div>
                 </div>
@@ -434,7 +434,7 @@
     <!--about-bg end-->
 
     <!--roadmap area start-->
-    <?php include('roadmap.php') ?>
+    <!-- <?php include('roadmap.php') ?> -->
     <!--roadmap area end-->
 
     <!--team-bg-->

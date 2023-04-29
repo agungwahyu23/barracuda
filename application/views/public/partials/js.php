@@ -23,7 +23,7 @@
 						window.requestCloseWelcomeScreen();
 
 						var i=0,text;
-						text = "Publish Musik Anda ke Seluruh Dunia"
+						text = "Publish Your Music Worldwide"
 						var isAnimating = true;
 
 						function typing() {

@@ -5,7 +5,7 @@
 			<div class="col-12 text-center">
 				<div class="heading">
 					<h1>Why Choose Us</h1>
-					<p>Kenapa Harus Di Tomoko Yuki</p>
+					<p>Why should Tomoko Yuki</p>
 				</div>
 				<div class="space-60"></div>
 			</div>
@@ -19,8 +19,8 @@
 					</div>
 					<div class="space-30"></div>
 					<div class="single-team-content">
-						<h5>PROSES CEPAT</h5>
-						<p>Proses publish single atau album yang cepat dan mudah di Tomoko Yuki. Sehingga musik anda akan segera tersebar keseluruh dunia.</p>
+						<h5>FAST PROCESS</h5>
+						<p>The process of publishing singles or albums is fast and easy at Tomoko Yuki. So that your music will soon spread throughout the world.</p>
 					</div>
 				</div>
 			</div>
@@ -32,9 +32,8 @@
 					</div>
 					<div class="space-30"></div>
 					<div class="single-team-content">
-						<h5>BERBAGAI JENIS PLATFORM MUSIC</h5>
-						<p>Kami bekerja sama dengan perusahaan musik terkemuka didunia sehingga lagumu akan dipublish diberbagai Platform Music seperti
-							Spotify, Joox, Apple Music, Tiktok, Instagram Music, Content ID Youtube dan lain-lain.
+						<h5>VARIOUS TYPES OF MUSIC PLATFORMS</h5>
+						<p>We work with the world's leading music companies so that your songs will be published on various Music Platforms such as Spotify, Joox, Apple Music, Tiktok, Instagram Music, Content ID Youtube and others.
 						</p>
 					</div>
 				</div>
@@ -47,9 +46,8 @@
 					</div>
 					<div class="space-30"></div>
 					<div class="single-team-content">
-						<h5>HARGA LEBIH HEMAT</h5>
-						<p>Dapatkan Biaya Submit lebih murah dan ringan dibanding Aggregator Music Lainnya. Dengan
-							pembayaran mudah ke bank lokal Indonesia</p>
+						<h5>MORE SAVING PRICE</h5>
+						<p>Get Submit Fees that are cheaper and lighter than other Music Aggregators. With easy payments to local Indonesian banks</p>
 					</div>
 				</div>
 			</div>
