@@ -68,7 +68,6 @@ class Profile extends CI_Controller {
 					'phone' 		=> $this->input->post('phone'),
 					'address' 		=> $this->input->post('address'),
 					'is_active' 		=> $this->input->post('is_active'),
-					'level' 		=> $this->input->post('level'),
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
 					'password' 		=> md5($this->input->post('password')),
@@ -85,7 +84,6 @@ class Profile extends CI_Controller {
 					'phone' 		=> $this->input->post('phone'),
 					'address' 		=> $this->input->post('address'),
 					'is_active' 		=> $this->input->post('is_active'),
-					'level' 		=> $this->input->post('level'),
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
 					'password' 		=> md5($this->input->post('password')),
@@ -105,7 +103,6 @@ class Profile extends CI_Controller {
 					'phone' 		=> $this->input->post('phone'),
 					'address' 		=> $this->input->post('address'),
 					'is_active' 	=> $this->input->post('is_active'),
-					'level' 		=> $this->input->post('level'),
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
 					// 'password' 		=> md5($this->input->post('password'))
@@ -122,7 +119,6 @@ class Profile extends CI_Controller {
 					'phone' 		=> $this->input->post('phone'),
 					'address' 		=> $this->input->post('address'),
 					'is_active' 	=> $this->input->post('is_active'),
-					'level' 		=> $this->input->post('level'),
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
 					// 'password' 		=> md5($this->input->post('password'))

@@ -343,7 +343,7 @@
         height: 80px;
     }
     a.gradient-btn {
-        font-size: 6px;
+        font-size: 10px;
     }
     .welcome-text h1 {
         font-size: 14px;
@@ -404,7 +404,7 @@
         line-height: 22px;
     }
     a.gradient-btn {
-        font-size: 6px;
+        font-size: 10px;
         padding: 10px 5px;
     }
     .about-mid-img {
@@ -694,7 +694,7 @@
     }
     
     .comment-text-form a.gradient-btn {
-        font-size: 8px;
+        font-size: 10px;
         padding: 16px 12px;
     }
     .comment-text-form input {

@@ -56,6 +56,12 @@ class Ma_user extends CI_Model
 		$result = $this->db->update('user', $data, $where);
 		return $result;
 	}
+	
+	public function proses_payment($data, $where)
+	{
+		$result = $this->db->update('user', $data, $where);
+		return $result;
+	}
 
 	public function hapus($id)
 	{
