@@ -52,6 +52,16 @@ class Admin_user extends CI_Controller {
 			}
 			$row[] = $status;
 
+			$verified_at = '';
+			if ($user->verified_at != '' || $user->verified_at != null) {
+				$verified_at = '<span class="badge bg-green">Terverifikasi</span>';
+			}elseif ($user->verified_at == '' || $user->verified_at == null) {
+				$verified_at = '<span class="badge bg-red">Belum verifikasi</span>';
+			}else{
+				$verified_at = '-';
+			}
+			$row[] = $verified_at;
+
 			$row[] = $user->level;
 
 			$action = '<div class="btn-group">';
@@ -146,6 +156,7 @@ class Admin_user extends CI_Controller {
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
 					'password' 		=> md5($this->input->post('password')),
+					'verified_at' 		=> date('Y-m-d'),
 					'updated_at' 		=> date('Y-m-d H:i:s'),
 					'updated_by' 		=> $this->session->userdata('id')
 				];
@@ -161,6 +172,7 @@ class Admin_user extends CI_Controller {
 					'level' 		=> $this->input->post('level'),
 					'total_income' 	=> $this->input->post('total_income'),
 					'username' 		=> $this->input->post('username'),
+					'verified_at' 		=> date('Y-m-d'),
 					// 'password' 		=> md5($this->input->post('password'))
 					'updated_at' 		=> date('Y-m-d H:i:s'),
 					'updated_by' 		=> $this->session->userdata('id')

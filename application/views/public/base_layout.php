@@ -341,7 +341,7 @@
                 <div class="col-4 d-block d-lg-none">
                     <div class="mobile-menu"></div>
                 </div>
-                <div class="col-4 col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="logo-area">
                         <a href="#">
                         	<div class="logos">
@@ -350,7 +350,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-2 col-lg-6 d-none d-lg-block">
+                <div class="col-1 col-lg-6 d-none d-lg-block">
                     <div class="main-menu text-center">
                         <nav>
                             <ul id="slick-nav">
@@ -358,13 +358,14 @@
                                 <li><a class="scroll" href="#Services">Services</a></li>
                                 <li><a class="scroll" href="#about">About Us</a></li>
                                 <li><a class="scroll" href="#contact">Contact</a></li>
+                                <!-- <li><a class="scroll" href="<?= site_url('login') ?>">Login</a></li> -->
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <div class="col-1 col-lg-2 text-right">
+                <!-- <div class="col-2 col-lg-2 text-right">
                     <a href="<?= site_url('login') ?>" class="logibtn gradient-btn">login</a>
-                </div>
+                </div> -->
                 <div class="col-4 col-lg-2 text-right">
 					<div id="google_translate_element"></div>
                 </div>

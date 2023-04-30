@@ -25,9 +25,9 @@
 						<p>By using our music publishing service, you can easily upload your music. We are always trying to improve the quality of our service and continue to expand our music catalog to bring the best music experience to our customers.</p>
 					</div>
 					<div class="space-30"></div>
-					<a href="#" class="gradient-btn apps-btn">Register Now</a>
+					<a href="<?= site_url('register') ?>" class="gradient-btn apps-btn">Register Now</a>
 
-					<a href="#" class="gradient-btn apps-btn apps-btn-2"> Login</a>
+					<a href="<?= site_url('login') ?>" class="gradient-btn apps-btn apps-btn-2"> Login</a>
 				</div>
 			</div>
 		</div>
