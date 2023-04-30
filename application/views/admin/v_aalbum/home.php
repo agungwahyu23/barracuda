@@ -10,7 +10,7 @@
 		<div class="card">
 			<div class="header">
 				<h2>
-					<a href="<?= site_url('user/album-add') ?>" class="btn btn-primary waves-effect">+ Tambah Data</a>
+					Data Album
 				</h2>
 			</div>
 			<div class="body">

@@ -3,8 +3,11 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
 			<div class="header">
-				<h2>
+				<!-- <h2>
 					<a href="<?= site_url('user/single-add') ?>" class="btn btn-primary waves-effect">+ Tambah Data</a>
+				</h2> -->
+				<h2>
+					Data User
 				</h2>
 				<ul class="header-dropdown m-r--5">
 					<li class="dropdown">
@@ -32,6 +35,7 @@
 								<th>Nama</th>
 								<th>Jenis Kelamin</th>
 								<th>Status</th>
+								<th>Status Konfirmasi</th>
 								<th>Level</th>
 								<th>Action</th>
 							</tr>

@@ -37,7 +37,8 @@
 						<h4>Release music and songs to Spotify, Apple Music, Deezer, Amazon Music and Other Digital Music Platforms Worldwide</h4>
 					</div>
 					<div class="about2-btn">
-						<a href="<?= site_url('register') ?>" class="gradient-btn v2 mr-20">Daftar Sekarang</a>
+						<a href="<?= site_url('register') ?>" class="gradient-btn v2 mr-20">Register Now</a>
+						<a href="<?= site_url('login') ?>" class="gradient-btn v2" style="background: none; border:1px solid #1452e2"> Login</a>
 					</div>
 				</div>
 			</div>
