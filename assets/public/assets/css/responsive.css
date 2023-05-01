@@ -335,9 +335,9 @@
 
 @media only screen and (min-width: 0px) and (max-width: 767px) {
 
-    .heading h1 {
+    /* .heading h1 {
         font-size: 18px;
-    }
+    } */
     .logo-area img {
         width: 80px;
         height: 80px;
@@ -393,12 +393,12 @@
         width: 110px;
         height: auto;
     }
-    .single-about-text h4 {
+    /* .single-about-text h4 {
         font-size: 14px;
     }
     a.single-about {
         font-size: 11px;
-    }
+    } */
     .welcome-text h1 {
         font-size: 18px;
         line-height: 22px;
@@ -754,7 +754,7 @@
     }
     a.single-about {
         width: 100%;
-        font-size: 14px;
+        /* font-size: 14px; */
         padding: 40px 60px;
     }
     .single-about-text h4 {
