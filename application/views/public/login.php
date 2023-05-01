@@ -37,16 +37,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto navigation">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<?= base_url('home') ?>">Home</a>
+                            <a class="nav-link" aria-current="page" href="<?= base_url('') ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<?= base_url('home') ?>">Services</a>
+                            <a class="nav-link" aria-current="page" href="<?= base_url('') ?>">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<?= base_url('home') ?>">About Us</a>
+                            <a class="nav-link" aria-current="page" href="<?= base_url('') ?>">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<?= base_url('home') ?>">Contact</a>
+                            <a class="nav-link" aria-current="page" href="<?= base_url('') ?>">Contact</a>
                         </li>
                     </ul>
                 </div>
