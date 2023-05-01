@@ -27,7 +27,7 @@
 					<div class="space-30"></div>
 					<a href="<?= site_url('register') ?>" class="gradient-btn apps-btn">Register Now</a>
 
-					<a href="<?= site_url('login') ?>" class="gradient-btn apps-btn apps-btn-2"> Login</a>
+					<a href="<?= site_url('login') ?>" class="gradient-btn apps-btn apps-btn-2 ml-3"> Login</a>
 				</div>
 			</div>
 		</div>

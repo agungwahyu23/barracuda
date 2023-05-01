@@ -42,7 +42,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-6 mt-4">
 				<div class="about2-img">
 					<img src="<?= base_url() ?>assets/public/assets/img/music1.png" alt="">
 				</div>
