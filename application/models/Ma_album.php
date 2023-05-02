@@ -6,7 +6,10 @@ class Ma_album extends CI_Model
 
 	public function getData()
 	{
-		$sql = "SELECT a.*, g.genre FROM album a LEFT JOIN genre g ON a.genre_id = g.id ORDER BY a.id ASC";
+		$sql = "SELECT a.*, g.genre, o.status FROM album a 
+		LEFT JOIN genre g ON a.genre_id = g.id 
+		LEFT JOIN tb_order o ON o.id=a.order_id
+		ORDER BY a.id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -44,7 +47,7 @@ class Ma_album extends CI_Model
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT a.*, g.genre, u.name, o.attachment 
+		$sql = "SELECT a.*, g.genre, u.name, o.attachment, o.status 
 				FROM album a 
 				LEFT JOIN genre g ON a.genre_id = g.id 
 				LEFT JOIN user u ON u.id = a.user_id

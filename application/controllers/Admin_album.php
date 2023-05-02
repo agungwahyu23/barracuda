@@ -36,8 +36,9 @@ class Admin_album extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $album->title;
-			$row[] = $album->artist;
+			$row[] = $album->user_id;
 			$row[] = $album->created_at;
+			$row[] = $album->genre;
 			
 			$status = '';
 			if ($album->status == 0) {
@@ -188,6 +189,7 @@ class Admin_album extends CI_Controller {
 		$data['page'] = "Update Album";
 		$data['genre'] 	= $this->Ma_album->getGenre();
 		$data['album'] = $this->Ma_album->select_by_id($id);
+		$data['single'] = $this->Ma_album->select_detail_single($id);
 		$data['id'] = $id;
 
 		$data['content'] 	= "admin/v_aalbum/update";
@@ -205,28 +207,11 @@ class Admin_album extends CI_Controller {
 
 			$id_user 	= $this->session->userdata('id');
 
-			$data = [
-				'title' 				=> $this->input->post('title'),
-				'artist' 				=> $this->input->post('artist'),
-				'description' 			=> $this->input->post('description'),
-				'language' 				=> $this->input->post('language'),
-				'genre_id' 				=> $this->input->post('genre_id'),
-				'first_name_composer' 	=> $this->input->post('first_composer'),
-				'last_name_composer' 	=> $this->input->post('last_composer'),
-				'arranger' 				=> $this->input->post('arranger'),
-				'produser' 				=> $this->input->post('produser'),
-				'year_production' 		=> $this->input->post('year_production'),
-				'updated_at' 			=> date('Y-m-d H:i:s'),
-				'updated_by' 			=> $id_user,
-				'status' 				=> $this->input->post('status'),
-			];
-
 			$data_order = [
 				'status' 				=> $this->input->post('status'),
 			];
 			
-			$this->db->update('tb_order', $data_order, array('id' => $order_id));
-			$result = $this->Ma_album->update($data, $where);
+			$result = $this->db->update('tb_order', $data_order, array('id' => $order_id));
 
 			if ($result > 0) {
 				$out = array('status'=>'berhasil');
