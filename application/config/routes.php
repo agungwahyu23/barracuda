@@ -119,6 +119,11 @@ $route['v2/user/takedown'] =   'Admin_takedown/index';
 $route['v2/user/takedown-add'] =   'Admin_takedown/add';
 $route['v2/user/takedown-detail/(:any)'] =   'Admin_takedown/detail/$1';
 
+/* withdraw */
+$route['v2/user/withdraw'] =   'Admin_withdraw/index';
+$route['v2/user/withdraw-add'] =   'Admin_withdraw/add';
+$route['v2/user/withdraw-detail/(:any)'] =   'Admin_withdraw/detail/$1';
+
 /* item manajemen */
 $route['item'] =   'Item/index';
 $route['item-add'] =   'Item/add';
