@@ -162,6 +162,7 @@ class Album extends CI_Controller {
 					'produser' 				=> $this->input->post('produser'),
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
+					'artist' 				=> $artist,
 				];
 			}
 			$result_album = $this->M_album->save_data($data);

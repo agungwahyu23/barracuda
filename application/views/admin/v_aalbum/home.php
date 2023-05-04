@@ -22,6 +22,7 @@
 								<th>Cover</th>
 								<th>Tanggal Dibuat</th>
 								<th>Genre</th>
+								<th>Status</th>
 								<th>Aksi</th>
 							</tr>
 						</thead>
@@ -56,7 +57,7 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('Album/ajax_list') ?>",
+            "url": "<?php echo site_url('Admin_album/ajax_list') ?>",
             "type": "POST"
 
         },
