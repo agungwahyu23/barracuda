@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Tambah Single
+		Detail Single
 	</h2>
 </div>
 <!-- Basic Validation -->
@@ -8,7 +8,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
 			<div class="header">
-				<h2>Tambah Data Single</h2>
+				<h2>Detail Data Single</h2>
 			</div>
 			<div class="body">
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
@@ -16,28 +16,25 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" value="<?= $single->title ?>" disabled>
-							<label class="form-label">Judul</label>
+							<label class="form-label">Title</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" value="<?= $single->artist ?>" disabled>
-							<label class="form-label">Nama Artis</label>
+							<label class="form-label">Name of Artist</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="language" value="<?= $single->language ?>" disabled>
-							<label class="form-label">Bahasa</label>
+							<label class="form-label">Language</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<label class="form-label">Genre</label>
 						<div class="form-line">
-							<select name="genre_id" id="genre_id" class="form-control show-tick">
-								<option value="">Pop</option>
-								<option value="">Rock</option>
-							</select>
+							<input type="text" class="form-control" name="genre_id" value="<?= $single->genre ?>" disabled>
 						</div>
 					</div>
 					
@@ -51,13 +48,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="first_composer" value="<?= $single->first_name_composer ?>" disabled>
-							<label class="form-label">Nama Depan Komposer</label>
+							<label class="form-label">First Name Composser</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_composer" value="<?= $single->last_name_composer ?>" disabled>
-							<label class="form-label">Nama Belakang Komposer</label>
+							<label class="form-label">Last Name Composser</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -69,26 +66,26 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="produser" value="<?= $single->produser ?>" disabled>
-							<label class="form-label">Produser</label>
+							<label class="form-label">Producer</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="date-own form-control" name="year_production" value="<?= $single->year_production ?>" disabled>
-							<label class="form-label">Tahun Produksi</label>
+							<label class="form-label">Year of Production</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<span>File Musik</span><br>
 						<?php
 						if (isset($single->file)) {?>
-							<span class="label bg-green">Anda sudah upload file musik</span> <br><br>
-							<a href="<?= $single->file ?>" download>Unduh file</a>
+							<span class="label bg-green">You have uploaded a music file</span> <br><br>
+							<a href="<?= $single->file ?>" download>Download file</a>
 						<?php }else{ ?>
-							<span class="label bg-deep-orange">Anda belum upload file musik</span>
+							<span class="label bg-deep-orange">You haven't uploaded any music files</span>
 						<?php } ?>
 					</div>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Kembali</a>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Back</a>
 				</form>
 			</div>
 		</div>

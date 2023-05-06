@@ -10,7 +10,7 @@
 		<div class="card">
 			<div class="header">
 				<h2>
-					<a href="<?= site_url('user/single-add') ?>" class="btn btn-primary waves-effect">+ Tambah Data</a>
+					<a href="<?= site_url('user/single-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
 				</h2>
 				<ul class="header-dropdown m-r--5">
 					<li class="dropdown">
@@ -30,11 +30,11 @@
 					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Judul Lagu</th>
+								<th>Title</th>
 								<th>Artis</th>
-								<th>Tanggal Upload</th>
+								<th>Date of Upload</th>
 								<th>Status</th>
-								<th>Aksi</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>

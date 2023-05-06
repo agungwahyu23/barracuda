@@ -27,7 +27,8 @@ class Single extends CI_Controller {
 
 	public function ajax_list()
 	{
-		$singles = $this->M_single->getData();
+		$id_user 	= $this->session->userdata('id');
+		$singles = $this->M_single->getData($id_user);
 
 		$data = array();
 		$no = @$_POST['start'];
@@ -43,7 +44,7 @@ class Single extends CI_Controller {
 			if ($single->status == 0) {
 				$status = "Pending";
 			}elseif ($single->status == 1) {
-				$status = "Sukses";
+				$status = "Success";
 			}else{
 				$status = "-";
 			}
@@ -51,7 +52,7 @@ class Single extends CI_Controller {
 
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Aksi <span class="caret"></span></button>';
+			Action <span class="caret"></span></button>';
 
 			$action .= '<ul class="dropdown-menu">';
 			
@@ -61,8 +62,6 @@ class Single extends CI_Controller {
 			if ($single->status != 1) {
 				$action .= '<li><a href="' . base_url('user/single-update') . "/" . 
 				$single->id . '">Edit</a></li>';
-				
-				// $action .= '<li><a href="#" class="delete-single" data-id='."'".$single->id."'".'>Hapus</a></li>';
 			}
 
 
@@ -113,11 +112,23 @@ class Single extends CI_Controller {
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
 
+		$data_order = [
+			'user_id' 				=> $id_user,
+			'status'				=> 0,
+			'created_at' 			=> date('Y-m-d H:i:s'),
+			'created_by' 			=> $id_user,
+		];
+
+		$result_order = $this->M_single->save_data_order($data_order);
+		$order_id = $this->db->insert_id();
+
 		if ($this->upload->do_upload('file')){
 			$single_file = $this->upload->data();
 			$path['link']= "upload/single/";
 
 			$data = [
+				'user_id'	 			=> $id_user,
+				'order_id'	 			=> $order_id,
 				'title' 				=> $this->input->post('title'),
 				'artist' 				=> $this->input->post('artist'),
 				'description' 			=> $this->input->post('description'),
@@ -131,6 +142,7 @@ class Single extends CI_Controller {
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
 				'status' 				=> 0,
+				'is_album' 				=> 0,
 				'file'            		=> $path['link'] . ''. $single_file['file_name'],
 				
 			];
@@ -144,6 +156,8 @@ class Single extends CI_Controller {
 			}
 		}else{
 			$data = [
+				'user_id'	 			=> $id_user,
+				'order_id'	 			=> $order_id,
 				'title' 				=> $this->input->post('title'),
 				'artist' 				=> $this->input->post('artist'),
 				'description' 			=> $this->input->post('description'),
@@ -157,7 +171,7 @@ class Single extends CI_Controller {
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
 				'status' 				=> 0,
-				
+				'is_album' 				=> 0,				
 			];
 			
 			$result = $this->M_single->save_data($data);
@@ -181,6 +195,7 @@ class Single extends CI_Controller {
 		$data['page'] = "Detail Single";
 		$data['single'] = $this->M_single->select_by_id($id);
 		$data['id'] = $id;
+		$data['genre'] 	= $this->M_single->getGenre();
 
 		$data['content'] 	= "admin/v_single/detail";
 
@@ -192,6 +207,7 @@ class Single extends CI_Controller {
 		$data['page'] = "Update Single";
 		$data['single'] = $this->M_single->select_by_id($id);
 		$data['id'] = $id;
+		$data['genre'] 	= $this->M_single->getGenre();
 
 		$data['content'] 	= "admin/v_single/update";
 
@@ -233,8 +249,8 @@ class Single extends CI_Controller {
 					'arranger' 				=> $this->input->post('arranger'),
 					'produser' 				=> $this->input->post('produser'),
 					'year_production' 		=> $this->input->post('year_production'),
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
+					'updated_at' 			=> date('Y-m-d H:i:s'),
+					'updated_by' 			=> $id_user,
 					'status' 				=> $this->input->post('status'),
 					'file'            		=> $path['link'] . ''. $single_file['file_name'],
 					
@@ -259,8 +275,8 @@ class Single extends CI_Controller {
 					'arranger' 				=> $this->input->post('arranger'),
 					'produser' 				=> $this->input->post('produser'),
 					'year_production' 		=> $this->input->post('year_production'),
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
+					'updated_at' 			=> date('Y-m-d H:i:s'),
+					'updated_by' 			=> $id_user,
 					'status' 				=> $this->input->post('status'),
 					
 				];
