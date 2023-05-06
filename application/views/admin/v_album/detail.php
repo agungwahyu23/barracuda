@@ -15,13 +15,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" value="<?= $album->name ?>" disabled>
-							<label class="form-label">Nama Artis</label>
+							<label class="form-label">Name of Artist</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" value="<?= $album->title ?>" disabled>
-							<label class="form-label">Judul</label>
+							<label class="form-label">Title of Album</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -45,13 +45,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="produser" value="<?= $album->produser ?>" disabled>
-							<label class="form-label">Produser</label>
+							<label class="form-label">Producer</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="composser" value="<?= $album->composser ?>" disabled>
-							<label class="form-label">Komposer</label>
+							<label class="form-label">Composser</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -61,7 +61,7 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Bukti Bayar</label>
+						<label class="form-label">Proof of payment</label>
 						<?php if (isset($album->attachment)) { ?>
 							<div id="preview_proof_payment">
 								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/proof_attachment/') . $album->attachment; ?>" alt="your image" />
@@ -80,9 +80,9 @@
 						<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 							<thead>
 								<tr>
-									<th>Judul Lagu</th>
-									<th>Komposer</th>
-									<th>Tanggal Upload</th>
+									<th>Song Title</th>
+									<th>Composser</th>
+									<th>Date Upload</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -97,7 +97,7 @@
 						</table>
 					</div>
 					
-					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Kembali</a>
+					<a href="<?= site_url('user/album') ?>" class="btn btn-warning waves-effect">Back</a>
 				</form>
 			</div>
 		</div>

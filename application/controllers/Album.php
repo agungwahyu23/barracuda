@@ -7,8 +7,10 @@ class Album extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('email');
 		$this->load->library('session');
 		$this->load->model('M_album');
+		$this->load->model('Ma_user');
 	}
 
 	public function loadkonten($page, $data) {
@@ -27,7 +29,8 @@ class Album extends CI_Controller {
 
 	public function ajax_list()
 	{
-		$albums = $this->M_album->getData();
+		$user_id = $this->session->userdata('id');
+		$albums = $this->M_album->getData($user_id);
 
 		$data = array();
 		$no = @$_POST['start'];
@@ -36,9 +39,16 @@ class Album extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $album->title;
-			$row[] = $album->cover;
 			$row[] = date("j F Y", strtotime($album->created_at));
 			$row[] = $album->genre;
+
+			$status = '';
+			if ($album->status == 0) {
+				$status = 'Pending';
+			}else{
+				$status = 'Success';
+			}
+			$row[] = $status;
 
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,6 +88,13 @@ class Album extends CI_Controller {
 		$data['content'] 	= "admin/v_album/add";
 		$data['genre'] 	= $this->M_album->getGenre();
 
+		// $data_mail = [
+		// 	'order_id' 		=> 9,
+		// 	'user_id'		=> $this->session->userdata('id'),
+		// ];
+
+		// $this->loadkonten('admin/email_template_album', $data_mail, TRUE);
+
 		$this->loadkonten('admin/app_base',$data);
 	}
 
@@ -98,7 +115,7 @@ class Album extends CI_Controller {
 		// cek apakah upload file
 		if (isset($file)) {
 			// insert to tb_order
-			$newnamefile = 'proof_payment_' . $id_user . '_' . $user_name. '_' .date('ymdhis');
+			$newnamefile = 'proof_payment_album_' . $id_user . '_' . date('ymdhis');
 
 			$config['upload_path'] = './upload/proof_attachment';
 			$config['allowed_types'] = 'jpg|png|gif|jpeg';
@@ -132,6 +149,18 @@ class Album extends CI_Controller {
 			}
 			$result_order = $this->M_album->save_data_order($data_order);
 			$order_id = $this->db->insert_id();
+
+			$user = $this->Ma_user->select_by_id($id_user);
+				
+			$data_mail = [
+				'order_id' 		=> $this->encryption_lib->encode($order_id),
+				'user_id'		=> $this->encryption_lib->encode($id_user),
+			];
+	
+			$to = $user->email;
+			$subject = 'Payment Album';
+			$message_template = $this->load->view('admin/email_template_album', $data_mail, TRUE);
+			send_email($to, $subject, $message_template);
 
 			// input to tb_album
 			$newnamefile = 'cover_album_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
@@ -366,5 +395,81 @@ class Album extends CI_Controller {
 		} else {
 			$out['status'] = 'gagal';
 		}
+	}
+
+	public function payment($user_id, $order_id)
+	{
+		$data = [
+			'order_id' 		=> $this->encryption_lib->decode($order_id),
+			'user_id'		=> $this->encryption_lib->decode($user_id),
+		];
+
+		$this->loadkonten('admin/upload_pembayaran_album', $data, TRUE);
+	}
+
+	public function prosesPayment($user_id, $order_id)
+	{
+		$id = $order_id;
+		$newnamefile = 'proof_payment_album_' . $user_id . '_' . date('ymdhis');
+
+		$config['upload_path'] = './upload/proof_attachment';
+		$config['allowed_types'] = 'jpg|png|gif|jpeg';
+		$config['max_size'] = '1024';
+		$config['max_width'] = 0;
+		$config['max_height'] = 0;
+		$config['overwrite'] = TRUE;
+		$config['remove_spaces'] = TRUE;
+		$config['file_ext_tolower'] = TRUE;
+		$config['file_name'] = $newnamefile;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		if ($this->upload->do_upload('proof_of_payment')){
+			$proof_attachment = $this->upload->data();
+			$data = [
+				'attachment'			=> $proof_attachment['file_name'],
+				'updated_at' 			=> date('Y-m-d H:i:s'),
+				'updated_by' 			=> $user_id,
+			];
+
+			$result = $this->db->update('tb_order', $data, array('id' => $order_id));
+
+			if ($result > 0) {
+				$out['status'] = 'berhasil';
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}else{
+			$data = [
+				'updated_at' 			=> date('Y-m-d H:i:s'),
+				'updated_by' 			=> $user_id,
+			];
+			
+			$result = $this->db->update('tb_order', $data, array('id' => $order_id));
+
+			if ($result > 0) {
+				$out['status'] = 'berhasil';
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}
+
+		$user = $this->Ma_user->select_by_id($user_id);
+
+		$data_mail = [
+			'name' 			=> $user->name,
+			'email' 		=> $user->email,
+			'user_id'		=> $user_id,
+			'title'			=> 'Album',
+		];
+
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Pembayaran Album';
+		$message_template = $this->load->view('admin/email_template_to_admin', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
+
+		echo json_encode($out);
+
 	}
 }

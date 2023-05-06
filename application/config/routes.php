@@ -83,6 +83,7 @@ $route['user/album'] =   'Album/index';
 $route['user/album-add'] =   'Album/add';
 $route['user/album-update/(:any)'] =   'Album/update/$1';
 $route['user/album-detail/(:any)'] =   'Album/detail/$1';
+$route['user/upload-payment-album/(:any)/(:any)'] = 'Album/payment/$1/$2';
 
 /* takedown */
 $route['user/takedown'] =   'Takedown/index';
