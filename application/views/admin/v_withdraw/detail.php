@@ -38,7 +38,7 @@
 						<label class="form-label">Attachment</label>
 						<?php if (isset($withdraw->attachment)) { ?>
 							<div id="preview_proof_payment">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/proof_attachment/') . $withdraw->attachment; ?>" alt="your image" />
+								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/withdraw_attachment/') . $withdraw->attachment; ?>" alt="your image" />
 							</div>
 						<?php }else{ ?>
 							<div id="preview_proof_payment">

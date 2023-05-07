@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Add Request Takedown
+		Add Request Unclaim
 	</h2>
 </div>
 <!-- Basic Validation -->
@@ -19,7 +19,7 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Choose Your Takedown Type</label>
+						<label class="form-label">Choose Your Unclaim Type</label>
 						<div class="form-line">
 							<select name="take_down_type" id="take_down_type" class="form-control select2 show-tick">
 								<option value="">--Choose Type--</option>
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
-					<a href="<?= site_url('user/takedown') ?>" class="btn btn-warning waves-effect">Cancel</a>
+					<a href="<?= site_url('user/unclaim') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 		$('#take_down_type').change(function(){ 
 			var id=$(this).val();
 			$.ajax({
-				url : "<?= site_url(); ?>Takedown/get_pilihan/",
+				url : "<?= site_url(); ?>Unclaim/get_pilihan/",
 				method : "POST",
 				data: {
 					id: id
@@ -94,7 +94,7 @@ $('#form_add').submit(function(e) {
                 showLoading();
                 $(".loading2").modal('show');
             },
-            url: '<?php echo base_url('Takedown/prosesAdd'); ?>',
+            url: '<?php echo base_url('Unclaim/prosesAdd'); ?>',
             type: "post",
             enctype: "multipart/form-data",
             // data: data,
@@ -129,7 +129,7 @@ function save_berhasil() {
         icon: "success",
         button: "Ok",
     }).then(function() {
-        var link = '<?php echo base_url("takedown") ?>';
+        var link = '<?php echo base_url("unclaim") ?>';
         window.location.replace(link);
     });
 }

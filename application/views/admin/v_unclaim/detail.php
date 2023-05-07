@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Detail Request Takedown
+		Detail Request Unclaim
 	</h2>
 </div>
 <!-- Basic Validation -->
@@ -15,16 +15,16 @@
 					<div class="form-group form-float">
 						<label class="form-label">Email</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="email" value="<?= $takedown->email ?>" disabled>
+							<input type="text" class="form-control" name="email" value="<?= $unclaim->email ?>" disabled>
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Takedown Type</label>
+						<label class="form-label">Unclaim Type</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="" 
-							value="<?php if ($takedown->album_id != null) {
+							value="<?php if ($unclaim->album_id != null) {
 								echo "Album";
-							}elseif ($takedown->single_id != null) {
+							}elseif ($unclaim->single_id != null) {
 								echo "Single";
 							} ?>" 
 							disabled>
@@ -34,15 +34,15 @@
 						<label class="form-label">Album/Single</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="" 
-							value="<?php if ($takedown->album_id != null) {
-								echo $takedown->title_album;
-							}elseif ($takedown->single_id != null) {
-								echo $takedown->title_single;
+							value="<?php if ($unclaim->album_id != null) {
+								echo $unclaim->title_album;
+							}elseif ($unclaim->single_id != null) {
+								echo $unclaim->title_single;
 							} ?>" 
 							disabled>
 						</div>
 					</div>
-					<a href="<?= site_url('user/takedown') ?>" class="btn btn-warning waves-effect">Back</a>
+					<a href="<?= site_url('user/unclaim') ?>" class="btn btn-warning waves-effect">Back</a>
 				</form>
 			</div>
 		</div>

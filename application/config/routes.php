@@ -90,6 +90,19 @@ $route['user/takedown'] =   'Takedown/index';
 $route['user/takedown-add'] =   'Takedown/add';
 $route['user/takedown-detail/(:any)'] =   'Takedown/detail/$1';
 
+/* unclaim */
+$route['user/unclaim'] =   'Unclaim/index';
+$route['user/unclaim-add'] =   'Unclaim/add';
+$route['user/unclaim-detail/(:any)'] =   'Unclaim/detail/$1';
+
+/* donation */
+$route['user/donation'] =   'Donation/index';
+$route['user/donation-add'] =   'Donation/add';
+$route['user/donation-detail/(:any)'] =   'Donation/detail/$1';
+
+/* contact */
+$route['user/contact'] =   'Contact/index';
+
 /* withdraw */
 $route['user/withdraw'] =   'Withdraw/index';
 $route['user/withdraw-add'] =   'Withdraw/add';

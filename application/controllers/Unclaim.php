@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Takedown extends CI_Controller {
+class Unclaim extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 		check_not_login();
 		$this->load->library('session');
-		$this->load->model('M_takedown');
+		$this->load->model('M_unclaim');
 	}
 
 	public function loadkonten($page, $data) {
@@ -19,8 +19,8 @@ class Takedown extends CI_Controller {
 
 	public function index()
 	{
-		$data['page'] 		= "Takedown";
-		$data['content'] 	= "admin/v_takedown/home";
+		$data['page'] 		= "Unclaim";
+		$data['content'] 	= "admin/v_unclaim/home";
 
 		$this->loadkonten('admin/app_base',$data);
 	}
@@ -28,19 +28,19 @@ class Takedown extends CI_Controller {
 	public function ajax_list()
 	{
 		$id_user 	= $this->session->userdata('id');
-		$takedowns = $this->M_takedown->getData($id_user);
+		$unclaims = $this->M_unclaim->getData($id_user);
 
 		$data = array();
 		$no = @$_POST['start'];
-		foreach ($takedowns as $takedown) {
+		foreach ($unclaims as $unclaim) {
 
 			$no++;
 			$row = array();
-			$row[] = $takedown->email;
-			$row[] = date("j F Y", strtotime($takedown->created_at));
+			$row[] = $unclaim->email;
+			$row[] = date("j F Y", strtotime($unclaim->created_at));
 
 			$status = '';
-			if ($takedown->status == '1') {
+			if ($unclaim->email == '1') {
 				$status = 'Success';
 			}else{
 				$status = 'Pending';
@@ -54,8 +54,8 @@ class Takedown extends CI_Controller {
 
 			$action .= '<ul class="dropdown-menu">';
 			
-			$action .= '<li><a href="' . base_url('user/takedown-detail') . "/" . 
-			$takedown->id . '">Detail</a></li>';
+			$action .= '<li><a href="' . base_url('user/unclaim-detail') . "/" . 
+			$unclaim->id . '">Detail</a></li>';
 
 			$action .= '</ul>';
 			$action .= '</div>';
@@ -77,17 +77,17 @@ class Takedown extends CI_Controller {
         $id=$this->input->post('id');
 
 		if ($id == 'single') {
-			$data=$this->M_takedown->getSingle($id_user);
+			$data=$this->M_unclaim->getSingle($id_user);
 		}elseif ($id == 'album') {
-			$data=$this->M_takedown->getAlbum($id_user);
+			$data=$this->M_unclaim->getAlbum($id_user);
 		}
         echo json_encode($data);
     }
 
 	public function add()
 	{
-		$data['page'] 		= "Add Takedown";
-		$data['content'] 	= "admin/v_takedown/add";
+		$data['page'] 		= "Add Unclaim";
+		$data['content'] 	= "admin/v_unclaim/add";
 
 		$this->loadkonten('admin/app_base',$data);
 	}
@@ -104,7 +104,7 @@ class Takedown extends CI_Controller {
 		// cek type
 		if ($take_down_type == 'single') {
 			$data = [
-				'type' 					=> 1,
+				'type' 					=> 2,
 				'email' 				=> $email,
 				'single_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
@@ -114,7 +114,7 @@ class Takedown extends CI_Controller {
 			];
 		}elseif ($take_down_type == 'album') {
 			$data = [
-				'type' 					=> 1,
+				'type' 					=> 2,
 				'email' 				=> $email,
 				'album_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
@@ -124,7 +124,7 @@ class Takedown extends CI_Controller {
 			];
 		}
 		
-		$result = $this->M_takedown->save_data($data);
+		$result = $this->M_unclaim->save_data($data);
 
 		if ($result > 0) {
 			$out = array('status'=>'berhasil');
@@ -137,11 +137,11 @@ class Takedown extends CI_Controller {
 
 	public function detail($id)
 	{
-		$data['page'] = "Detail Takedown";
-		$data['takedown'] = $this->M_takedown->select_by_id($id);
+		$data['page'] = "Detail Unclaim";
+		$data['unclaim'] = $this->M_unclaim->select_by_id($id);
 		$data['id'] = $id;
 
-		$data['content'] 	= "admin/v_takedown/detail";
+		$data['content'] 	= "admin/v_unclaim/detail";
 
 		$this->loadkonten('admin/app_base',$data);
 	}

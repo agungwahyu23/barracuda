@@ -1,39 +1,3 @@
-<div class="block-header">
-	<h2>
-		Request Takedown List
-	</h2>
-</div>
-
-<!-- Basic Examples -->
-<div class="row clearfix">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="card">
-			<div class="header">
-				<h2>
-					<a href="<?= site_url('user/takedown-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
-				</h2>
-			</div>
-			<div class="body">
-				<div class="table-responsive">
-					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
-						<thead>
-							<tr>
-								<th>Email</th>
-								<th>Date Request</th>
-								<th>Status</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- #END# Basic Examples -->
-
 <script type="text/javascript">
 //untuk load data table ajax	
 var table;
@@ -55,7 +19,7 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('Takedown/ajax_list') ?>",
+            "url": "<?php echo site_url('Single/ajax_list') ?>",
             "type": "POST"
 
         },
@@ -74,11 +38,11 @@ function reload_table() {
     table.ajax.reload(null, false); //reload datatable ajax 
 }
 
-$(document).on("click", ".delete-album", function() {
+$(document).on("click", ".delete-single", function() {
     var id = $(this).attr("data-id");
     Swal.fire({
-        title: 'Hapus data?',
-        text: "Data yang telah dihapus tidak dapat dikembalikan. Anda Yakin?",
+        title: 'Delete data?',
+        text: "Sure you will delete the data?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -88,7 +52,7 @@ $(document).on("click", ".delete-album", function() {
         if (result.isConfirmed) {
             $.ajax({
                 method: "POST",
-                url: "<?php echo base_url('Album/delete'); ?>",
+                url: "<?php echo base_url('Single/delete'); ?>",
                 data: "id=" + id,
                 success: function(data) {
                     $("tr[data-id='" + id + "']").fadeOut("fast",
@@ -105,11 +69,10 @@ $(document).on("click", ".delete-album", function() {
 
 function hapus_berhasil() {
     Swal.fire({
-        title: "Data berhasil dihapus!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Deleted data successfully!",
+        text: "Click the Ok button to continue!",
         icon: "success",
         button: "Ok",
     })
 }
 </script>
-

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_takedown extends CI_Model
+class M_unclaim extends CI_Model
 {
 
 	public function getData($id_user)
@@ -15,7 +15,7 @@ class M_takedown extends CI_Model
 		LEFT JOIN album a ON
 			r.album_id = a.id
 		LEFT JOIN single s ON s.id = r.single_id 
-		WHERE r.type = 1 AND r.created_by = '".$id_user."'
+		WHERE r.type = 2 AND r.created_by = '".$id_user."'
 		ORDER BY
 			r.id ASC";
 		$data = $this->db->query($sql);

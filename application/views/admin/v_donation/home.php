@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Request Takedown List
+		Donation List
 	</h2>
 </div>
 
@@ -10,7 +10,7 @@
 		<div class="card">
 			<div class="header">
 				<h2>
-					<a href="<?= site_url('user/takedown-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
+					<a href="<?= site_url('user/donation-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
 				</h2>
 			</div>
 			<div class="body">
@@ -18,8 +18,8 @@
 					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Email</th>
-								<th>Date Request</th>
+								<th>Donation Date</th>
+								<th>Amount</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('Takedown/ajax_list') ?>",
+            "url": "<?php echo site_url('Donation/ajax_list') ?>",
             "type": "POST"
 
         },

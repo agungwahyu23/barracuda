@@ -1,35 +1,33 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_withdraw extends CI_Model
+class M_donation extends CI_Model
 {
 
-	public function getData($id)
+	public function getData($id_user)
 	{
-		$sql = "SELECT * FROM withdraw WHERE user_id = '".$id."' ORDER BY id ASC";
+		$sql = "SELECT
+		d.*
+		FROM
+			donation d
+		WHERE d.created_by = '".$id_user."'
+		ORDER BY
+			d.id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
-	}
-	
-	public function getUser($id)
-	{
-		$sql = "SELECT * FROM user where id = '".$id."'";
-		$data = $this->db->query($sql);
-		return $data->row();
 	}
 
 	public function save_data($data)
 	{
-		$result = $this->db->insert('withdraw', $data);
+		$result = $this->db->insert('donation', $data);
 		return $result;
 	}
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT id, user_id, amount, attachment, created_at, created_by, updated_at, updated_by, status
-				FROM withdraw
-				WHERE id = '".$id."'
-				ORDER BY id ASC";
+		$sql = "SELECT d.* FROM donation d
+				WHERE d.id = '".$id."'
+				ORDER BY d.id ASC";
 		$data = $this->db->query($sql);
 		return $data->row();
 	}

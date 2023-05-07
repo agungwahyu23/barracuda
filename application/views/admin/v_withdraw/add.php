@@ -35,7 +35,9 @@
 	rupiah.addEventListener('keyup', function(e){
 		// tambahkan 'Rp.' pada saat form di ketik
 		// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-		rupiah.value = formatRupiah(this.value, 'Rp. ');
+		// rupiah.value = formatRupiah(this.value, 'Rp. ');
+		// amount_copy.value = rupiah.value.replace(/\D/g,'');
+		rupiah.value = this.value;
 		amount_copy.value = rupiah.value.replace(/\D/g,'');
 	});
 
@@ -57,6 +59,15 @@
 		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 	}
 
+	function showLoading() {
+		var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+		loadingWrapper[0].style.display = "block";
+	}
+
+	function hideLoading() {
+		var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+		loadingWrapper[0].style.display = "none";
+	}
 
 $('#form_add').submit(function(e) {
 	// cek apakah input > total amount
@@ -81,7 +92,7 @@ $('#form_add').submit(function(e) {
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
-                $(".loading2").show();
+                showLoading();
                 $(".loading2").modal('show');
             },
             url: '<?php echo base_url('Withdraw/prosesAdd'); ?>',
@@ -94,6 +105,7 @@ $('#form_add').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+			hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
