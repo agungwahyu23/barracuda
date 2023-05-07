@@ -40,6 +40,15 @@ class M_single extends CI_Model
 		return $data->row();
 	}
 
+	public function getUser($id)
+	{
+		$sql = "SELECT *
+		FROM user 
+		where id = ?";
+		$data = $this->db->query($sql, array($id));
+		return $data->row();
+	}
+
 	public function update($data, $where)
 	{
 		$result = $this->db->update('single', $data, $where);

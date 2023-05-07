@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class Single extends CI_Controller {
 
@@ -98,8 +99,19 @@ class Single extends CI_Controller {
 	{
 		$id_user 	= $this->session->userdata('id');
 		$judul = $this->input->post('title');
+
+		// get user
+		$user = $this->M_single->getUser($id_user);
+
+		// mengambil data file yang diunggah
+		$cover_name = 'cover_album_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
+		$ktp_name = 'ktp_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
+		$file = $_FILES['file'];
+
 		$newnamefile = 'single_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
-		$config['upload_path'] = './upload/single';
+		$dir = $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
+
+		$config['upload_path'] = './upload/single/';
 		$config['allowed_types'] = 'wav';
 		$config['max_size'] = '102400';
 		$config['max_width'] = 0;
@@ -124,27 +136,75 @@ class Single extends CI_Controller {
 
 		if ($this->upload->do_upload('file')){
 			$single_file = $this->upload->data();
-			$path['link']= "upload/single/";
+
+			// konfigurasi upload image
+			$config2['upload_path'] = './upload/single/'; // direktori utama untuk pengunggahan file
+			$config2['allowed_types'] = 'gif|jpg|png'; // tipe file yang diperbolehkan
+			$config2['max_size'] = 2048; // ukuran maksimal file dalam KB
+			$this->load->library('upload', $config2); // memuat library upload
+
+			// mengupload file cover 
+			$this->upload->initialize(array(
+				'upload_path' => './upload/single/',
+				'allowed_types' => 'gif|jpg|png',
+				'max_size' => 2048,
+				'file_name' => $cover_name
+			));
+			if ($this->upload->do_upload('cover')) {
+				// file cover berhasil diunggah
+				$cover_data = $this->upload->data();
+				$cover_single = $cover_data['file_name'];
+			} else {
+				// file cover gagal diunggah
+				$error = $this->upload->display_errors();
+			}
+
+			// mengupload file ktp
+			$this->upload->initialize(array(
+				'upload_path' => './upload/single/',
+				'allowed_types' => 'gif|jpg|png',
+				'max_size' => 2048,
+				'file_name' => $ktp_name
+			));
+			if ($this->upload->do_upload('ktp')) {
+				// file ktp berhasil diunggah
+				$ktp_data = $this->upload->data();
+				$ktp_single = $ktp_data['file_name'];
+			} else {
+				// file ktp gagal diunggah
+				$error = $this->upload->display_errors();
+			}
 
 			$data = [
 				'user_id'	 			=> $id_user,
 				'order_id'	 			=> $order_id,
 				'title' 				=> $this->input->post('title'),
 				'artist' 				=> $this->input->post('artist'),
+				'featuring_artist' 		=> $this->input->post('featuring_artist'),
 				'description' 			=> $this->input->post('description'),
+				'file'            		=> $single_file['file_name'],
+				'cover'            		=> $cover_single,
+				'status' 				=> 0,
 				'language' 				=> $this->input->post('language'),
 				'genre_id' 				=> $this->input->post('genre_id'),
+				'sub_genre' 				=> $this->input->post('sub_genre'),
 				'first_name_composer' 	=> $this->input->post('first_composer'),
 				'last_name_composer' 	=> $this->input->post('last_composer'),
 				'arranger' 				=> $this->input->post('arranger'),
 				'produser' 				=> $this->input->post('produser'),
 				'year_production' 		=> $this->input->post('year_production'),
+				'is_album' 				=> 0,
+				'release_date' 			=> $this->input->post('release_date'),
+				'lyrics' 				=> $this->input->post('lyrics'),
+				'spotify_link' 			=> $this->input->post('spotify_link'),
+				'itunes_link' 			=> $this->input->post('itunes_link'),
+				'yt_link' 				=> $this->input->post('yt_link'),
+				'start_preview_tiktok' 	=> $this->input->post('start_preview_tiktok'),
+				'contact_person' 		=> $this->input->post('contact_person'),
+				'ig' 					=> $this->input->post('ig'),
+				'ktp' 					=> $ktp_single,
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
-				'status' 				=> 0,
-				'is_album' 				=> 0,
-				'file'            		=> $path['link'] . ''. $single_file['file_name'],
-				
 			];
 			
 			$result = $this->M_single->save_data($data);
@@ -155,37 +215,8 @@ class Single extends CI_Controller {
 				$out['status'] = 'gagal';
 			}
 		}else{
-			$data = [
-				'user_id'	 			=> $id_user,
-				'order_id'	 			=> $order_id,
-				'title' 				=> $this->input->post('title'),
-				'artist' 				=> $this->input->post('artist'),
-				'description' 			=> $this->input->post('description'),
-				'language' 				=> $this->input->post('language'),
-				'genre_id' 				=> $this->input->post('genre_id'),
-				'first_name_composer' 	=> $this->input->post('first_composer'),
-				'last_name_composer' 	=> $this->input->post('last_composer'),
-				'arranger' 				=> $this->input->post('arranger'),
-				'produser' 				=> $this->input->post('produser'),
-				'year_production' 		=> $this->input->post('year_production'),
-				'created_at' 			=> date('Y-m-d H:i:s'),
-				'created_by' 			=> $id_user,
-				'status' 				=> 0,
-				'is_album' 				=> 0,				
-			];
-			
-			$result = $this->M_single->save_data($data);
-
-			if ($result > 0) {
-				$out = array('status'=>'berhasil');
-			} else {
-				$out['status'] = 'gagal';
-			}
-
 			$out['status'] = 'gagal';
 		}
-
-			
 
 		echo json_encode($out);
 	}
