@@ -4,9 +4,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_album extends CI_Model
 {
 
-	public function getData()
+	public function getData($id)
 	{
-		$sql = "SELECT a.*, g.genre FROM album a LEFT JOIN genre g ON a.genre_id = g.id ORDER BY a.id ASC";
+		$sql = "SELECT a.*, g.genre, o.status
+		FROM album a 
+		LEFT JOIN genre g ON a.genre_id = g.id 
+		LEFT JOIN tb_order o ON a.order_id = o.id 
+		WHERE a.created_by = '".$id."'
+		ORDER BY a.id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

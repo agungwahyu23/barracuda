@@ -36,8 +36,8 @@
 							</select>
 						</div>
 					</div>
-					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
-					<a href="<?= site_url('user/takedown') ?>" class="btn btn-primary waves-effect">Batal</a>
+					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<a href="<?= site_url('user/takedown') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -75,13 +75,23 @@ $('.date-own').datepicker({
 	autoclose: true //to close picker once year is selected
 });
 
+function showLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "block";
+}
+
+function hideLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "none";
+}
+
 $('#form_add').submit(function(e) {
     var data = $(this).serialize();
     // var data = new FormData($(this)[0]);
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
-                $(".loading2").show();
+                showLoading();
                 $(".loading2").modal('show');
             },
             url: '<?php echo base_url('Takedown/prosesAdd'); ?>',
@@ -94,6 +104,7 @@ $('#form_add').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+			hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
@@ -113,8 +124,8 @@ $('#form_add').submit(function(e) {
 <script>
 function save_berhasil() {
     Swal.fire({
-        title: "Data berhasil disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data saved successfully!",
+        text: "Click Ok to continue!",
         icon: "success",
         button: "Ok",
     }).then(function() {
@@ -125,8 +136,8 @@ function save_berhasil() {
 
 function gagal() {
     Swal.fire({
-        title: "Data gagal disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data failed to save!",
+        text: "Click Ok to continue!",
         icon: "danger",
         button: "Ok",
         dangerMode: true,

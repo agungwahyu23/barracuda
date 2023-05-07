@@ -31,18 +31,18 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Choose Album/Single</label>
+						<label class="form-label">Album/Single</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="" 
 							value="<?php if ($takedown->album_id != null) {
-								echo $takedown->title;
+								echo $takedown->title_album;
 							}elseif ($takedown->single_id != null) {
-								echo $takedown->title;
+								echo $takedown->title_single;
 							} ?>" 
 							disabled>
 						</div>
 					</div>
-					<a href="<?= site_url('user/takedown') ?>" class="btn btn-primary waves-effect">Back</a>
+					<a href="<?= site_url('user/takedown') ?>" class="btn btn-warning waves-effect">Back</a>
 				</form>
 			</div>
 		</div>

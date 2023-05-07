@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Tambah Single
+		Add Single
 	</h2>
 </div>
 <!-- Basic Validation -->
@@ -8,26 +8,26 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
 			<div class="header">
-				<h2>Tambah Data Single</h2>
+				<h2>Add Data Single</h2>
 			</div>
 			<div class="body">
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" required>
-							<label class="form-label">Judul*</label>
+							<label class="form-label">Title*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" required>
-							<label class="form-label">Nama Artis*</label>
+							<label class="form-label">Name of Artis*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="language">
-							<label class="form-label">Bahasa</label>
+							<label class="form-label">Language</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -51,13 +51,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="first_composer" required>
-							<label class="form-label">Nama Depan Komposer*</label>
+							<label class="form-label">First Name Composser*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_composer" required>
-							<label class="form-label">Nama Belakang Komposer*</label>
+							<label class="form-label">Last Name Composser*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -69,21 +69,21 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="produser">
-							<label class="form-label">Produser</label>
+							<label class="form-label">Producer</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="date-own form-control" name="year_production">
-							<label class="form-label">Tahun Produksi</label>
+							<label class="form-label">Year of Production</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah File Musik</span>
-                        <input name="file" id="file" type="file" multiple />
+						<span>Upload File Music</span>
+                        <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple />
 					</div>
-					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Batal</a>
+					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -92,12 +92,58 @@
 <!-- #END# Basic Validation -->
 
 <script type="text/javascript">
+	// $(document).ready(function(){
+	// 	hideLoading();
+	// });
+
+function showLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "block";
+}
+
+function hideLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "none";
+}
+
 $('.date-own').datepicker({
 	format: "yyyy",
 	viewMode: "years",
 	minViewMode: "years",
 	autoclose: true //to close picker once year is selected
 });
+
+function validationSingle(fileInput) {
+    var fileInputVal = document.getElementById('file');
+    // var filePath = fileInput.value;
+    var allowedExtensions = /(\.wav)$/i;
+
+	var fileName = fileInput.value;
+	var fileExtension = fileName.split('.').pop().toLowerCase();
+
+    if (fileExtension != 'wav') {
+        toastr.error('The file format must be .wav.', 'Warning', {
+            timeOut: 5000
+        }, toastr.options = {
+            "closeButton": true
+        });
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        if (fileInput.files && fileInput.files[0].size > 100000000) {
+            toastr.error('Maximum file size is 100 MB', 'Warning', {
+                timeOut: 5000
+            }, toastr.options = {
+                "closeButton": true
+            });
+            fileInput.value = '';
+            return false;
+        }else{
+			return false;
+		}
+    }
+}
 
 function myFunction() {
     var x = document.getElementById("myInput");
@@ -114,8 +160,9 @@ $('#form_validation').submit(function(e) {
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
-                $(".loading2").show();
+                showLoading();
                 $(".loading2").modal('show');
+				
             },
             url: '<?php echo base_url('Single/prosesAdd'); ?>',
             type: "post",
@@ -127,6 +174,7 @@ $('#form_validation').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+			hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
@@ -146,8 +194,8 @@ $('#form_validation').submit(function(e) {
 <script>
 function save_berhasil() {
     Swal.fire({
-        title: "Data berhasil disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data saved successfully!",
+        text: "Click Ok to continue!",
         icon: "success",
         button: "Ok",
     }).then(function() {
@@ -158,8 +206,8 @@ function save_berhasil() {
 
 function gagal() {
     Swal.fire({
-        title: "Data gagal disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data failed to save!",
+        text: "Click Ok to continue!",
         icon: "danger",
         button: "Ok",
         dangerMode: true,

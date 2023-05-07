@@ -77,6 +77,14 @@
             <p>Please wait...</p>
         </div>
     </div>
+
+    <div class="loading">
+        <div class="loading-wrapper">
+            <div class="loader">
+                <img src="<?= base_url('assets/admin/images/loading.gif') ?>" alt="">
+            </div>
+        </div>
+    </div>
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>

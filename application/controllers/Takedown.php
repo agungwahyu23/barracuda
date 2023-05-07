@@ -27,7 +27,8 @@ class Takedown extends CI_Controller {
 
 	public function ajax_list()
 	{
-		$takedowns = $this->M_takedown->getData();
+		$id_user 	= $this->session->userdata('id');
+		$takedowns = $this->M_takedown->getData($id_user);
 
 		$data = array();
 		$no = @$_POST['start'];
@@ -37,6 +38,15 @@ class Takedown extends CI_Controller {
 			$row = array();
 			$row[] = $takedown->email;
 			$row[] = date("j F Y", strtotime($takedown->created_at));
+
+			$status = '';
+			if ($takedown->status == '1') {
+				$status = 'Success';
+			}else{
+				$status = 'Pending';
+			}
+
+			$row[] = $status;
 			
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,12 +73,13 @@ class Takedown extends CI_Controller {
 	}
 
 	function get_pilihan(){
+		$id_user 	= $this->session->userdata('id');
         $id=$this->input->post('id');
 
 		if ($id == 'single') {
-			$data=$this->M_takedown->getSingle();
+			$data=$this->M_takedown->getSingle($id_user);
 		}elseif ($id == 'album') {
-			$data=$this->M_takedown->getAlbum();
+			$data=$this->M_takedown->getAlbum($id_user);
 		}
         echo json_encode($data);
     }

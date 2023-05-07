@@ -87,7 +87,13 @@
 					</ul>
 				</li>
 				<li>
-					<a href="http://wa.me/6281357748220">
+					<a href="<?= site_url('user/donation') ?>">
+						<i class="material-icons">redeem</i>
+						<span>Donation</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= site_url('user/contact') ?>">
 						<i class="material-icons">headset_mic</i>
 						<span>Chat Admin</span>
 					</a>

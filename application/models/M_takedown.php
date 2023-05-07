@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_takedown extends CI_Model
 {
 
-	public function getData()
+	public function getData($id_user)
 	{
 		$sql = "SELECT
 		r.*,
@@ -15,31 +15,33 @@ class M_takedown extends CI_Model
 		LEFT JOIN album a ON
 			r.album_id = a.id
 		LEFT JOIN single s ON s.id = r.single_id 
-		WHERE r.type = 1
+		WHERE r.type = 1 AND r.created_by = '".$id_user."'
 		ORDER BY
 			r.id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 	
-	public function getSingle()
+	public function getSingle($id_user)
 	{
 		$sql = "SELECT
 			id,
 			CONCAT(title, '  - single') as title
 		FROM
-			single";
+			single
+		WHERE user_id = '".$id_user."'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
-	public function getAlbum()
+	public function getAlbum($id_user)
 	{
 		$sql = "SELECT
 			id,
 			CONCAT(title, '  - album') as title
 		FROM
-			album";
+			album
+		WHERE user_id = '".$id_user."'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -52,7 +54,7 @@ class M_takedown extends CI_Model
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT r.*, a.title, s.title FROM request r
+		$sql = "SELECT r.*, a.title as title_album, s.title as title_single FROM request r
 				LEFT JOIN album a on a.id = r.album_id
 				LEFT JOIN single s on s.id = r.single_id
 				WHERE r.id = '".$id."'

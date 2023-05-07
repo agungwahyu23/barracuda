@@ -10,7 +10,7 @@
 		<div class="card">
 			<div class="header">
 				<h2>
-					<a href="<?= site_url('user/album-add') ?>" class="btn btn-primary waves-effect">+ Tambah Data</a>
+					<a href="<?= site_url('user/album-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
 				</h2>
 			</div>
 			<div class="body">
@@ -18,11 +18,11 @@
 					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nama Album</th>
-								<th>Cover</th>
-								<th>Tanggal Dibuat</th>
+								<th>Name of Album</th>
+								<th>Upload Date</th>
 								<th>Genre</th>
-								<th>Aksi</th>
+								<th>Status</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>

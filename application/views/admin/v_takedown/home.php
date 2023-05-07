@@ -10,7 +10,7 @@
 		<div class="card">
 			<div class="header">
 				<h2>
-					<a href="<?= site_url('user/takedown-add') ?>" class="btn btn-primary waves-effect">+ Tambah Data</a>
+					<a href="<?= site_url('user/takedown-add') ?>" class="btn btn-primary waves-effect">+ Add Data</a>
 				</h2>
 			</div>
 			<div class="body">
@@ -20,6 +20,7 @@
 							<tr>
 								<th>Email</th>
 								<th>Date Request</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>

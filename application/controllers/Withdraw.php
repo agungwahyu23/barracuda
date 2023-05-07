@@ -30,7 +30,8 @@ class Withdraw extends CI_Controller {
 
 	public function ajax_list()
 	{
-		$withdraws = $this->M_withdraw->getData();
+		$id 	= $this->session->userdata('id');
+		$withdraws = $this->M_withdraw->getData($id);
 
 		$data = array();
 		$no = @$_POST['start'];
@@ -53,7 +54,7 @@ class Withdraw extends CI_Controller {
 
 			$attachment = '';
 			if (isset($withdraw->attachment)) {
-				$attachment = '<a href="#" data-toggle="modal" data-target="#defaultModal" data-image="'.$withdraw->attachment.'" id="attachment" class="badge bg-green">Show Attachment</a>';
+				$attachment = '<a href="#" data-toggle="modal" data-target="#defaultModal" data-image="'.$withdraw->attachment.'" id="attachment" class="badge bg-green">Click to Show Attachment</a>';
 			}else{
 				$attachment = '<span class="badge bg-red">No Attachment</span>';
 			}

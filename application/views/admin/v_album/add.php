@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Tambah Album
+		Add Album
 	</h2>
 </div>
 <!-- Basic Validation -->
@@ -8,20 +8,20 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
 			<div class="header">
-				<h2>Tambah Data Album</h2>
+				<h2>Add Data Album</h2>
 			</div>
 			<div class="body">
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" required>
-							<label class="form-label">Nama Artis*</label>
+							<label class="form-label">Name of Artist*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" required>
-							<label class="form-label">Judul*</label>
+							<label class="form-label">Title of Album*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -36,7 +36,7 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Cover (300px x 300px)</span>
+						<span>Upload Cover (300px x 300px)</span>
                         <input name="cover" id="cover" type="file" multiple style="margin-top:10px!important" onchange="return fileValidation()"><br>
 
 						<div id="slider">
@@ -46,13 +46,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="produser">
-							<label class="form-label">Produser</label>
+							<label class="form-label">Producer</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="composser">
-							<label class="form-label">Komposer</label>
+							<label class="form-label">Composser</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -62,35 +62,35 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Single 1</span>
+						<span>Upload Single 1</span>
                         <input name="file[]" class="file_single" id="file_single1" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Single 2</span>
+						<span>Upload Single 2</span>
                         <input name="file[]" class="file_single" id="file_single2" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Single 3</span>
+						<span>Upload Single 3</span>
                         <input name="file[]" class="file_single" id="file_single3" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Single 4</span>
+						<span>Upload Single 4</span>
                         <input name="file[]" class="file_single" id="file_single4" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Single 5</span>
+						<span>Upload Single 5</span>
                         <input name="file[]" class="file_single" id="file_single5" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah Bukti Bayar</span>
+						<span>Upload Proof of Payment</span>
                         <input name="proof_payment" id="proof_payment" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationPayment()"><br>
 
 						<div id="preview_proof_payment">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
 						</div>
 					</div>
-					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Batal</a>
+					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -198,13 +198,23 @@ function validationSingle(fileInput) {
     }
 }
 
+function showLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "block";
+}
+
+function hideLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "none";
+}
+
 $('#form_validation').submit(function(e) {
     var data = $(this).serialize();
     // var data = new FormData($(this)[0]);
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
-                $(".loading2").show();
+                showLoading();
                 $(".loading2").modal('show');
             },
             url: '<?php echo base_url('Album/prosesAdd'); ?>',
@@ -217,6 +227,7 @@ $('#form_validation').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+            hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {
@@ -236,8 +247,8 @@ $('#form_validation').submit(function(e) {
 <script>
 function save_berhasil() {
     Swal.fire({
-        title: "Data berhasil disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data saved successfully!",
+        text: "Click Ok to continue!",
         icon: "success",
         button: "Ok",
     }).then(function() {
@@ -248,8 +259,8 @@ function save_berhasil() {
 
 function gagal() {
     Swal.fire({
-        title: "Data gagal disimpan!",
-        text: "Klik Ok untuk melanjutkan!",
+        title: "Data failed to save!",
+        text: "Click Ok to continue!",
         icon: "danger",
         button: "Ok",
         dangerMode: true,

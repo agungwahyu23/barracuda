@@ -17,27 +17,29 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" value="<?= $single->title ?>" required>
-							<label class="form-label">Judul*</label>
+							<label class="form-label">Title*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" value="<?= $single->artist ?>" required>
-							<label class="form-label">Nama Artis*</label>
+							<label class="form-label">Name of Artist*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="language" value="<?= $single->language ?>">
-							<label class="form-label">Bahasa</label>
+							<label class="form-label">Language</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<label class="form-label">Genre</label>
 						<div class="form-line">
 							<select name="genre_id" id="genre_id" class="form-control show-tick">
-								<option value="">Pop</option>
-								<option value="">Rock</option>
+								<?php
+								foreach ($genre as $key => $value) {?>
+									<option value="<?= $value->id ?>"><?= $value->genre ?></option>
+								<?php } ?>
 							</select>
 						</div>
 					</div>
@@ -52,13 +54,13 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="first_composer" value="<?= $single->first_name_composer ?>" required>
-							<label class="form-label">Nama Depan Komposer*</label>
+							<label class="form-label">First Name Composser*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_composer" value="<?= $single->last_name_composer ?>" required>
-							<label class="form-label">Nama Belakang Komposer*</label>
+							<label class="form-label">Last Name Composser*</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -70,22 +72,22 @@
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="produser" value="<?= $single->produser ?>">
-							<label class="form-label">Produser</label>
+							<label class="form-label">Producer</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="date-own form-control" name="year_production" value="<?= $single->year_production ?>">
-							<label class="form-label">Tahun Produksi</label>
+							<label class="form-label">Year of Production</label>
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<span>Unggah File Musik</span>
-                        <input name="file" id="file" type="file" multiple style="padding-top:10px!important"/>
-						<small style="color:red">*Biarkan kosong jika anda tidak ingin mengubah file yang telah diupload</small>
+						<span>Upload File Music</span>
+                        <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple style="padding-top:10px!important"/>
+						<small style="color:red">*Leave blank if you don't want to change the uploaded file</small>
 					</div>
-					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-primary waves-effect">Kembali</a>
+					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -100,6 +102,48 @@ $('.date-own').datepicker({
 	minViewMode: "years",
 	autoclose: true //to close picker once year is selected
 });
+
+function validationSingle(fileInput) {
+    var fileInputVal = document.getElementById('file');
+    // var filePath = fileInput.value;
+    var allowedExtensions = /(\.wav)$/i;
+
+	var fileName = fileInput.value;
+	var fileExtension = fileName.split('.').pop().toLowerCase();
+
+    if (fileExtension != 'wav') {
+        toastr.error('The file format must be .wav.', 'Warning', {
+            timeOut: 5000
+        }, toastr.options = {
+            "closeButton": true
+        });
+        fileInput.value = '';
+        return false;
+    } else {
+        //Image preview
+        if (fileInput.files && fileInput.files[0].size > 100000000) {
+            toastr.error('Maximum file size is 100 MB', 'Warning', {
+                timeOut: 5000
+            }, toastr.options = {
+                "closeButton": true
+            });
+            fileInput.value = '';
+            return false;
+        }else{
+			return false;
+		}
+    }
+}
+
+function showLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "block";
+}
+
+function hideLoading() {
+	var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+	loadingWrapper[0].style.display = "none";
+}
 
 function myFunction() {
     var x = document.getElementById("myInput");
@@ -116,7 +160,7 @@ $('#form_validation').submit(function(e) {
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
-                $(".loading2").show();
+                showLoading();
                 $(".loading2").modal('show');
             },
             url: '<?php echo base_url('Single/prosesUpdate'); ?>',
@@ -129,6 +173,7 @@ $('#form_validation').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+			hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
             if (result.status == 'berhasil') {

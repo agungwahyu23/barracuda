@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_withdraw extends CI_Model
 {
 
-	public function getData()
+	public function getData($id)
 	{
-		$sql = "SELECT * FROM withdraw ORDER BY id ASC";
+		$sql = "SELECT * FROM withdraw WHERE user_id = '".$id."' ORDER BY id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
