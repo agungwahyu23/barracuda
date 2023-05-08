@@ -33,7 +33,12 @@
 					<div class="form-group form-float">
 						<label class="form-label">Language*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="language" required>
+							<!-- <input type="text" class="form-control" name="language" required> -->
+							<select name="language" id="language" class="form-control show-tick" required>
+								<option value="1">Bahasa Indonesia</option>
+								<option value="2">English</option>
+								<option value="3">Jawa</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group form-float">
@@ -86,7 +91,7 @@
 					<div class="form-group form-float">
 						<label class="form-label">Youtube Channel Link <sup>(Optional)</sup></label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/watch?v=PeMvMNpvB5M&pp=ygUJYmFycmFjdWRh" >
+							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ" >
 						</div>
 					</div>
 
@@ -98,9 +103,9 @@
 					</div>
 
 					<div class="form-group form-float">
-						<label class="form-label">Contact Person*</label>
+						<label class="form-label">Whatsapp Number*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="contact_person" placeholder="" >
+							<input type="text" class="form-control" name="contact_person" placeholder="+62 857xxx" onkeypress="return hanyaAngka(event)">
 						</div>
 					</div>
 
@@ -186,10 +191,18 @@
 <!-- #END# Basic Validation -->
 
 <script type="text/javascript">
+	function hanyaAngka(evt) {
+		var charCode = (evt.which) ? evt.which : event.keyCode
+		if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+		return false;
+		return true;
+	}
+	
 	function fileValidation() {
 		var fileInput = document.getElementById('cover');
 		var filePath = fileInput.value;
-		var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+		var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 		if (!allowedExtensions.exec(filePath)) {
 			toastr.error('File harus format .jpeg/.jpg/.png/.gif only.', 'Warning', {
 				timeOut: 5000
