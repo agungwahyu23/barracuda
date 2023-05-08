@@ -3,6 +3,9 @@
 		Add Album
 	</h2>
 </div>
+<div class="alert alert-success">
+Upload price per album IDR 250000
+</div>
 <!-- Basic Validation -->
 <div class="row clearfix">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -48,7 +51,7 @@
                     <div class="form-group form-float">
 						<label class="form-label">Youtube Channel Link <sup>(Optional)</sup></label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/watch?v=PeMvMNpvB5M&pp=ygUJYmFycmFjdWRh" >
+							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ" >
 						</div>
 					</div>
 
@@ -67,9 +70,9 @@
 					</div>
 
                     <div class="form-group form-float">
-						<label class="form-label">Contact Person*</label>
+						<label class="form-label">Whatsapp Number*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="contact_person" placeholder="" >
+							<input type="text" class="form-control" name="contact_person" placeholder="08567xxxx" >
 						</div>
 					</div>
 
@@ -111,7 +114,7 @@
 					</div> -->
 
 					<div class="form-group form-float">
-						<span><b>Upload Song 1</b></span>
+						<span><b>Upload Song 1 (The file name must match the title)</b></span>
                         <input name="file[]" class="file_single" id="file_single1" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
                         <br>
                         <label class="form-label">Title Song 1</label>
@@ -125,7 +128,7 @@
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Song 2</b></span>
+						<span><b>Upload Song 2 (The file name must match the title)</b></span>
                         <input name="file[]" class="file_single" id="file_single2" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
                         <br>
                         <label class="form-label">Title Song 2</label>
@@ -139,7 +142,7 @@
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 3</b></span>
+						<span><b>Upload Single 3 (The file name must match the title)</b></span>
                         <input name="file[]" class="file_single" id="file_single3" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
                         <br>
                         <label class="form-label">Title Song 3</label>
@@ -153,7 +156,7 @@
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 4</b></span>
+						<span><b>Upload Single 4 (The file name must match the title)</b></span>
                         <input name="file[]" class="file_single" id="file_single4" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
                         <br>
                         <label class="form-label">Title Song 4</label>
@@ -167,7 +170,7 @@
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 5</b></span>
+						<span><b>Upload Single 5 (The file name must match the title)</b></span>
                         <input name="file[]" class="file_single" id="file_single5" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
                         <br>
                         <label class="form-label">Title Song 5</label>

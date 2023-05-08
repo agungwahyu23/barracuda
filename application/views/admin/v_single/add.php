@@ -3,6 +3,9 @@
 		Add Single
 	</h2>
 </div>
+<div class="alert alert-success">
+Upload price per single IDR 50000
+</div>
 <!-- Basic Validation -->
 <div class="row clearfix">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -95,12 +98,12 @@
 						</div>
 					</div>
 
-					<div class="form-group form-float">
+					<!-- <div class="form-group form-float">
 						<label class="form-label">Start Priview Tiktok <sup>(Optional)</sup></label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="start_preview_tiktok" placeholder="Please fill in the start preview seconds format for tiktok (if not filled in it will be default, tiktok duration is 1 minute)" >
 						</div>
-					</div>
+					</div> -->
 
 					<div class="form-group form-float">
 						<label class="form-label">Whatsapp Number*</label>
@@ -161,7 +164,7 @@
 					</div>
 
 					<div class="form-group form-float">
-						<span>Upload File Music*</span>
+						<span>Upload File Music* (The file name must match the title)</span>
                         <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple required/>
 					</div>
 
@@ -198,7 +201,7 @@
 		return false;
 		return true;
 	}
-	
+
 	function fileValidation() {
 		var fileInput = document.getElementById('cover');
 		var filePath = fileInput.value;
