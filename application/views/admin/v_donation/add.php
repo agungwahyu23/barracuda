@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Add Request Takedown
+		Add Donation
 	</h2>
 </div>
 <!-- Basic Validation -->

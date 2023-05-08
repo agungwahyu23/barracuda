@@ -12,18 +12,20 @@
 			</div>
 			<div class="body">
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
-					<div class="form-group form-float">
-						<div class="form-line">
-							<input type="text" class="form-control" name="artist" required>
-							<label class="form-label">Name of Artist*</label>
-						</div>
-					</div>
-					<div class="form-group form-float">
+                    <div class="form-group form-float">
+                        <label class="form-label">Title Album*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="title" required>
-							<label class="form-label">Title of Album*</label>
 						</div>
 					</div>
+
+					<div class="form-group form-float">
+                        <label class="form-label">Name of Artist*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="artist" required>
+						</div>
+					</div>
+					
 					<div class="form-group form-float">
 						<label class="form-label">Genre</label>
 						<div class="form-line">
@@ -35,53 +37,150 @@
 							</select>
 						</div>
 					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Release Date*</label>
+						<div class="form-line">
+							<input type="text" class="date-full form-control" name="release_date" required>
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Youtube Channel Link <sup>(Optional)</sup></label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/watch?v=PeMvMNpvB5M&pp=ygUJYmFycmFjdWRh" >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Link Artist Spotify <sup>(Optional)</sup></label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="spotify_link" placeholder="Ex: https://open.spotify.com/artist/34gJOUTurjXaj8z3E9fDaV" >
+						</div>
+					</div>
+
 					<div class="form-group form-float">
-						<span>Upload Cover (300px x 300px)</span>
+						<label class="form-label">Link Artist ITunes <sup>(Optional)</sup></label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="itunes_link" >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Contact Person*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="contact_person" placeholder="" >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+                        <label class="form-label">Producer</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="produser">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+                        <label class="form-label">Composser</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="composser">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Year of Production*</label>
+						<div class="form-line">
+							<input type="text" class="date-own form-control" name="year_production" required>
+						</div>
+					</div>
+
+					<div class="form-group form-float">
+						<span>Upload Cover (3000px x 3000px)</span>
                         <input name="cover" id="cover" type="file" multiple style="margin-top:10px!important" onchange="return fileValidation()"><br>
 
 						<div id="slider">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
 						</div>
 					</div>
-					<div class="form-group form-float">
-						<div class="form-line">
-							<input type="text" class="form-control" name="produser">
-							<label class="form-label">Producer</label>
-						</div>
-					</div>
-					<div class="form-group form-float">
-						<div class="form-line">
-							<input type="text" class="form-control" name="composser">
-							<label class="form-label">Composser</label>
-						</div>
-					</div>
-					<div class="form-group form-float">
+					
+					<!-- <div class="form-group form-float">
 						<div class="form-line">
 							<textarea name="description" cols="30" rows="5" class="form-control no-resize"></textarea>
 							<label class="form-label">Description</label>
 						</div>
-					</div>
+					</div> -->
+
 					<div class="form-group form-float">
-						<span>Upload Single 1</span>
+						<span><b>Upload Song 1</b></span>
                         <input name="file[]" class="file_single" id="file_single1" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+                        <br>
+                        <label class="form-label">Title Song 1</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title[]">
+						</div><br>
+                        <label class="form-label">Composer Song 1</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
 					</div>
+
 					<div class="form-group form-float">
-						<span>Upload Single 2</span>
+						<span><b>Upload Song 2</b></span>
                         <input name="file[]" class="file_single" id="file_single2" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+                        <br>
+                        <label class="form-label">Title Song 2</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title[]">
+						</div><br>
+                        <label class="form-label">Composer Song 2</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
 					</div>
+
 					<div class="form-group form-float">
-						<span>Upload Single 3</span>
+						<span><b>Upload Single 3</b></span>
                         <input name="file[]" class="file_single" id="file_single3" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+                        <br>
+                        <label class="form-label">Title Song 3</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title[]">
+						</div><br>
+                        <label class="form-label">Composer Song 3</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
 					</div>
+
 					<div class="form-group form-float">
-						<span>Upload Single 4</span>
+						<span><b>Upload Single 4</b></span>
                         <input name="file[]" class="file_single" id="file_single4" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+                        <br>
+                        <label class="form-label">Title Song 4</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title[]">
+						</div><br>
+                        <label class="form-label">Composer Song 4</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
 					</div>
+
 					<div class="form-group form-float">
-						<span>Upload Single 5</span>
+						<span><b>Upload Single 5</b></span>
                         <input name="file[]" class="file_single" id="file_single5" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+                        <br>
+                        <label class="form-label">Title Song 5</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title[]">
+						</div><br>
+                        <label class="form-label">Composer Song 5</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
 					</div>
-					<div class="form-group form-float">
+
+					<div class="form-group form-float" id="upload_payment">
 						<span>Upload Proof of Payment</span>
                         <input name="proof_payment" id="proof_payment" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationPayment()"><br>
 
@@ -99,6 +198,22 @@
 <!-- #END# Basic Validation -->
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        $('#upload_payment').hide();
+    });
+
+$('.date-own').datepicker({
+	format: "yyyy",
+	viewMode: "years",
+	minViewMode: "years",
+	autoclose: true //to close picker once year is selected
+});
+
+$('.date-full').datepicker({
+  format: "yyyy-mm-dd",
+  autoclose: true
+});
+    
 function fileValidation() {
     var fileInput = document.getElementById('cover');
     var filePath = fileInput.value;

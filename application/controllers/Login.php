@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class Login extends CI_Controller {
 
@@ -45,7 +46,7 @@ class Login extends CI_Controller {
 			'phone' 		=> $this->input->post('phone'),
 			'address' 		=> $this->input->post('address'),
 			'level' 		=> '2',
-			'is_active'		=> '0',
+			'is_active'		=> '1',
 			'total_income'	=> '0',
 			'created_at' 	=> date('Y-m-d H:i:s'),
 			
@@ -61,7 +62,7 @@ class Login extends CI_Controller {
 
 		$to = $email;
         $subject = 'Pembuatan Akun Baru';
-		$message_template = $this->load->view('public/email_template_register', $data_mail, TRUE);
+		$message_template = $this->load->view('public/email_template', $data_mail, TRUE);
 		send_email($to, $subject, $message_template);
 
 		if ($result > 0) {

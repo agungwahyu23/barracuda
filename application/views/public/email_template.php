@@ -135,7 +135,7 @@ width: 100% !important;
                                         <td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:40px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:32px;font-weight:bold;line-height:1;text-align:center;color:#555;">
-                                                Pembuatan akun baru!
+                                                New account created!
                                             </div>
 
                                         </td>
@@ -145,7 +145,7 @@ width: 100% !important;
                                         <td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:22px;text-align:center;color:#555;">
-                                               Akun anda berhasil dibuat. Akun ini digunakan untuk masuk kehalaman dashboard user. Untuk username/email dan kata sandi anda masukkan data berikut ini :
+                                            Your account has been successfully created. This account is used to enter the user dashboard page. For your username/email and password enter the following data:
                                             </div>
 
                                         </td>
@@ -204,7 +204,7 @@ width: 100% !important;
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:bold;line-height:1;text-align:center;color:#555;">
-                                                Butuh bantuan?
+                                            Need help?
                                             </div>
 
                                         </td>
@@ -214,7 +214,7 @@ width: 100% !important;
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:center;color:#555;">
-                                                Silahkan hubungi admin memalui kontak berikut<br> email <a href="mailto:admin@tomokoyuki.com" style="color:#2F67F6">admin@tomokoyuki.com</a><br>whatsapp +6285817
+                                            Please contact the admin via the following contact<br> email <a href="mailto:admin@tomokoyuki.com" style="color:#2F67F6">admin@tomokoyuki.com</a><br>whatsapp +62 856-5573-9975
                                             </div>
 
                                         </td>

@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Single List
+		Contact
 	</h2>
 </div>
 

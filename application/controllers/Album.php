@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class Album extends CI_Controller {
 
@@ -192,6 +193,14 @@ class Album extends CI_Controller {
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
 					'artist' 				=> $artist,
+					'release_date' 			=> $this->input->post('release_date'),
+					'yt_link' 			=> $this->input->post('yt_link'),
+					'spotify_link' 			=> $this->input->post('spotify_link'),
+					'itunes_link' 			=> $this->input->post('itunes_link'),
+					'contact_person' 			=> $this->input->post('contact_person'),
+					'year_production' 			=> $this->input->post('year_production'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $id_user,
 				];
 			}
 			$result_album = $this->M_album->save_data($data);

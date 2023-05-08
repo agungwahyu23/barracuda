@@ -65,13 +65,13 @@
 							<div class="input-group mb-4">
 								<label for="input" class="w-100">
 									<span class="input-title">Nama Lengkap</span>
-									<input type="text" name="name" class="form-control mt-2 text-white" placeholder="Ex: Dion Bhaskara">
+									<input type="text" name="name" class="form-control mt-2 text-white" placeholder="Ex: Dion Bhaskara" required>
 								</label>
 							</div>
 							<div class="input-group mb-4">
 								<label for="input" class="w-100">
 									<span class="input-title">Email</span>
-									<input type="email" name="email" class="form-control mt-2 text-white" placeholder="Ex: Email@example.org">
+									<input type="email" name="email" id="email" class="form-control mt-2 text-white" placeholder="Ex: Email@example.org" required>
 								</label>
 							</div>
 							<div class="input-group mb-4">
@@ -80,7 +80,7 @@
 									<div class="row">
 										<div class="col col-md-4">
 											<input class="form-check-input" type="radio" name="gender" id="gender1"
-												value="1">
+												value="1" required>
 											<label class="form-check-label text-white" for="gender1">
 												Laki-laki
 											</label>
@@ -98,13 +98,13 @@
 							<div class="input-group mb-4">
 								<label for="input" class="w-100">
 									<span class="input-title">Telepon</span>
-									<input type="text" name="phone" class="form-control mt-2 text-white" placeholder="Ex: 0858xxxxxx">
+									<input type="text" name="phone" class="form-control mt-2 text-white" placeholder="Ex: 0858xxxxxx" onkeypress="return hanyaAngka(event)" required>
 								</label>
 							</div>
 							<div class="input-group">
 								<label for="input" class="w-100">
 									<span class="input-title">Alamat</span>
-									<input type="text" class="form-control mt-2 text-white" placeholder="Ex: Jl. Mawar No.xx, Surabaya, Kec. Wonocolo" name="address">
+									<input type="text" class="form-control mt-2 text-white" placeholder="Ex: Jl. Mawar No.xx, Surabaya, Kec. Wonocolo" name="address" required>
 								</label>
 							</div>
 							<button type="submit" class="btn btn-card">
@@ -125,15 +125,19 @@
 	  <script src="<?= base_url() ?>assets/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 	  <script src="<?php echo base_url(); ?>assets/public/js/sweealert.js"></script>
 	  <script src="<?php echo base_url(); ?>assets/public/vendor/sweetalert/sweetalert.min.js"></script>
+	  <?php include('partials/js.php') ?>
     </body>
   </html>
 
   <!-- fungsi ajax daftar -->
   <script type="text/javascript">
 		$('#register').submit(function(e) {
-			console.log("asdsadas");
-			var data = $(this).serialize();
-			$.ajax({
+			const email = $('#email').val();
+			const regex = /@gmail\.com$/i;
+
+			if (regex.test(email)) {				
+				var data = $(this).serialize();
+				$.ajax({
 					beforeSend: function() {
 						$(".loading2").show();
 						$(".loading2").modal('show');
@@ -145,8 +149,7 @@
 					processData: false,
 					contentType: false,
 					cache: false,
-				})
-				.done(function(data) {
+				}).done(function(data) {
 					var result = jQuery.parseJSON(data);
 					console.log(data);
 					if (result.status == 'berhasil') {
@@ -167,6 +170,10 @@
 
 					}
 				})
+				
+			} else {
+				emailValidation();
+			}
 			e.preventDefault();
 		});
 
@@ -174,6 +181,16 @@
 			swal({
 				title: "Gagal!",
 				text: "Pastikan data telah diisi dengan benar!",
+				type: 'error',
+				button: "Ok",
+				dangerMode: true,
+			});
+		}
+
+		function emailValidation() {
+			swal({
+				title: "Gagal!",
+				text: "Email harus menggunakan akun gmail!",
 				type: 'error',
 				button: "Ok",
 				dangerMode: true,
