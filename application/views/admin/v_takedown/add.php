@@ -29,10 +29,10 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Choose Album/Single</label>
+						<label class="form-label">Title Album/Single</label>
 						<div class="form-line">
 							<select name="single" id="single" class="form-control select2 show-tick">
-								<option value="">Choose single</option>
+								<option value="">Choose Title</option>
 							</select>
 						</div>
 					</div>

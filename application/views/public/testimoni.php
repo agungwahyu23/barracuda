@@ -19,22 +19,22 @@
 						<div class="single-faq">
 							<h4>Joseph</h4>
 							<div class="space-20"></div>
-							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik dari Poetra Music</p>
+							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik</p>
 						</div>
 						<div class="single-faq">
-							<h4>Joseph</h4>
+							<h4>Aryo</h4>
 							<div class="space-20"></div>
-							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik dari Poetra Music</p>
+							<p>Upload musik sangat mudah</p>
 						</div>
 						<div class="single-faq">
-							<h4>Joseph</h4>
+							<h4>Dimas</h4>
 							<div class="space-20"></div>
-							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik dari Poetra Music</p>
+							<p>Biaya terjangkau dan pelayanan terbaik</p>
 						</div>
 						<div class="single-faq">
-							<h4>Joseph</h4>
+							<h4>Dinda</h4>
 							<div class="space-20"></div>
-							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik dari Poetra Music</p>
+							<p>Sangat memudahkan dan layanan perhidmatan yang terbaik</p>
 						</div>
 					</div>
 				</div>
