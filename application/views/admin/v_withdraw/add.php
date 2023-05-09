@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Add Request Withdrawal
+		Add Request Withdraw
 	</h2>
 </div>
 <!-- Basic Validation -->
