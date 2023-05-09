@@ -153,7 +153,7 @@ width: 100% !important;
 											<td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
 
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:22px;text-align:center;color:#555;">
-													Please make a transfer of IDR 50,000 to the following bank account: <br>
+													Please make a transfer of IDR 250,000 to the following bank account: <br>
 													BTN <br>
 													AN. Robby Widjaja <br>
 													6001500209140

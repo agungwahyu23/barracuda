@@ -38,9 +38,9 @@ Upload price per single IDR 50000
 						<div class="form-line">
 							<!-- <input type="text" class="form-control" name="language" required> -->
 							<select name="language" id="language" class="form-control show-tick" required>
-								<option value="1">Bahasa Indonesia</option>
-								<option value="2">English</option>
-								<option value="3">Jawa</option>
+								<option value="Bahasa Indonesia">Bahasa Indonesia</option>
+								<option value="English">English</option>
+								<option value="Jawa">Jawa</option>
 							</select>
 						</div>
 					</div>
