@@ -29,11 +29,17 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Choose Album/Single</label>
+						<label class="form-label">Title Album/Single</label>
 						<div class="form-line">
 							<select name="single" id="single" class="form-control select2 show-tick">
 								<option value="">Choose single</option>
 							</select>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<label class="form-label">Link*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="link" required>
 						</div>
 					</div>
 					<button class="btn btn-primary waves-effect" type="submit">Submit</button>

@@ -45,6 +45,8 @@ class Admin_single extends CI_Controller {
 				$status = "Pending";
 			}elseif ($single->status == 1) {
 				$status = "Sukses";
+			}elseif ($single->status == 2) {
+				$status = "Reject";
 			}else{
 				$status = "-";
 			}

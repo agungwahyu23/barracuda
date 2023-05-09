@@ -20,7 +20,7 @@
 							<tr>
 								<th>Email</th>
 								<th>Date Request</th>
-								<th>Status</th>
+								<!-- <th>Status</th> -->
 								<th>Action</th>
 							</tr>
 						</thead>

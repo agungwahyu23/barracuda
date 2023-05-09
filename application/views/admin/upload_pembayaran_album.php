@@ -110,15 +110,15 @@ width: 100% !important;
 
 
         <div style="background:#fff;background-color:#fff;Margin:0px auto;max-width:600px;">
-
+			<form id="form_validation" action="<?= base_url('Album/prosesPayment/' . $user_id . '/' . $order_id) ?>" method="POST" enctype="multipart/form-data">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#fff;background-color:#fff;width:100%;">
                 <tbody>
                     <tr>
                         <td style="border:#dddddd solid 1px;border-top:0px;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
                             <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:bottom;width:100%;">
-								<form id="form_validation" method="POST" enctype="multipart/form-data">
-									<input type="hide" value="<?= $user_id ?>" name="user_id">
-									<input type="hide" value="<?= $order_id ?>" name="order_id">
+								
+									<input type="hidden" value="<?= $user_id ?>" name="user_id">
+									<input type="hidden" value="<?= $order_id ?>" name="order_id">
 									<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:bottom;" width="100%">
 
 										<tr>
@@ -153,7 +153,7 @@ width: 100% !important;
 											<td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
 
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:22px;text-align:center;color:#555;">
-													Please make a transfer of IDR 50,000 to the following bank account: <br>
+													Please make a transfer of IDR 250,000 to the following bank account: <br>
 													BTN <br>
 													AN. Robby Widjaja <br>
 													6001500209140
@@ -200,14 +200,14 @@ width: 100% !important;
 										</tr>
 
 									</table>
-								</form>
+								
                             </div>
 
                         </td>
                     </tr>
                 </tbody>
             </table>
-
+			</form>
         </div>
 
     </div>
@@ -252,6 +252,16 @@ width: 100% !important;
 			}
 		}
 	}
+
+	function showLoading() {
+		var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+		loadingWrapper[0].style.display = "block";
+	}
+
+	function hideLoading() {
+		var loadingWrapper = document.getElementsByClassName("loading-wrapper");
+		loadingWrapper[0].style.display = "none";
+	}
 	</script>
 
 	<script>
@@ -261,10 +271,10 @@ width: 100% !important;
 			$.ajax({
 					// method: 'POST',
 					beforeSend: function() {
-						$(".loading2").show();
-						$(".loading2").modal('show');
-					},
-					url: '<?php echo base_url('Album/prosesPayment/') . $user_id . '/' . $order_id ?>',
+                		showLoading();
+                		$(".loading2").modal('show');
+            		},
+					url: '<?php echo base_url('Album/prosesPayment/' . $user_id . '/' . $order_id)  ?>',
 					type: "post",
 					enctype: "multipart/form-data",
 					// data: data,
@@ -274,7 +284,9 @@ width: 100% !important;
 					cache: false,
 				})
 				.done(function(data) {
+					hideLoading();
 					var result = jQuery.parseJSON(data);
+					console.log(data);
 					if (result.status == 'berhasil') {
 						document.getElementById("form_validation").reset();
 						save_berhasil();
@@ -285,7 +297,7 @@ width: 100% !important;
 
 					}
 				})
-			e.preventDefault();
+				e.preventDefault();
 		});
 	</script>
 

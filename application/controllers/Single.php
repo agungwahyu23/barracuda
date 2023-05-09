@@ -8,8 +8,10 @@ class Single extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('email');
 		$this->load->library('session');
 		$this->load->model('M_single');
+		$this->load->model('Ma_user');
 	}
 
 	public function loadkonten($page, $data) {
@@ -46,6 +48,8 @@ class Single extends CI_Controller {
 				$status = "Pending";
 			}elseif ($single->status == 1) {
 				$status = "Success";
+			}elseif ($single->status == 2) {
+				$status = "Reject";
 			}else{
 				$status = "-";
 			}
@@ -60,10 +64,10 @@ class Single extends CI_Controller {
 			$action .= '<li><a href="' . base_url('user/single-detail') . "/" . 
 			$single->id . '">Detail</a></li>';
 
-			if ($single->status != 1) {
-				$action .= '<li><a href="' . base_url('user/single-update') . "/" . 
-				$single->id . '">Edit</a></li>';
-			}
+			// if ($single->status != 1) {
+			// 	$action .= '<li><a href="' . base_url('user/single-update') . "/" . 
+			// 	$single->id . '">Edit</a></li>';
+			// }
 
 
 			$action .= '</ul>';
@@ -102,22 +106,33 @@ class Single extends CI_Controller {
 
 		// get user
 		$user = $this->M_single->getUser($id_user);
+		$name_user = str_replace(" ", "_", strtolower($user->name));
+
+		$upload_path = './upload/single/';
+		$folder_name = $id_user . '_' . $name_user . '/' . date('ymdhi');
+
+		// cek apakah folder sudah ada
+		if (!is_dir($upload_path . $folder_name)) {
+    		// jika folder belum ada, buat folder baru
+    		mkdir($upload_path . $folder_name, 0777, true);
+		}
 
 		// mengambil data file yang diunggah
 		$cover_name = 'cover_album_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
 		$ktp_name = 'ktp_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
 		$file = $_FILES['file'];
+		// $file = $_FILES["file"]['name'];
 
-		$newnamefile = 'single_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
+		$newnamefile = $judul;
 		$dir = $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
 
-		$config['upload_path'] = './upload/single/';
+		$config['upload_path'] = $upload_path . $folder_name;
 		$config['allowed_types'] = 'wav';
 		$config['max_size'] = '102400';
 		$config['max_width'] = 0;
 		$config['max_height'] = 0;
 		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
+		$config['remove_spaces'] = FALSE;
 		$config['file_ext_tolower'] = TRUE;
 		$config['file_name'] = $newnamefile;
 
@@ -127,6 +142,7 @@ class Single extends CI_Controller {
 		$data_order = [
 			'user_id' 				=> $id_user,
 			'status'				=> 0,
+			'path'					=> $upload_path . $folder_name,
 			'created_at' 			=> date('Y-m-d H:i:s'),
 			'created_by' 			=> $id_user,
 		];
@@ -134,18 +150,28 @@ class Single extends CI_Controller {
 		$result_order = $this->M_single->save_data_order($data_order);
 		$order_id = $this->db->insert_id();
 
+		$data_mail = [
+			'order_id' 		=> $this->encryption_lib->encode($order_id),
+			'user_id'		=> $this->encryption_lib->encode($id_user),
+		];
+
+		$to = $user->email;
+		$subject = 'Payment Single';
+		$message_template = $this->load->view('admin/email_template_single', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
+
 		if ($this->upload->do_upload('file')){
 			$single_file = $this->upload->data();
 
 			// konfigurasi upload image
-			$config2['upload_path'] = './upload/single/'; // direktori utama untuk pengunggahan file
+			$config2['upload_path'] = $upload_path . $folder_name; // direktori utama untuk pengunggahan file
 			$config2['allowed_types'] = 'jpg|png'; // tipe file yang diperbolehkan
 			$config2['max_size'] = 2048; // ukuran maksimal file dalam KB
 			$this->load->library('upload', $config2); // memuat library upload
 
 			// mengupload file cover 
 			$this->upload->initialize(array(
-				'upload_path' => './upload/single/',
+				'upload_path' => $upload_path . $folder_name,
 				'allowed_types' => 'jpg|png',
 				'max_size' => 2048,
 				'file_name' => $cover_name
@@ -161,7 +187,7 @@ class Single extends CI_Controller {
 
 			// mengupload file ktp
 			$this->upload->initialize(array(
-				'upload_path' => './upload/single/',
+				'upload_path' => $upload_path . $folder_name,
 				'allowed_types' => 'jpg|png',
 				'max_size' => 2048,
 				'file_name' => $ktp_name
@@ -182,12 +208,12 @@ class Single extends CI_Controller {
 				'artist' 				=> $this->input->post('artist'),
 				'featuring_artist' 		=> $this->input->post('featuring_artist'),
 				'description' 			=> $this->input->post('description'),
-				'file'            		=> $single_file['file_name'],
-				'cover'            		=> $cover_single,
+				'file'            		=> $upload_path . $folder_name . '/' . $single_file['file_name'],
+				'cover'            		=> $upload_path . $folder_name . '/' . $cover_single,
 				'status' 				=> 0,
 				'language' 				=> $this->input->post('language'),
 				'genre_id' 				=> $this->input->post('genre_id'),
-				'sub_genre' 				=> $this->input->post('sub_genre'),
+				'sub_genre' 			=> $this->input->post('sub_genre'),
 				'first_name_composer' 	=> $this->input->post('first_composer'),
 				'last_name_composer' 	=> $this->input->post('last_composer'),
 				'arranger' 				=> $this->input->post('arranger'),
@@ -202,7 +228,7 @@ class Single extends CI_Controller {
 				'start_preview_tiktok' 	=> $this->input->post('start_preview_tiktok'),
 				'contact_person' 		=> $this->input->post('contact_person'),
 				'ig' 					=> $this->input->post('ig'),
-				'ktp' 					=> $ktp_single,
+				'ktp' 					=> $upload_path . $folder_name . '/' . $ktp_single,
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
 			];
@@ -334,5 +360,93 @@ class Single extends CI_Controller {
 		} else {
 			$out['status'] = 'gagal';
 		}
+	}
+
+	public function payment($user_id, $order_id)
+	{
+		$data = [
+			'order_id' 		=> $this->encryption_lib->decode($order_id),
+			'user_id'		=> $this->encryption_lib->decode($user_id),
+		];
+
+		$this->loadkonten('admin/upload_pembayaran_single', $data, TRUE);
+	}
+
+	public function prosesPayment($user_id, $order_id)
+	{
+		$id = $order_id;
+		$newnamefile = 'proof_payment_single_' . $user_id . '_' . date('ymdhi');
+
+		// get order
+		$order = $this->M_single->getOrder($id);
+		$path = $order->path;
+
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'jpg|png|gif|jpeg';
+		$config['max_size'] = '1024';
+		$config['max_width'] = 0;
+		$config['max_height'] = 0;
+		$config['overwrite'] = TRUE;
+		$config['remove_spaces'] = TRUE;
+		$config['file_ext_tolower'] = TRUE;
+		$config['file_name'] = $newnamefile;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		if ($this->upload->do_upload('proof_of_payment')){
+			$proof_attachment = $this->upload->data();
+			$proof_attachment_path = $path . '/' . $proof_attachment['file_name'];
+			$data = [
+				'attachment'			=> $proof_attachment_path,
+				'updated_at' 			=> date('Y-m-d H:i:s'),
+				'updated_by' 			=> $user_id,
+			];
+
+			$result = $this->db->update('tb_order', $data, array('id' => $order_id));
+
+			if ($result > 0) {
+				$out['status'] = 'berhasil';
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}else{
+			$data = [
+				'updated_at' 			=> date('Y-m-d H:i:s'),
+				'updated_by' 			=> $user_id,
+			];
+			
+			$result = $this->db->update('tb_order', $data, array('id' => $order_id));
+
+			if ($result > 0) {
+				$out['status'] = 'berhasil';
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}
+
+		$user = $this->Ma_user->select_by_id($user_id);
+
+		$data_mail = [
+			'name' 			=> $user->name,
+			'email' 		=> $user->email,
+			'user_id'		=> $user_id,
+			'title'			=> 'Single',
+		];
+
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Pembayaran Single';
+		$message_template = $this->load->view('admin/email_template_to_admin', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
+
+		if ($out['status'] == 'berhasil') {
+			$out['status'];
+			redirect(site_url('success_payment'));
+		}else{
+			$out['status'];
+			echo "Upload gagal";
+		}
+		// echo json_encode($out);
+
 	}
 }

@@ -46,6 +46,8 @@ class Admin_album extends CI_Controller {
 				$status = "Pending";
 			}elseif ($album->status == 1) {
 				$status = "Sukses";
+			}elseif ($album->status == 2) {
+				$status = "Reject";
 			}else{
 				$status = "-";
 			}

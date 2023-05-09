@@ -46,8 +46,12 @@ class Album extends CI_Controller {
 			$status = '';
 			if ($album->status == 0) {
 				$status = 'Pending';
+			}elseif ($single->status == 1) {
+				$status = "Success";
+			}elseif ($single->status == 2) {
+				$status = "Reject";
 			}else{
-				$status = 'Success';
+				$status = '-';
 			}
 			$row[] = $status;
 
@@ -112,13 +116,26 @@ class Album extends CI_Controller {
 		$composser = $this->input->post('composser');
 		$artist = $this->input->post('artist');
 		$file = $_FILES["file"]['name'];
-		
-		// cek apakah upload file
+
+		// get data user
+		$user = $this->M_album->getUser($id_user);
+		$name_user = str_replace(" ", "_", strtolower($user->name));
+
+		$upload_path = './upload/album/';
+		$folder_name = $id_user . '_' . $name_user . '/' . date('ymdhi');
+
+		// cek apakah folder sudah ada
+		if (!is_dir($upload_path . $folder_name)) {
+    		// jika folder belum ada, buat folder baru
+    		mkdir($upload_path . $folder_name, 0777, true);
+		}
+
+		// cek apakah upload bukti bayar
 		if (isset($file)) {
 			// insert to tb_order
 			$newnamefile = 'proof_payment_album_' . $id_user . '_' . date('ymdhis');
 
-			$config['upload_path'] = './upload/proof_attachment';
+			$config['upload_path'] = $upload_path . $folder_name;
 			$config['allowed_types'] = 'jpg|png|gif|jpeg';
 			$config['max_size'] = '1024';
 			$config['max_width'] = 0;
@@ -133,10 +150,12 @@ class Album extends CI_Controller {
 
 			if ($this->upload->do_upload('proof_payment')){
 				$proof_attachment = $this->upload->data();
+				$proof_attachment_path = $upload_path . $folder_name . '/' . $proof_attachment['file_name'];
 				$data_order = [
 					'user_id' 				=> $id_user,
-					'attachment'			=> $proof_attachment['file_name'],
+					'attachment'			=> $proof_attachment_path,
 					'status'				=> 0,
+					'path'					=> $upload_path . $folder_name,
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
 				];
@@ -144,6 +163,7 @@ class Album extends CI_Controller {
 				$data_order = [
 					'user_id' 				=> $id_user,
 					'status'				=> 0,
+					'path'					=> $upload_path . $folder_name,
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
 				];
@@ -166,7 +186,7 @@ class Album extends CI_Controller {
 			// input to tb_album
 			$newnamefile = 'cover_album_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
 
-			$config['upload_path'] = './upload/album';
+			$config['upload_path'] = $upload_path . $folder_name;
 			$config['allowed_types'] = 'jpg|png|gif|jpeg';
 			$config['max_size'] = '1024';
 			$config['max_width'] = 0;
@@ -187,18 +207,18 @@ class Album extends CI_Controller {
 					'genre_id' 				=> $genre_id,
 					'title' 				=> $judul,
 					'description' 			=> $description,
-					'cover' 				=> $cove_file['file_name'],
+					'cover' 				=> $upload_path . $folder_name . '/' . $cove_file['file_name'],
 					'composser' 			=> $this->input->post('composser'),
 					'produser' 				=> $this->input->post('produser'),
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
 					'artist' 				=> $artist,
 					'release_date' 			=> $this->input->post('release_date'),
-					'yt_link' 			=> $this->input->post('yt_link'),
+					'yt_link' 				=> $this->input->post('yt_link'),
 					'spotify_link' 			=> $this->input->post('spotify_link'),
 					'itunes_link' 			=> $this->input->post('itunes_link'),
-					'contact_person' 			=> $this->input->post('contact_person'),
-					'year_production' 			=> $this->input->post('year_production'),
+					'contact_person' 		=> $this->input->post('contact_person'),
+					'year_production' 		=> $this->input->post('year_production'),
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'created_by' 			=> $id_user,
 				];
@@ -219,9 +239,14 @@ class Album extends CI_Controller {
 
 				// konfigurasi upload file
 				for ($i = 0; $i < $filled_count; $i++) {
-					$file_name = 'single_album_' . $id_user . '_' .date('ymdhis') . '_' . str_replace(" ", "_", strtolower($judul)) . $i;
 
-					$config['upload_path'] = './upload/single';
+					$title_single = $this->input->post('title_single'.$i+1);
+					$title_single2 = $this->input->post('title_single'.$i+1);
+					$fix_file_name = str_replace(" ", "_", $title_single2);
+
+					$file_name = $fix_file_name;
+
+					$config['upload_path'] = $upload_path . $folder_name;
 					$config['allowed_types'] = 'wav';
 					$config['max_size'] = '102400';
 					$config['max_width'] = 0;
@@ -251,19 +276,25 @@ class Album extends CI_Controller {
 						$data_single = [
 							'user_id' 				=> $id_user,
 							'order_id' 				=> $order_id,
+							'title' 				=> $title_single,
 							'artist' 				=> $artist,
-							'genre_id' 				=> $genre_id,
-							'title' 				=> $this->input->post('title'),
-							'description' 			=> $this->input->post('description'),
-							'genre_id' 				=> $this->input->post('genre_id'),
-							'first_name_composer' 	=> $this->input->post('composser'),
-							'last_name_composer' 	=> $this->input->post('composser'),
-							'produser' 				=> $this->input->post('produser'),
+							'file'            		=> $upload_path . $folder_name . '/' . $file_name,
 							'status' 				=> 0,
+							// 'genre_id' 				=> $genre_id,
+							// 'first_name_composer' 	=> $this->input->post('last_name_composer'),
+							// 'last_name_composer' 	=> $this->input->post('last_name_composer'),
+							// 'description' 			=> $this->input->post('description'),
+							// 'produser' 				=> $this->input->post('produser'),
+							// 'year_production' 		=> $this->input->post('year_production'),
 							'is_album' 				=> 1,
+							// 'release_date' 			=> $this->input->post('release_date'),
+							// 'spotify_link' 			=> $this->input->post('spotify_link'),
+							// 'itunes_link' 			=> $this->input->post('itunes_link'),
+							// 'yt_link' 			=> $this->input->post('yt_link'),
+							// 'contact_person' 		=> $this->input->post('contact_person'),
 							'created_at' 			=> date('Y-m-d H:i:s'),
 							'created_by' 			=> $id_user,
-							'file'            		=> $file_name,
+							
 						];
 						$result = $this->M_album->save_single($data_single);
 						$single_id = $this->db->insert_id();
@@ -419,9 +450,17 @@ class Album extends CI_Controller {
 	public function prosesPayment($user_id, $order_id)
 	{
 		$id = $order_id;
-		$newnamefile = 'proof_payment_album_' . $user_id . '_' . date('ymdhis');
+		$newnamefile = 'proof_payment_album_' . $user_id . '_' . date('ymdhi');
 
-		$config['upload_path'] = './upload/proof_attachment';
+		// get data user
+		$user = $this->M_album->getUser($user_id);
+		$name_user = str_replace(" ", "_", strtolower($user->name));
+
+		// get order
+		$order = $this->M_album->getOrder($id);
+		$path = $order->path;
+
+		$config['upload_path'] = $path;
 		$config['allowed_types'] = 'jpg|png|gif|jpeg';
 		$config['max_size'] = '1024';
 		$config['max_width'] = 0;
@@ -436,8 +475,9 @@ class Album extends CI_Controller {
 
 		if ($this->upload->do_upload('proof_of_payment')){
 			$proof_attachment = $this->upload->data();
+			$proof_attachment_path = $path . '/' . $proof_attachment['file_name'];
 			$data = [
-				'attachment'			=> $proof_attachment['file_name'],
+				'attachment'			=> $proof_attachment_path,
 				'updated_at' 			=> date('Y-m-d H:i:s'),
 				'updated_by' 			=> $user_id,
 			];
@@ -478,7 +518,14 @@ class Album extends CI_Controller {
 		$message_template = $this->load->view('admin/email_template_to_admin', $data_mail, TRUE);
 		send_email($to, $subject, $message_template);
 
-		echo json_encode($out);
+		if ($out['status'] == 'berhasil') {
+			$out['status'];
+			redirect(site_url('success_payment'));
+		}else{
+			$out['status'];
+			echo "Upload gagal";
+		}
+		// echo json_encode($out);
 
 	}
 }

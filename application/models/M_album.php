@@ -60,6 +60,26 @@ class M_album extends CI_Model
 		return $data->row();
 	}
 
+	public function getUser($id)
+	{
+		$sql = "SELECT *
+				FROM user 
+				WHERE id = '".$id."'
+				ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
+
+	public function getOrder($id)
+	{
+		$sql = "SELECT *
+				FROM tb_order 
+				WHERE id = '".$id."'
+				ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
+
 	public function select_detail_single($id)
 	{
 		$sql = "SELECT sa.*, s.title, s.first_name_composer 

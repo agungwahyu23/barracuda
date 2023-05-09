@@ -40,6 +40,16 @@ class M_single extends CI_Model
 		return $data->row();
 	}
 
+	public function getOrder($id)
+	{
+		$sql = "SELECT *
+				FROM tb_order 
+				WHERE id = '".$id."'
+				ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
+
 	public function getUser($id)
 	{
 		$sql = "SELECT *
