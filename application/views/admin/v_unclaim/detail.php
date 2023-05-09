@@ -42,6 +42,12 @@
 							disabled>
 						</div>
 					</div>
+					<div class="form-group form-float">
+						<label class="form-label">Link</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="email" value="<?= $unclaim->link ?>" disabled>
+						</div>
+					</div>
 					<a href="<?= site_url('user/unclaim') ?>" class="btn btn-warning waves-effect">Back</a>
 				</form>
 			</div>

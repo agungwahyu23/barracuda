@@ -47,7 +47,7 @@ class Unclaim extends CI_Controller {
 				$status = 'Pending';
 			}
 
-			$row[] = $status;
+			// $row[] = $status;
 			
 			$action = '<div class="btn-group">';
 			$action .= '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -110,6 +110,7 @@ class Unclaim extends CI_Controller {
 				'single_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
 				'status' 				=> 0, //pending
+				'link' 					=> $this->input->post('link'), //pending
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
 			];
@@ -120,6 +121,7 @@ class Unclaim extends CI_Controller {
 				'album_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
 				'status' 				=> 0, //pending
+				'link' 					=> $this->input->post('link'),
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
 			];
