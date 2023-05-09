@@ -8,9 +8,11 @@ class Withdraw extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('email');
 		$this->load->helper('app');
 		$this->load->library('session');
 		$this->load->model('M_withdraw');
+		$this->load->model('M_single');
 	}
 
 	public function loadkonten($page, $data) {
@@ -111,6 +113,22 @@ class Withdraw extends CI_Controller {
 		];
 		
 		$result = $this->M_withdraw->save_data($data);
+
+		// get user
+		$user = $this->M_single->getUser($id_user);
+		$name_user = str_replace(" ", "_", strtolower($user->name));
+
+		$data_mail = [
+			'name' 			=> $user->name,
+			'email' 		=> $user->email,
+			'user_id'		=> $id_user,
+			'title'			=> 'Request Withdraw',
+		];
+
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Request Withdraw';
+		$message_template = $this->load->view('admin/email_withdraw_to_admin', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
 
 		if ($result > 0) {
 			$out = array('status'=>'berhasil');
