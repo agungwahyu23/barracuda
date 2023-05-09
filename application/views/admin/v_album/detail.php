@@ -31,10 +31,64 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="title" value="<?= $album->release_date ?>" disabled>
+							<label class="form-label">Release Date</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<label class="form-label">Youtube Channel Link</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="yt_link" placeholder="Ex: https://www.youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ" value="<?= $album->yt_link ?>" disabled>
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Link Artist Spotify</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="spotify_link" placeholder="Ex: https://open.spotify.com/artist/34gJOUTurjXaj8z3E9fDaV" value="<?= $album->spotify_link ?>" disabled>
+						</div>
+					</div>
+
+					<div class="form-group form-float">
+						<label class="form-label">Link Artist ITunes</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="itunes_link" value="<?= $album->itunes_link ?>" disabled>
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Whatsapp Number</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="contact_person" placeholder="08567xxxx" onkeypress="return hanyaAngka(event)" value="<?= $album->contact_person ?>" disabled >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+                        <label class="form-label">Producer</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="produser" value="<?= $album->produser ?>" disabled >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+                        <label class="form-label">Composser</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="composser" value="<?= $album->composser ?>" disabled >
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<label class="form-label">Year of Production</label>
+						<div class="form-line">
+							<input type="text" class="date-own form-control" name="year_production"  value="<?= $album->year_production ?>" disabled>
+						</div>
+					</div>
+					<div class="form-group form-float">
 						<label class="form-label">Cover (300px x 300px)</label><br>
 						<?php if (isset($album->cover)) { ?>
 							<div id="slider">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/album/') . $album->cover; ?>" alt="your image" />
+								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('') . $album->cover; ?>" alt="your image" />
 							</div>
 						<?php }else{ ?>
 							<div id="slider">
@@ -54,12 +108,12 @@
 							<label class="form-label">Composser</label>
 						</div>
 					</div>
-					<div class="form-group form-float">
+					<!-- <div class="form-group form-float">
 						<div class="form-line">
 							<textarea name="description" cols="30" rows="5" class="form-control no-resize" disabled><?= $album->description ?></textarea>
 							<label class="form-label">Description</label>
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group form-float">
 						<label class="form-label">Proof of payment</label>
 						<?php if (isset($album->attachment)) { ?>
@@ -81,7 +135,6 @@
 							<thead>
 								<tr>
 									<th>Song Title</th>
-									<th>Composser</th>
 									<th>Date Upload</th>
 								</tr>
 							</thead>
@@ -89,7 +142,6 @@
 								<?php foreach ($single as $key => $value) { ?>
 									<tr>
 										<td><?= $value->title ?></td>
-										<td><?= $value->first_name_composer ?></td>
 										<td><?= $value->created_at ?></td>
 									</tr>
 								<?php } ?>

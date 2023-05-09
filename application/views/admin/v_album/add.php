@@ -72,21 +72,21 @@ Upload price per album IDR 250000
                     <div class="form-group form-float">
 						<label class="form-label">Whatsapp Number*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="contact_person" placeholder="08567xxxx" >
+							<input type="text" class="form-control" name="contact_person" placeholder="08567xxxx" onkeypress="return hanyaAngka(event)" required>
 						</div>
 					</div>
 
                     <div class="form-group form-float">
-                        <label class="form-label">Producer</label>
+                        <label class="form-label">Producer*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="produser">
+							<input type="text" class="form-control" name="produser" required>
 						</div>
 					</div>
 
                     <div class="form-group form-float">
-                        <label class="form-label">Composser</label>
+                        <label class="form-label">Composser*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="composser">
+							<input type="text" class="form-control" name="composser" required>
 						</div>
 					</div>
 
@@ -98,8 +98,8 @@ Upload price per album IDR 250000
 					</div>
 
 					<div class="form-group form-float">
-						<span>Upload Cover (3000px x 3000px)</span>
-                        <input name="cover" id="cover" type="file" multiple style="margin-top:10px!important" onchange="return fileValidation()"><br>
+						<span>Upload Cover (3000px x 3000px)*</span>
+                        <input name="cover" id="cover" type="file" multiple style="margin-top:10px!important" onchange="return fileValidation()" required><br>
 
 						<div id="slider">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
@@ -114,85 +114,155 @@ Upload price per album IDR 250000
 					</div> -->
 
 					<div class="form-group form-float">
-						<span><b>Upload Song 1 (The file name must match the title)</b></span>
-                        <input name="file[]" class="file_single" id="file_single1" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+						<span><b>Upload Song 1 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single1" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
                         <br>
-                        <label class="form-label">Title Song 1</label>
+                        <label class="form-label">Title Song 1*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title[]">
+							<input type="text" class="form-control" name="title_single1">
 						</div><br>
-                        <label class="form-label">Composer Song 1</label>
+                        <label class="form-label">Composer Song 1*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_name_composer[]">
 						</div>
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Song 2 (The file name must match the title)</b></span>
-                        <input name="file[]" class="file_single" id="file_single2" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+						<span><b>Upload Song 2 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single2" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
                         <br>
-                        <label class="form-label">Title Song 2</label>
+                        <label class="form-label">Title Song 2*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title[]">
+							<input type="text" class="form-control" name="title_single2">
 						</div><br>
-                        <label class="form-label">Composer Song 2</label>
+                        <label class="form-label">Composer Song 2*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_name_composer[]">
 						</div>
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 3 (The file name must match the title)</b></span>
-                        <input name="file[]" class="file_single" id="file_single3" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+						<span><b>Upload Single 3 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single3" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
                         <br>
-                        <label class="form-label">Title Song 3</label>
+                        <label class="form-label">Title Song 3*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title[]">
+							<input type="text" class="form-control" name="title_single3">
 						</div><br>
-                        <label class="form-label">Composer Song 3</label>
+                        <label class="form-label">Composer Song 3*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_name_composer[]">
 						</div>
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 4 (The file name must match the title)</b></span>
-                        <input name="file[]" class="file_single" id="file_single4" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+						<span><b>Upload Single 4 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single4" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
                         <br>
-                        <label class="form-label">Title Song 4</label>
+                        <label class="form-label">Title Song 4*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title[]">
+							<input type="text" class="form-control" name="title_single4">
 						</div><br>
-                        <label class="form-label">Composer Song 4</label>
+                        <label class="form-label">Composer Song 4*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_name_composer[]">
 						</div>
 					</div>
 
 					<div class="form-group form-float">
-						<span><b>Upload Single 5 (The file name must match the title)</b></span>
-                        <input name="file[]" class="file_single" id="file_single5" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)"/>
+						<span><b>Upload Single 5 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single5" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
                         <br>
-                        <label class="form-label">Title Song 5</label>
+                        <label class="form-label">Title Song 5*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title[]">
+							<input type="text" class="form-control" name="title_single5">
 						</div><br>
-                        <label class="form-label">Composer Song 5</label>
+                        <label class="form-label">Composer Song 5*</label>
 						<div class="form-line">
 							<input type="text" class="form-control" name="last_name_composer[]">
 						</div>
 					</div>
 
-					<div class="form-group form-float" id="upload_payment">
+                    <div class="form-group form-float">
+						<span><b>Upload Single 6 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single6" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
+                        <br>
+                        <label class="form-label">Title Song 6*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title_single6">
+						</div><br>
+                        <label class="form-label">Composer Song 6*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<span><b>Upload Single 7 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single7" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
+                        <br>
+                        <label class="form-label">Title Song 7*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title_single7">
+						</div><br>
+                        <label class="form-label">Composer Song 7*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<span><b>Upload Single 8 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single8" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
+                        <br>
+                        <label class="form-label">Title Song 8*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title_single8">
+						</div><br>
+                        <label class="form-label">Composer Song 8*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<span><b>Upload Single 9 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single9" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
+                        <br>
+                        <label class="form-label">Title Song 9*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title_single9">
+						</div><br>
+                        <label class="form-label">Composer Song 9*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
+					</div>
+
+                    <div class="form-group form-float">
+						<span><b>Upload Single 10 (The file name must match the title)*</b></span>
+                        <input name="file[]" class="file_single" id="file_single10" type="file" multiple style="margin-top:10px!important" onchange="return validationSingle(this)" required/>
+                        <br>
+                        <label class="form-label">Title Song 10*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="title_single10">
+						</div><br>
+                        <label class="form-label">Composer Song 10*</label>
+						<div class="form-line">
+							<input type="text" class="form-control" name="last_name_composer[]">
+						</div>
+					</div>
+
+					<!-- <div class="form-group form-float" id="upload_payment">
 						<span>Upload Proof of Payment</span>
                         <input name="proof_payment" id="proof_payment" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationPayment()"><br>
 
 						<div id="preview_proof_payment">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
 						</div>
-					</div>
+					</div> -->
 					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
+					<a href="<?= site_url('user/album') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
 		</div>
@@ -216,6 +286,14 @@ $('.date-full').datepicker({
   format: "yyyy-mm-dd",
   autoclose: true
 });
+
+function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+    return false;
+    return true;
+}
     
 function fileValidation() {
     var fileInput = document.getElementById('cover');
