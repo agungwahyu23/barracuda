@@ -145,9 +145,9 @@
 						<li>
 							<a href="<?= site_url('v2/user/withdraw') ?>">Request Withdraw</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="<?= site_url('v2/user/unclaim') ?>">Request Unclaim</a>
-						</li>
+						</li> -->
 					</ul>
 				</li>
 				<li>

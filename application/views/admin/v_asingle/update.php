@@ -89,8 +89,8 @@
 						<span>Bukti Transfer</span><br>
                         <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-								<a href="<?= base_url('upload/proof_attachment/'). $single->attachment ?>" data-sub-html="<?= $single->attachment ?>">
-									<img class="img-responsive thumbnail" src="<?= base_url('upload/proof_attachment/'). $single->attachment ?>">
+								<a href="<?= base_url(''). $single->attachment ?>" data-sub-html="<?= $single->attachment ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url(''). $single->attachment ?>">
 								</a>
 							</div>
 						</div>
@@ -101,6 +101,7 @@
 							<select name="status" class="form-control" id="status">
 								<option value="0" <?= $single->status == 0 ? 'selected' : '' ?>>Pending</option>
 								<option value="1" <?= $single->status == 1 ? 'selected' : '' ?>>Terima</option>
+								<option value="2" <?= $single->status == 2 ? 'selected' : '' ?>>Reject</option>
 							</select>
 						</div>
 					</div>

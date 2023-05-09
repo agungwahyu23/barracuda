@@ -52,7 +52,7 @@ class Ma_takedown extends CI_Model
 
 	public function select_by_id($id)
 	{
-		$sql = "SELECT r.*, a.title, s.title FROM request r
+		$sql = "SELECT r.*, a.title as title_album, s.title as title_single FROM request r
 				LEFT JOIN album a on a.id = r.album_id
 				LEFT JOIN single s on s.id = r.single_id
 				WHERE r.id = '".$id."'

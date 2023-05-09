@@ -12,7 +12,7 @@
 			</div>
 			<div class="body">
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
-					<input type="text" name="order_id" value="<?= $album->order_id ?>">
+					<input type="hidden" name="order_id" value="<?= $album->order_id ?>">
 					<div class="form-group form-float">
 						<div class="form-line">
 							<input type="text" class="form-control" name="artist" value="<?= $album->name ?>" disabled>
@@ -35,7 +35,7 @@
 						<label class="form-label">Cover (300px x 300px)</label><br>
 						<?php if (isset($album->cover)) { ?>
 							<div id="slider">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/album/') . $album->cover; ?>" alt="your image" />
+								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('') . $album->cover; ?>" alt="your image" />
 							</div>
 						<?php }else{ ?>
 							<div id="slider">
@@ -62,16 +62,14 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
-						<label class="form-label">Bukti Bayar</label>
-						<?php if (isset($album->attachment)) { ?>
-							<div id="preview_proof_payment">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/proof_attachment/') . $album->attachment; ?>" alt="your image" />
+						<span>Bukti Transfer</span><br>
+                        <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+								<a href="<?= base_url(''). $album->attachment ?>" data-sub-html="<?= $album->attachment ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url(''). $album->attachment ?>">
+								</a>
 							</div>
-						<?php }else{ ?>
-							<div id="preview_proof_payment">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
-							</div>
-						<?php } ?>
+						</div>
 					</div>
 					<div class="form-group form-float">
 						<label class="form-label">Status</label>
@@ -79,6 +77,7 @@
 							<select name="status" class="form-control" id="status">
 								<option value="0" <?= $album->status == 0 ? 'selected' : '' ?>>Pending</option>
 								<option value="1" <?= $album->status == 1 ? 'selected' : '' ?>>Terima</option>
+								<option value="2" <?= $single->status == 2 ? 'selected' : '' ?>>Reject</option>
 							</select>
 						</div>
 					</div>
@@ -91,16 +90,18 @@
 							<thead>
 								<tr>
 									<th>Judul Lagu</th>
-									<th>Komposer</th>
+									<!-- <th>Komposer</th> -->
 									<th>Tanggal Upload</th>
+									<th>File</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php foreach ($single as $key => $value) { ?>
 									<tr>
 										<td><?= $value->title ?></td>
-										<td><?= $value->first_name_composer ?></td>
+										<!-- <td><?= $value->first_name_composer ?></td> -->
 										<td><?= $value->created_at ?></td>
+										<td><a href="<?= base_url($value->file) ?>" class="btn btn-xs btn-success" download>Unduh File</a></td>
 									</tr>
 								<?php } ?>
 							</tbody>

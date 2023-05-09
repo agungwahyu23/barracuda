@@ -60,7 +60,7 @@ class Ma_album extends CI_Model
 
 	public function select_detail_single($id)
 	{
-		$sql = "SELECT sa.*, s.title, s.first_name_composer 
+		$sql = "SELECT sa.*, s.title, s.first_name_composer, s.file
 				FROM single_album sa 
 				LEFT JOIN single s ON s.id = sa.single_id
 				WHERE sa.album_id = '".$id."'

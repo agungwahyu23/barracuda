@@ -48,6 +48,8 @@ class Single extends CI_Controller {
 				$status = "Pending";
 			}elseif ($single->status == 1) {
 				$status = "Success";
+			}elseif ($single->status == 2) {
+				$status = "Reject";
 			}else{
 				$status = "-";
 			}

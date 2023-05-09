@@ -46,8 +46,12 @@ class Album extends CI_Controller {
 			$status = '';
 			if ($album->status == 0) {
 				$status = 'Pending';
+			}elseif ($single->status == 1) {
+				$status = "Success";
+			}elseif ($single->status == 2) {
+				$status = "Reject";
 			}else{
-				$status = 'Success';
+				$status = '-';
 			}
 			$row[] = $status;
 
@@ -237,8 +241,10 @@ class Album extends CI_Controller {
 				for ($i = 0; $i < $filled_count; $i++) {
 
 					$title_single = $this->input->post('title_single'.$i+1);
+					$title_single2 = $this->input->post('title_single'.$i+1);
+					$fix_file_name = str_replace(" ", "_", $title_single2);
 
-					$file_name = $title_single;
+					$file_name = $fix_file_name;
 
 					$config['upload_path'] = $upload_path . $folder_name;
 					$config['allowed_types'] = 'wav';
