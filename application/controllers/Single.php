@@ -139,14 +139,14 @@ class Single extends CI_Controller {
 
 			// konfigurasi upload image
 			$config2['upload_path'] = './upload/single/'; // direktori utama untuk pengunggahan file
-			$config2['allowed_types'] = 'gif|jpg|png'; // tipe file yang diperbolehkan
+			$config2['allowed_types'] = 'jpg|png'; // tipe file yang diperbolehkan
 			$config2['max_size'] = 2048; // ukuran maksimal file dalam KB
 			$this->load->library('upload', $config2); // memuat library upload
 
 			// mengupload file cover 
 			$this->upload->initialize(array(
 				'upload_path' => './upload/single/',
-				'allowed_types' => 'gif|jpg|png',
+				'allowed_types' => 'jpg|png',
 				'max_size' => 2048,
 				'file_name' => $cover_name
 			));
@@ -162,7 +162,7 @@ class Single extends CI_Controller {
 			// mengupload file ktp
 			$this->upload->initialize(array(
 				'upload_path' => './upload/single/',
-				'allowed_types' => 'gif|jpg|png',
+				'allowed_types' => 'jpg|png',
 				'max_size' => 2048,
 				'file_name' => $ktp_name
 			));

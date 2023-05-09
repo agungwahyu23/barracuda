@@ -127,6 +127,10 @@ class Admin_withdraw extends CI_Controller {
 		$data['withdraw'] = $this->Ma_withdraw->select_by_id($id);
 		$data['id'] = $id;
 
+		$withdraw = $this->Ma_withdraw->select_by_id($id);
+
+		$data['user'] = $this->Ma_withdraw->getUser($withdraw->user_id);
+
 		$data['content'] 	= "admin/v_awithdraw/detail";
 
 		$this->loadkonten('admin/app_base',$data);

@@ -3,6 +3,19 @@
 		Detail Request Withdrawal
 	</h2>
 </div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="info-box">
+		<div class="icon bg-green">
+			<i class="material-icons">attach_money</i>
+		</div>
+		<div class="content">
+			<div class="text">TOTAL INCOME</div>
+			<div class="number count-to" data-from="0" data-to="125" data-speed="1000" data-fresh-interval="20"><?= isset($user->total_income) ? $user->total_income : 0 ?></div>
+		</div>
+	</div>
+</div>
+
 <!-- Basic Validation -->
 <div class="row clearfix">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
