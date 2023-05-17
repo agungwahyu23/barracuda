@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -40,6 +41,14 @@ class M_single extends CI_Model
 		return $data->row();
 	}
 
+	function checkTitleExist($title, $id_user) {
+		// cek data hari ini
+		// $data = $this->db->query('SELECT * from single where user_id = "'.$id_user.'" ')->result();
+		// var_dump($data['title']);
+		// die;
+		return $this->db->get_where('single', ['title' => $title, 'user_id' => $id_user])->num_rows();
+	}
+
 	public function getOrder($id)
 	{
 		$sql = "SELECT *
@@ -68,6 +77,15 @@ class M_single extends CI_Model
 	public function hapus($id)
 	{
 		$sql = "DELETE FROM single WHERE id='" . $id . "'";
+
+		$this->db->query($sql);
+
+		return $this->db->affected_rows();
+	}
+	
+	public function cancelUp($order_id)
+	{
+		$sql = "DELETE FROM tb_order WHERE id='" . $order_id . "'";
 
 		$this->db->query($sql);
 

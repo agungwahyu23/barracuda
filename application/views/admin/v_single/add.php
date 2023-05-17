@@ -18,8 +18,9 @@ Upload price per single IDR 50000
 					<div class="form-group form-float">
 						<label class="form-label">Title*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title" required>
+							<input type="text" class="form-control" name="title" id="title" required>
 						</div>
+						<span id="title_result" style='color: red; font-size: 14px;'></span>
 					</div>
 					<div class="form-group form-float">
 						<label class="form-label">Name of Artis*</label>
@@ -36,7 +37,7 @@ Upload price per single IDR 50000
 					<div class="form-group form-float">
 						<label class="form-label">Language*</label>
 						<div class="form-line">
-							<!-- <input type="text" class="form-control" name="language" required> -->
+							<!-- <input type="text" class="form-control" name="language" > -->
 							<select name="language" id="language" class="form-control show-tick" required>
 								<option value="Bahasa Indonesia">Bahasa Indonesia</option>
 								<option value="English">English</option>
@@ -165,12 +166,17 @@ Upload price per single IDR 50000
 
 					<div class="form-group form-float">
 						<span>Upload File Music* (The file name must match the title)</span>
-                        <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple required/>
+                        <!-- <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple /> -->
+						<input type="hidden" name="order_id" id="order_id" class="mb-4"><br>
+						<input type="hidden" name="file_name" id="file_name" class="mb-4"><br>
+
+						<div id="list"></div>
+						<input type="button" id="pick" value="Upload">
 					</div>
 
 					<div class="form-group form-float">
 						<span>Upload identity card/KTP*</span>
-                        <input name="ktp" id="ktp" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationKtp()" required><br>
+                        <input name="ktp" id="ktp" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationKtp()" ><br>
 
 						<div id="sliderKtp">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
@@ -185,13 +191,136 @@ Upload price per single IDR 50000
 					</div> -->
 					
 					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
+					<!-- <a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a> -->
+					<a href="#" class="btn btn-warning waves-effect back">Cancel</a>
 				</form>
+					
 			</div>
 		</div>
 	</div>
 </div>
 <!-- #END# Basic Validation -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plupload/3.1.5/plupload.full.min.js"></script>
+<script>
+
+$(document).ready(function () {
+	let title = $('#title').val();
+	if (title == '') {
+		document.getElementById("pick").disabled = true;
+	}else{
+		document.getElementById("pick").disabled = false;
+	}
+});
+
+// cek title
+$('#title').change(function () {
+	$.ajax({
+		type: "POST",
+		url: "<?php echo base_url('Single/checkTitle');?>",
+		data: $(this).serialize(),
+		success: function (data) {
+			var result = jQuery.parseJSON(data);
+			console.log(result);
+			if (result.status == 'exists') {
+				$('#title_result').html('Title is exist, please use other title.');
+				document.getElementById("pick").disabled = true;
+			}else{
+				$('#title_result').hide();
+				document.getElementById("pick").disabled = false;
+			}
+		}
+	});
+});
+
+// (C) INITIALIZE UPLOADER
+window.onload = () => {
+  // (C1) GET HTML FILE LIST
+  var list = document.getElementById("list");
+ 
+  // (C2) INIT PLUPLOAD
+  var uploader = new plupload.Uploader({
+    runtimes: "html5",
+    browse_button: "pick",
+    url: "<?php echo base_url('Single/test'); ?>",
+    chunk_size: "10mb",
+    init: {
+		BeforeUpload: function(up, file) {
+		// filter tipe file yang boleh diupload
+		var allowedTypes = ["audio/wav", "audio/x-wav", "audio/wave", "audio/x-pn-wav"];
+		var title = $('#title').val();
+		var fileName = file.name;
+		var newFileName = fileName.split(".")[0];
+		if (allowedTypes.indexOf(file.type) === -1) {
+			// jika tipe file tidak sesuai, hentikan proses upload
+			toastr.error('File format must be .wav only.', 'Warning', {
+				timeOut: 5000
+			}, toastr.options = {
+				"closeButton": true
+			});
+			return false;
+		}
+
+		if (newFileName != title) {
+			// jika tipe file tidak sesuai, hentikan proses upload
+			toastr.error('File name must be same with title.', 'Warning', {
+				timeOut: 5000
+			}, toastr.options = {
+				"closeButton": true
+			});
+			return false;
+		}
+
+		if (file.size > 10 * 1024 * 1024) {
+			toastr.error('Maximum file size 100Mb.', 'Warning', {
+				timeOut: 5000
+			}, toastr.options = {
+				"closeButton": true
+			});
+			return false;
+		}
+		// jika tipe file sesuai, lanjutkan proses upload
+		return true;
+		},
+      PostInit: () => list.innerHTML = "<div>Ready</div>",
+      FilesAdded: (up, files) => {
+		var allowedTypes = ["audio/wav", "audio/x-wav", "audio/wave", "audio/x-pn-wav"];
+		var title = $('#title').val();
+		plupload.each(files, file => {
+			var fileName = file.name;
+			var newFileName = fileName.split(".")[0];
+
+			if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 10 * 1024 * 1024) && (newFileName == title)) {
+			  let row = document.createElement("div");
+			  row.id = file.id;
+			  row.innerHTML = `${file.name} (${plupload.formatSize(file.size)}) <strong></strong>`;
+			  list.appendChild(row);
+			}
+			});
+			uploader.start();
+      },
+      UploadProgress: (up, file) => {
+		var allowedTypes = ["audio/wav", "audio/x-wav", "audio/wave", "audio/x-pn-wav"];
+		var title = $('#title').val();
+		var fileName = file.name;
+		var newFileName = fileName.split(".")[0];
+		if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 10 * 1024 * 1024) && (newFileName == title)) {
+        document.querySelector(`#${file.id} strong`).innerHTML = `${file.percent}%`;
+		}
+      },
+	  FileUploaded: function(up, file, response) {
+		$('#file_name').val(file.name);
+		var responseObj = JSON.parse(response.response);
+		var order_id = responseObj.order_id;
+		// mengisi nilai input dengan response dari server
+		document.getElementById("order_id").value = order_id;
+	  },
+      Error: (up, err) => console.error(err)
+    }
+  });
+  uploader.init();
+};
+</script>
 
 <script type="text/javascript">
 	function hanyaAngka(evt) {
@@ -321,18 +450,9 @@ function validationSingle(fileInput) {
     }
 }
 
-function myFunction() {
-    var x = document.getElementById("myInput");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-
 $('#form_validation').submit(function(e) {
     var data = $(this).serialize();
-    // var data = new FormData($(this)[0]);
+
     $.ajax({
             // method: 'POST',
             beforeSend: function() {
@@ -362,7 +482,7 @@ $('#form_validation').submit(function(e) {
                 gagal();
 
             }
-        })
+    })
     e.preventDefault();
 });
 </script>
@@ -389,4 +509,33 @@ function gagal() {
         dangerMode: true,
     });
 }
+
+$(document).on("click", ".back", function() {
+    var order_id = $('#order_id').val();
+    var file_name = $('#file_name').val();
+    Swal.fire({
+        title: 'Cancel single uploads?',
+        text: "If you cancel a single upload, the changes will not be saved.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                method: "POST",
+                url: "<?php echo base_url('Single/cancelUpload'); ?>",
+                data: {
+					"order_id": order_id,	
+					"file_name": file_name
+				},
+                success: function(data) {
+					var link = '<?php echo base_url("single") ?>';
+        			window.location.replace(link);
+                }
+            });
+        }
+    })
+});
 </script>

@@ -102,53 +102,98 @@ class Single extends CI_Controller {
 	public function prosesAdd()
 	{
 		$id_user 	= $this->session->userdata('id');
-		$judul = $this->input->post('title');
 
 		// get user
 		$user = $this->M_single->getUser($id_user);
-		$name_user = str_replace(" ", "_", strtolower($user->name));
 
-		$upload_path = './upload/single/';
-		$folder_name = $id_user . '_' . $name_user . '/' . date('ymdhi');
+		$order_id = $this->input->post('order_id');
 
-		// cek apakah folder sudah ada
-		if (!is_dir($upload_path . $folder_name)) {
-    		// jika folder belum ada, buat folder baru
-    		mkdir($upload_path . $folder_name, 0777, true);
-		}
+		// get path form tb_order
+		$order = $this->M_single->getOrder($order_id);
+		$path = $order->path;
 
 		// mengambil data file yang diunggah
 		$cover_name = 'cover_album_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
 		$ktp_name = 'ktp_' . $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
-		$file = $_FILES['file'];
-		// $file = $_FILES["file"]['name'];
+		$file_name =  $this->input->post('file_name');
 
-		$newnamefile = $judul;
-		$dir = $id_user . '_' . str_replace(" ", "_", strtolower($user->name));
+		// konfigurasi upload image
+		$config2['upload_path'] = $path; // direktori utama untuk pengunggahan file
+		$config2['allowed_types'] = 'jpg|png'; // tipe file yang diperbolehkan
+		$config2['max_size'] = 2048; // ukuran maksimal file dalam KB
+		$this->load->library('upload', $config2); // memuat library upload
 
-		$config['upload_path'] = $upload_path . $folder_name;
-		$config['allowed_types'] = 'wav';
-		$config['max_size'] = '102400';
-		$config['max_width'] = 0;
-		$config['max_height'] = 0;
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = FALSE;
-		$config['file_ext_tolower'] = TRUE;
-		$config['file_name'] = $newnamefile;
+		// mengupload file cover 
+		$this->upload->initialize(array(
+			'upload_path' => $path,
+			'allowed_types' => 'jpg|png',
+			'max_size' => 2048,
+			'file_name' => $cover_name
+		));
+		if ($this->upload->do_upload('cover')) {
+			// file cover berhasil diunggah
+			$cover_data = $this->upload->data();
+			$cover_single = $cover_data['file_name'];
+		} else {
+			// file cover gagal diunggah
+			$error = $this->upload->display_errors();
+		}
 
-		$this->load->library('upload', $config);
-		$this->upload->initialize($config);
+		// mengupload file ktp
+		$this->upload->initialize(array(
+			'upload_path' => $path,
+			'allowed_types' => 'jpg|png',
+			'max_size' => 2048,
+			'file_name' => $ktp_name
+		));
+		if ($this->upload->do_upload('ktp')) {
+			// file ktp berhasil diunggah
+			$ktp_data = $this->upload->data();
+			$ktp_single = $ktp_data['file_name'];
+		} else {
+			// file ktp gagal diunggah
+			$error = $this->upload->display_errors();
+		}
 
-		$data_order = [
-			'user_id' 				=> $id_user,
-			'status'				=> 0,
-			'path'					=> $upload_path . $folder_name,
+		$data = [
+			'user_id'	 			=> $id_user,
+			'order_id'	 			=> $order_id,
+			'title' 				=> $this->input->post('title'),
+			'artist' 				=> $this->input->post('artist'),
+			'featuring_artist' 		=> $this->input->post('featuring_artist'),
+			'description' 			=> $this->input->post('description'),
+			'file'            		=> $path . '/' . $file_name,
+			'cover'            		=> $path . '/' . $cover_single,
+			'status' 				=> 0,
+			'language' 				=> $this->input->post('language'),
+			'genre_id' 				=> $this->input->post('genre_id'),
+			'sub_genre' 			=> $this->input->post('sub_genre'),
+			'first_name_composer' 	=> $this->input->post('first_composer'),
+			'last_name_composer' 	=> $this->input->post('last_composer'),
+			'arranger' 				=> $this->input->post('arranger'),
+			'produser' 				=> $this->input->post('produser'),
+			'year_production' 		=> $this->input->post('year_production'),
+			'is_album' 				=> 0,
+			'release_date' 			=> $this->input->post('release_date'),
+			'lyrics' 				=> $this->input->post('lyrics'),
+			'spotify_link' 			=> $this->input->post('spotify_link'),
+			'itunes_link' 			=> $this->input->post('itunes_link'),
+			'yt_link' 				=> $this->input->post('yt_link'),
+			'start_preview_tiktok' 	=> $this->input->post('start_preview_tiktok'),
+			'contact_person' 		=> $this->input->post('contact_person'),
+			'ig' 					=> $this->input->post('ig'),
+			'ktp' 					=> $path . '/' . $ktp_single,
 			'created_at' 			=> date('Y-m-d H:i:s'),
 			'created_by' 			=> $id_user,
 		];
+		
+		$result = $this->M_single->save_data($data);
 
-		$result_order = $this->M_single->save_data_order($data_order);
-		$order_id = $this->db->insert_id();
+		if ($result > 0) {
+			$out = array('status'=>'berhasil');
+		} else {
+			$out['status'] = 'gagal';
+		}
 
 		$data_mail = [
 			'order_id' 		=> $this->encryption_lib->encode($order_id),
@@ -160,89 +205,20 @@ class Single extends CI_Controller {
 		$message_template = $this->load->view('admin/email_template_single', $data_mail, TRUE);
 		send_email($to, $subject, $message_template);
 
-		if ($this->upload->do_upload('file')){
-			$single_file = $this->upload->data();
+		$user = $this->Ma_user->select_by_id($id_user);
 
-			// konfigurasi upload image
-			$config2['upload_path'] = $upload_path . $folder_name; // direktori utama untuk pengunggahan file
-			$config2['allowed_types'] = 'jpg|png'; // tipe file yang diperbolehkan
-			$config2['max_size'] = 2048; // ukuran maksimal file dalam KB
-			$this->load->library('upload', $config2); // memuat library upload
+		$data_mail_admin = [
+			'name' 			=> $user->name,
+			'email' 		=> $user->email,
+			'user_id'		=> $id_user,
+			'title'			=> 'Notifikasi Upload Single',
+			'content'		=> 'Unggah single baru'
+		];
 
-			// mengupload file cover 
-			$this->upload->initialize(array(
-				'upload_path' => $upload_path . $folder_name,
-				'allowed_types' => 'jpg|png',
-				'max_size' => 2048,
-				'file_name' => $cover_name
-			));
-			if ($this->upload->do_upload('cover')) {
-				// file cover berhasil diunggah
-				$cover_data = $this->upload->data();
-				$cover_single = $cover_data['file_name'];
-			} else {
-				// file cover gagal diunggah
-				$error = $this->upload->display_errors();
-			}
-
-			// mengupload file ktp
-			$this->upload->initialize(array(
-				'upload_path' => $upload_path . $folder_name,
-				'allowed_types' => 'jpg|png',
-				'max_size' => 2048,
-				'file_name' => $ktp_name
-			));
-			if ($this->upload->do_upload('ktp')) {
-				// file ktp berhasil diunggah
-				$ktp_data = $this->upload->data();
-				$ktp_single = $ktp_data['file_name'];
-			} else {
-				// file ktp gagal diunggah
-				$error = $this->upload->display_errors();
-			}
-
-			$data = [
-				'user_id'	 			=> $id_user,
-				'order_id'	 			=> $order_id,
-				'title' 				=> $this->input->post('title'),
-				'artist' 				=> $this->input->post('artist'),
-				'featuring_artist' 		=> $this->input->post('featuring_artist'),
-				'description' 			=> $this->input->post('description'),
-				'file'            		=> $upload_path . $folder_name . '/' . $single_file['file_name'],
-				'cover'            		=> $upload_path . $folder_name . '/' . $cover_single,
-				'status' 				=> 0,
-				'language' 				=> $this->input->post('language'),
-				'genre_id' 				=> $this->input->post('genre_id'),
-				'sub_genre' 			=> $this->input->post('sub_genre'),
-				'first_name_composer' 	=> $this->input->post('first_composer'),
-				'last_name_composer' 	=> $this->input->post('last_composer'),
-				'arranger' 				=> $this->input->post('arranger'),
-				'produser' 				=> $this->input->post('produser'),
-				'year_production' 		=> $this->input->post('year_production'),
-				'is_album' 				=> 0,
-				'release_date' 			=> $this->input->post('release_date'),
-				'lyrics' 				=> $this->input->post('lyrics'),
-				'spotify_link' 			=> $this->input->post('spotify_link'),
-				'itunes_link' 			=> $this->input->post('itunes_link'),
-				'yt_link' 				=> $this->input->post('yt_link'),
-				'start_preview_tiktok' 	=> $this->input->post('start_preview_tiktok'),
-				'contact_person' 		=> $this->input->post('contact_person'),
-				'ig' 					=> $this->input->post('ig'),
-				'ktp' 					=> $upload_path . $folder_name . '/' . $ktp_single,
-				'created_at' 			=> date('Y-m-d H:i:s'),
-				'created_by' 			=> $id_user,
-			];
-			
-			$result = $this->M_single->save_data($data);
-
-			if ($result > 0) {
-				$out = array('status'=>'berhasil');
-			} else {
-				$out['status'] = 'gagal';
-			}
-		}else{
-			$out['status'] = 'gagal';
-		}
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Unggah Single';
+		$message_template = $this->load->view('admin/email_universal_to_admin', $data_mail_admin, TRUE);
+		send_email($to, $subject, $message_template);
 
 		echo json_encode($out);
 	}
@@ -361,6 +337,30 @@ class Single extends CI_Controller {
 			$out['status'] = 'gagal';
 		}
 	}
+	
+	public function cancelUpload()
+	{
+		$order_id = $_POST['order_id'];
+		$file_name = $_POST['file_name'];
+
+		// get data order
+		$order = $this->M_single->getOrder($order_id);
+		$path = $order->path;
+
+		$file_path = $path.'/'.$file_name;
+
+		if (file_exists($file_path)) {
+			unlink($file_path);
+		}
+
+		$result = $this->M_single->cancelUp($order_id);
+
+		if ($result > 0) {
+			$out['status'] = 'berhasil';
+		} else {
+			$out['status'] = 'gagal';
+		}
+	}
 
 	public function payment($user_id, $order_id)
 	{
@@ -449,4 +449,102 @@ class Single extends CI_Controller {
 		// echo json_encode($out);
 
 	}
+
+	function checkTitle(){
+		$id_user 	= $this->session->userdata('id');
+		$title = $this->input->post('title');
+		$if_exists = $this->M_single->checkTitleExist($title, $id_user);
+		
+		if ($if_exists > 0) {
+		  $out['status'] = 'exists';
+		  echo json_encode($out);
+		} else {
+		  $out['status'] = 'notexists';
+		  echo json_encode($out);
+		}
+	}
+	
+	// (A) HELPER FUNCTION - SERVER RESPONSE
+	function verbose ($ok=1, $info="", $order_id = "") {
+		if ($ok==0) { 
+			http_response_code(400); 
+		}
+		exit(
+			json_encode(["ok"=>$ok, "info"=>$info, "order_id"=>$order_id])
+		);
+	}
+  
+	public function test()
+	{
+		$id_user 	= $this->session->userdata('id');
+
+		// get user
+		$user = $this->M_single->getUser($id_user);
+		$name_user = str_replace(" ", "_", strtolower($user->name));
+
+		$upload_path = './upload/single/';
+		$folder_name = $id_user . '_' . $name_user . '/' . date('ymd');
+		$fullPath = $upload_path . $folder_name;
+
+		// cek apakah folder sudah ada
+		if (!is_dir($fullPath)) {
+    		// jika folder belum ada, buat folder baru
+    		mkdir($fullPath, 0777, true);
+		}
+
+		// (B) INVALID UPLOAD
+		if (empty($_FILES) || $_FILES["file"]["error"]) {
+			$this->verbose(0, "Failed to move uploaded file.");
+		}
+
+		// (C) UPLOAD DESTINATION - CHANGE FOLDER IF REQUIRED!
+		$filePath = $fullPath;
+		if (!file_exists($filePath)) { 
+			if (!mkdir($filePath, 0777, true)) {
+				$this->verbose(0, "Failed to create $filePath");
+			}
+		}
+
+		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : $_FILES["file"]["name"];
+		$filePath = $filePath . DIRECTORY_SEPARATOR . $fileName;
+
+		// (D) DEAL WITH CHUNKS
+		$chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
+		$chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
+		$out = @fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
+		
+		if ($out) {
+			$in = @fopen($_FILES["file"]["tmp_name"], "rb");
+			if ($in) { 
+				while ($buff = fread($in, 4096)) { 
+				fwrite($out, $buff); } 
+			}else { 
+			$this->verbose(0, "Failed to open input stream"); 
+		}
+			@fclose($in);
+			@fclose($out);
+			@unlink($_FILES["file"]["tmp_name"]);
+		} else { 
+			$this->verbose(0, "Failed to open output stream"); 
+		}
+
+		// (E) CHECK IF FILE HAS BEEN UPLOADED
+		if (!$chunks || $chunk == $chunks - 1) { 
+			rename("{$filePath}.part", $filePath); 
+			$id_user 	= $this->session->userdata('id');
+
+		$data_order = [
+			'user_id' 				=> $id_user,
+			'status'				=> 0,
+			'path'					=> $fullPath,
+			'created_at' 			=> date('Y-m-d H:i:s'),
+			'created_by' 			=> $id_user,
+		];
+
+		$result_order = $this->M_single->save_data_order($data_order);
+		$order_id = $this->db->insert_id();
+		}
+		$this->verbose(1, "Upload OK", $order_id);
+	}
+  
 }
