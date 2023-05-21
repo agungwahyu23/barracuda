@@ -157,6 +157,12 @@
 					</a>
 				</li>
 				<li>
+					<a href="<?= site_url('v2/user/saldo') ?>">
+						<i class="material-icons">money</i>
+						<span>Saldo</span>
+					</a>
+				</li>
+				<!-- <li>
 					<a href="<?= site_url('v2/user/album') ?>">
 						<i class="material-icons">list</i>
 						<span>News</span>
@@ -167,7 +173,7 @@
 						<i class="material-icons">settings</i>
 						<span>Settings</span>
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<!-- #Menu Admin-->

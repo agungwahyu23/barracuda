@@ -150,6 +150,11 @@ $route['v2/user/donation'] =   'Admin_donation/index';
 $route['v2/user/donation-add'] =   'Admin_donation/add';
 $route['v2/user/donation-detail/(:any)'] =   'Admin_donation/detail/$1';
 
+/* saldo */
+$route['v2/user/saldo'] =   'Admin_saldo/index';
+$route['v2/user/saldo-add'] =   'Admin_saldo/add';
+$route['v2/user/saldo-detail/(:any)'] =   'Admin_saldo/detail/$1';
+
 
 /* item manajemen */
 $route['item'] =   'Item/index';
