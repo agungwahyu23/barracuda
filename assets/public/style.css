@@ -1834,7 +1834,8 @@ a.gradient-btn {
     color: #fff;
     text-transform: uppercase;
     font-weight: 700;
-    background: -webkit-linear-gradient(right, #fe998b, #fa768d, #f78ca0);
+    /* background: -webkit-linear-gradient(right, #fe998b, #fa768d, #f78ca0); */
+	background: #e4b10c;
     padding: 10px 20px;
     border-radius: 5px;
     position: relative;
@@ -1848,7 +1849,8 @@ a.gradient-btn:after {
     left: 0;
     top: 0;
     content: "";
-    background: -webkit-linear-gradient(right, #072487, #fa768d, #fe998b);
+    /* background: -webkit-linear-gradient(right, #072487, #fa768d, #fe998b); */
+    background:-webkit-linear-gradient(right, #876507, #ffc851, #ffce74);
     height: 100%;
     width: 100%;
     z-index: -1;
