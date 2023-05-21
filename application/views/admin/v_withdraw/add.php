@@ -78,7 +78,7 @@ $('#form_add').submit(function(e) {
 		total = 0;
 	}
 
-	if (parseFloat(amount) > parseFloat(total)) {
+	if ((parseFloat(amount) > parseFloat(total) || parseFloat(amount) == 0 || amount == '')) {
 		Swal.fire({
 			title: "Failed!",
 			text: "the withdrawal amount cannot be greater than the income!",
