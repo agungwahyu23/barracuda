@@ -178,11 +178,13 @@ class Admin_withdraw extends CI_Controller {
 				];
 			}
 
-			$data_user = [
-				'total_income' 				=> $saldo,
-			];
-			
-			$result_user = $this->db->update('user', $data_user, array('id' => $id_user));
+			if ($this->input->post('status') == 1) {
+				$data_user = [
+					'total_income' 				=> $saldo,
+				];
+				
+				$result_user = $this->db->update('user', $data_user, array('id' => $id_user));
+			}
 			
 			$result = $this->db->update('withdraw', $data, array('id' => $id));
 
