@@ -151,6 +151,12 @@
 					</ul>
 				</li>
 				<li>
+					<a href="<?= site_url('v2/user/donation') ?>">
+						<i class="material-icons">redeem</i>
+						<span>Donation</span>
+					</a>
+				</li>
+				<li>
 					<a href="<?= site_url('v2/user/album') ?>">
 						<i class="material-icons">list</i>
 						<span>News</span>

@@ -145,6 +145,11 @@ $route['v2/user/unclaim'] =   'Admin_unclaim/index';
 $route['v2/user/unclaim-add'] =   'Admin_unclaim/add';
 $route['v2/user/unclaim-detail/(:any)'] =   'Admin_unclaim/detail/$1';
 
+/* donation */
+$route['v2/user/donation'] =   'Admin_donation/index';
+$route['v2/user/donation-add'] =   'Admin_donation/add';
+$route['v2/user/donation-detail/(:any)'] =   'Admin_donation/detail/$1';
+
 
 /* item manajemen */
 $route['item'] =   'Item/index';

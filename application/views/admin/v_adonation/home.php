@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Album List
+		Donation List
 	</h2>
 </div>
 
@@ -9,21 +9,16 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
 			<div class="header">
-				<h2>
-					Data Album
-				</h2>
 			</div>
 			<div class="body">
 				<div class="table-responsive">
 					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nama Album</th>
-								<!-- <th>Cover</th> -->
-								<th>Tanggal Dibuat</th>
-								<th>Genre</th>
+								<th>Donation Date</th>
+								<th>Amount</th>
 								<th>Status</th>
-								<th>Aksi</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,7 +52,7 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('Admin_album/ajax_list') ?>",
+            "url": "<?php echo site_url('Admin_donation/ajax_list') ?>",
             "type": "POST"
 
         },

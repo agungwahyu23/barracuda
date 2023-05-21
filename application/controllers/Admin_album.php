@@ -37,7 +37,7 @@ class Admin_album extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $album->title;
-			$row[] = $album->user_id;
+			// $row[] = $album->user_id;
 			$row[] = $album->created_at;
 			$row[] = $album->genre;
 			
