@@ -143,4 +143,30 @@ class Admin_takedown extends CI_Controller {
 
 		$this->loadkonten('admin/app_base',$data);
 	}
+
+	public function prosesUpdate()
+	{
+			$where = [
+				'id' 		   => $this->input->post('id')
+			];
+
+			$id_user 	= $this->session->userdata('id');
+
+			$data = [
+				'updated_at' 			=> date('Y-m-d H:i:s'),
+				'updated_by' 			=> $id_user,
+				'status' 				=> $this->input->post('status'),
+			];
+			
+			$result = $this->Ma_takedown->update($data, $where);
+
+			if ($result > 0) {
+				$out = array('status'=>'berhasil');
+			} else {
+				$out['status'] = 'gagal';
+			}
+			
+
+		echo json_encode($out);
+	}
 }

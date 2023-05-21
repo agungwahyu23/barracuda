@@ -46,9 +46,9 @@ class Album extends CI_Controller {
 			$status = '';
 			if ($album->status == 0) {
 				$status = 'Pending';
-			}elseif ($single->status == 1) {
+			}elseif ($album->status == 1) {
 				$status = "Success";
-			}elseif ($single->status == 2) {
+			}elseif ($album->status == 2) {
 				$status = "Reject";
 			}else{
 				$status = '-';
@@ -92,15 +92,204 @@ class Album extends CI_Controller {
 		$data['page'] 		= "Add Album";
 		$data['content'] 	= "admin/v_album/add";
 		$data['genre'] 	= $this->M_album->getGenre();
-
-		// $data_mail = [
-		// 	'order_id' 		=> 9,
-		// 	'user_id'		=> $this->session->userdata('id'),
-		// ];
-
-		// $this->loadkonten('admin/email_template_album', $data_mail, TRUE);
+		$data['wizard'] 		= "";
+		$data['order_id'] 		= "";
+		$data['data_album'] 	= "";
 
 		$this->loadkonten('admin/app_base',$data);
+	}
+
+	function checkTitle(){
+		$id_user 	= $this->session->userdata('id');
+		$title = $this->input->post('title_single');
+		$if_exists = $this->M_album->checkTitleExist($title, $id_user);
+		
+		if ($if_exists > 0) {
+		  $out['status'] = 'exists';
+		  echo json_encode($out);
+		} else {
+		  $out['status'] = 'notexists';
+		  echo json_encode($out);
+		}
+	}
+
+	public function wizard($wizard, $order_id)
+	{	
+		$data['page'] 		= "Add Album";
+		$data['wizard'] 		= $wizard;
+		$data['order_id'] 		= $order_id;
+		$data['data_album'] 	= $this->M_album->getAlbumFromOrder($order_id);
+		// $data['detail_album'] 	= $this->M_album->getAlbumFromOrder($order_id);
+		$data['content'] 	= "admin/v_album/add";
+		$data['genre'] 	= $this->M_album->getGenre();
+
+		$this->loadkonten('admin/app_base',$data);
+	}
+
+	public function prosesInnerAdd()
+	{
+		// define all input
+		$id_user 	= $this->session->userdata('id');
+		$user_name 	= $this->session->userdata('user_name');
+
+		$order_id1 = $this->input->post('order_id1');
+
+		if ($order_id1 != '') {
+			$out = array('status'=>'berhasil', 'wizard'=>2, 'order_id'=>$order_id1);
+		}else{
+
+			$title = $this->input->post('title');
+			$artist = $this->input->post('artist');
+			$genre_id = $this->input->post('genre_id');
+			$release_date = $this->input->post('release_date');
+			$yt_link = $this->input->post('yt_link');
+			$spotify_link = $this->input->post('spotify_link');
+			$itunes_link = $this->input->post('itunes_link');
+			$contact_person = $this->input->post('contact_person');
+			$produser = $this->input->post('produser');
+			$composser = $this->input->post('composser');
+			$year_production = $this->input->post('year_production');
+			$cover = $_FILES["cover"]['name'];
+	
+			// get data user
+			$user = $this->M_album->getUser($id_user);
+			$name_user = str_replace(" ", "_", strtolower($user->name));
+	
+			$upload_path = './upload/album/';
+			$folder_name = $id_user . '_' . $name_user . '/' . date('ymd');
+			$fullPath = $upload_path . $folder_name;
+	
+			// cek apakah folder sudah ada
+			if (!is_dir($upload_path . $folder_name)) {
+				// jika folder belum ada, buat folder baru
+				mkdir($upload_path . $folder_name, 0777, true);
+			}
+	
+			$data_order = [
+				'user_id' 				=> $id_user,
+				'status'				=> 0,
+				'path'					=> $fullPath,
+				'created_at' 			=> date('Y-m-d H:i:s'),
+				'created_by' 			=> $id_user,
+			];
+			$result_order = $this->M_album->save_data_order($data_order);
+			$order_id = $this->db->insert_id();
+	
+			// input to tb_album
+			$newnamefile = 'cover_album_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($title));
+	
+			$config['upload_path'] = $fullPath;
+			$config['allowed_types'] = 'jpg|png|gif|jpeg';
+			$config['max_size'] = '1024';
+			$config['max_width'] = 0;
+			$config['max_height'] = 0;
+			$config['overwrite'] = TRUE;
+			$config['remove_spaces'] = TRUE;
+			$config['file_ext_tolower'] = TRUE;
+			$config['file_name'] = $newnamefile;
+	
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+	
+			if ($this->upload->do_upload('cover')){
+				$cove_file = $this->upload->data();
+				$data = [
+					'user_id' 				=> $id_user,
+					'order_id' 				=> $order_id,
+					'genre_id' 				=> $genre_id,
+					'title' 				=> $title,
+					'cover' 				=> $fullPath . '/' . $cove_file['file_name'],
+					'composser' 			=> $composser,
+					'produser' 				=> $produser,
+					'artist' 				=> $artist,
+					'release_date' 			=> $release_date,
+					'yt_link' 				=> $yt_link,
+					'spotify_link' 			=> $spotify_link,
+					'itunes_link' 			=> $itunes_link,
+					'contact_person' 		=> $contact_person,
+					'year_production' 		=> $year_production,
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $id_user,
+				];
+			}
+			$result_album = $this->M_album->save_data($data);
+			$album_id = $this->db->insert_id();
+				
+			if ($result_album > 0) {
+				$out = array('status'=>'berhasil', 'wizard'=>2, 'order_id'=>$order_id);
+			} else {
+				$out['status'] = 'gagal';
+			}
+		}
+
+		echo json_encode($out);
+	}
+
+	// (A) HELPER FUNCTION - SERVER RESPONSE
+	function verbose ($ok=1, $info="") {
+		if ($ok==0) { 
+			http_response_code(400); 
+		}
+		exit(
+			json_encode(["ok"=>$ok, "info"=>$info])
+		);
+	}
+
+	public function test()
+	{
+		$order_id = $_POST['order_id'];
+		$id_user 	= $this->session->userdata('id');
+
+		// get user
+		$user = $this->M_album->getUser($id_user);
+
+		// get order
+		$order = $this->M_album->getOrder($order_id);
+		$fullPath = $order->path;
+
+		// (B) INVALID UPLOAD
+		if (empty($_FILES) || $_FILES["file"]["error"]) {
+			$this->verbose(0, "Failed to move uploaded file.");
+		}
+
+		// (C) UPLOAD DESTINATION - CHANGE FOLDER IF REQUIRED!
+		$filePath = $fullPath;
+		if (!file_exists($filePath)) { 
+			if (!mkdir($filePath, 0777, true)) {
+				$this->verbose(0, "Failed to create $filePath");
+			}
+		}
+
+		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : $_FILES["file"]["name"];
+		$filePath = $filePath . DIRECTORY_SEPARATOR . $fileName;
+
+		// (D) DEAL WITH CHUNKS
+		$chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
+		$chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
+		$out = @fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
+		
+		if ($out) {
+			$in = @fopen($_FILES["file"]["tmp_name"], "rb");
+			if ($in) { 
+				while ($buff = fread($in, 4096)) { 
+				fwrite($out, $buff); } 
+			}else { 
+			$this->verbose(0, "Failed to open input stream"); 
+		}
+			@fclose($in);
+			@fclose($out);
+			@unlink($_FILES["file"]["tmp_name"]);
+		} else { 
+			$this->verbose(0, "Failed to open output stream"); 
+		}
+
+		// (E) CHECK IF FILE HAS BEEN UPLOADED
+		// $order_id = $id;
+		if (!$chunks || $chunk == $chunks - 1) { 
+			rename("{$filePath}.part", $filePath);			
+		}
+
+		$this->verbose(1, "Upload OK");
 	}
 
 	public function prosesAdd()
@@ -108,217 +297,91 @@ class Album extends CI_Controller {
 		// define all input
 		$id_user 	= $this->session->userdata('id');
 		$user_name 	= $this->session->userdata('user_name');
-		$judul = $this->input->post('title');
-		$description = $this->input->post('description');
-		$cover = $_FILES["cover"]['name'];
-		$produser = $this->input->post('produser');
-		$genre_id = $this->input->post('genre_id');
-		$composser = $this->input->post('composser');
-		$artist = $this->input->post('artist');
-		$file = $_FILES["file"]['name'];
+		$order_id = $this->input->post('order_id');
+		$file = $this->input->post('file');
 
 		// get data user
 		$user = $this->M_album->getUser($id_user);
-		$name_user = str_replace(" ", "_", strtolower($user->name));
 
-		$upload_path = './upload/album/';
-		$folder_name = $id_user . '_' . $name_user . '/' . date('ymdhi');
+		// get path form tb_order
+		$order = $this->M_album->getOrder($order_id);
+		$path = $order->path;
 
-		// cek apakah folder sudah ada
-		if (!is_dir($upload_path . $folder_name)) {
-    		// jika folder belum ada, buat folder baru
-    		mkdir($upload_path . $folder_name, 0777, true);
+		//get album
+		$album = $this->M_album->getAlbumFromOrder($order->id);
+		$album_id = $album->id;
+
+		$filled_count = 0;
+
+		foreach ($file as $nama) {
+			if (!empty($nama)) {
+				$filled_count++;
+			}
 		}
 
-		// cek apakah upload bukti bayar
-		if (isset($file)) {
-			// insert to tb_order
-			$newnamefile = 'proof_payment_album_' . $id_user . '_' . date('ymdhis');
+		// konfigurasi upload file
+		for ($i = 0; $i < $filled_count; $i++) {
 
-			$config['upload_path'] = $upload_path . $folder_name;
-			$config['allowed_types'] = 'jpg|png|gif|jpeg';
-			$config['max_size'] = '1024';
-			$config['max_width'] = 0;
-			$config['max_height'] = 0;
-			$config['overwrite'] = TRUE;
-			$config['remove_spaces'] = TRUE;
-			$config['file_ext_tolower'] = TRUE;
-			$config['file_name'] = $newnamefile;
+			$file_name = $this->input->post('file_copy'.$i+1);
+			$title_single = $this->input->post('title_single'.$i+1);
+			$last_name_composer = $this->input->post('last_name_composer'.$i+1);
 
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-
-			if ($this->upload->do_upload('proof_payment')){
-				$proof_attachment = $this->upload->data();
-				$proof_attachment_path = $upload_path . $folder_name . '/' . $proof_attachment['file_name'];
-				$data_order = [
-					'user_id' 				=> $id_user,
-					'attachment'			=> $proof_attachment_path,
-					'status'				=> 0,
-					'path'					=> $upload_path . $folder_name,
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
-				];
-			}else{
-				$data_order = [
-					'user_id' 				=> $id_user,
-					'status'				=> 0,
-					'path'					=> $upload_path . $folder_name,
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
-				];
-			}
-			$result_order = $this->M_album->save_data_order($data_order);
-			$order_id = $this->db->insert_id();
-
-			$user = $this->Ma_user->select_by_id($id_user);
+			// insert to tb single
+			$data_single = [
+				'user_id' 				=> $id_user,
+				'order_id' 				=> $order_id,
+				'title' 				=> $title_single,
+				'first_name_composer' 	=> $last_name_composer,
+				'file'            		=> $path . '/' . $file_name,
+				'status' 				=> 0,
+				'is_album' 				=> 1,
+				'created_at' 			=> date('Y-m-d H:i:s'),
+				'created_by' 			=> $id_user,
 				
-			$data_mail = [
-				'order_id' 		=> $this->encryption_lib->encode($order_id),
-				'user_id'		=> $this->encryption_lib->encode($id_user),
 			];
-	
-			$to = $user->email;
-			$subject = 'Payment Album';
-			$message_template = $this->load->view('admin/email_template_album', $data_mail, TRUE);
-			send_email($to, $subject, $message_template);
+			$result_single = $this->M_album->save_single($data_single);
+			$single_id = $this->db->insert_id();
 
-			// input to tb_album
-			$newnamefile = 'cover_album_' . $id_user . '_' .date('ymd') . '_' . str_replace(" ", "_", strtolower($judul));
+			// insert single album
+			$data_single_album = [
+				'album_id' 				=> $album_id,
+				'single_id' 			=> $single_id,
+				'created_at' 			=> date('Y-m-d H:i:s'),
+				'created_by' 			=> $id_user,
+			];
+			$result = $this->M_album->save_single_album($data_single_album);
+		}
 
-			$config['upload_path'] = $upload_path . $folder_name;
-			$config['allowed_types'] = 'jpg|png|gif|jpeg';
-			$config['max_size'] = '1024';
-			$config['max_width'] = 0;
-			$config['max_height'] = 0;
-			$config['overwrite'] = TRUE;
-			$config['remove_spaces'] = TRUE;
-			$config['file_ext_tolower'] = TRUE;
-			$config['file_name'] = $newnamefile;
-
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-
-			if ($this->upload->do_upload('cover')){
-				$cove_file = $this->upload->data();
-				$data = [
-					'user_id' 				=> $id_user,
-					'order_id' 				=> $order_id,
-					'genre_id' 				=> $genre_id,
-					'title' 				=> $judul,
-					'description' 			=> $description,
-					'cover' 				=> $upload_path . $folder_name . '/' . $cove_file['file_name'],
-					'composser' 			=> $this->input->post('composser'),
-					'produser' 				=> $this->input->post('produser'),
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
-					'artist' 				=> $artist,
-					'release_date' 			=> $this->input->post('release_date'),
-					'yt_link' 				=> $this->input->post('yt_link'),
-					'spotify_link' 			=> $this->input->post('spotify_link'),
-					'itunes_link' 			=> $this->input->post('itunes_link'),
-					'contact_person' 		=> $this->input->post('contact_person'),
-					'year_production' 		=> $this->input->post('year_production'),
-					'created_at' 			=> date('Y-m-d H:i:s'),
-					'created_by' 			=> $id_user,
-				];
-			}
-			$result_album = $this->M_album->save_data($data);
-			$album_id = $this->db->insert_id();
-
-			if(isset($_FILES['file'])) {
-				$countfiles = count($_FILES["file"]['name']); //Hitung Jumlah File yang di upload
-				$filled_count = 0;
-
-				// hitung jumlah input terisi
-				for($i=0; $i<$countfiles; $i++) {
-					if($_FILES['file']['name'][$i] != '') {
-					  $filled_count++;
-					}
-				}
-
-				// konfigurasi upload file
-				for ($i = 0; $i < $filled_count; $i++) {
-
-					$title_single = $this->input->post('title_single'.$i+1);
-					$title_single2 = $this->input->post('title_single'.$i+1);
-					$fix_file_name = str_replace(" ", "_", $title_single2);
-
-					$file_name = $fix_file_name;
-
-					$config['upload_path'] = $upload_path . $folder_name;
-					$config['allowed_types'] = 'wav';
-					$config['max_size'] = '102400';
-					$config['max_width'] = 0;
-					$config['max_height'] = 0;
-					$config['file_name'] = $file_name;
-	
-					// memuat library upload
-					$this->load->library('upload', $config);
-					$this->upload->initialize($config);
-
-					$files = $_FILES['file'];
-
-					$_FILES['file_single']['name'] = $files['name'][$i];
-					$_FILES['file_single']['type'] = $files['type'][$i];
-					$_FILES['file_single']['tmp_name'] = $files['tmp_name'][$i];
-					$_FILES['file_single']['error'] = $files['error'][$i];
-					$_FILES['file_single']['size'] = $files['size'][$i];
-
-					$this->upload->initialize($config);
-		
-					if (!$this->upload->do_upload('file_single')) {
-						$error = array('error' => $this->upload->display_errors());
-					} else {
-						$data = array('upload_data' => $this->upload->data());
-
-						// insert to tb single
-						$data_single = [
-							'user_id' 				=> $id_user,
-							'order_id' 				=> $order_id,
-							'title' 				=> $title_single,
-							'artist' 				=> $artist,
-							'file'            		=> $upload_path . $folder_name . '/' . $file_name,
-							'status' 				=> 0,
-							// 'genre_id' 				=> $genre_id,
-							// 'first_name_composer' 	=> $this->input->post('last_name_composer'),
-							// 'last_name_composer' 	=> $this->input->post('last_name_composer'),
-							// 'description' 			=> $this->input->post('description'),
-							// 'produser' 				=> $this->input->post('produser'),
-							// 'year_production' 		=> $this->input->post('year_production'),
-							'is_album' 				=> 1,
-							// 'release_date' 			=> $this->input->post('release_date'),
-							// 'spotify_link' 			=> $this->input->post('spotify_link'),
-							// 'itunes_link' 			=> $this->input->post('itunes_link'),
-							// 'yt_link' 			=> $this->input->post('yt_link'),
-							// 'contact_person' 		=> $this->input->post('contact_person'),
-							'created_at' 			=> date('Y-m-d H:i:s'),
-							'created_by' 			=> $id_user,
-							
-						];
-						$result = $this->M_album->save_single($data_single);
-						$single_id = $this->db->insert_id();
-
-						// insert single album
-						$data_single_album = [
-							'album_id' 				=> $album_id,
-							'single_id' 			=> $single_id,
-							'created_at' 			=> date('Y-m-d H:i:s'),
-							'created_by' 			=> $id_user,
-						];
-						$result = $this->M_album->save_single_album($data_single_album);
-					}
-				}
-			}
-			
-			if ($result_album > 0) {
-				$out = array('status'=>'berhasil');
-			} else {
-				$out['status'] = 'gagal';
-			}
-		}else{
+		if ($result > 0) {
+			$out = array('status'=>'berhasil');
+		} else {
 			$out['status'] = 'gagal';
 		}
+
+		$user = $this->Ma_user->select_by_id($id_user);
+
+		$data_mail = [
+			'order_id' 		=> $this->encryption_lib->encode($order_id),
+			'user_id'		=> $this->encryption_lib->encode($user->id),
+		];
+
+		$to = $user->email;
+		$subject = 'Payment Album';
+		$message_template = $this->load->view('admin/email_template_album', $data_mail, TRUE);
+		send_email($to, $subject, $message_template);
+
+		$data_mail_admin = [
+			'name' 			=> $user->name,
+			'email' 		=> $user->email,
+			'user_id'		=> $id_user,
+			'title'			=> 'Notifikasi Upload Album',
+			'content'		=> 'Unggah Album baru'
+		];
+
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Unggah Album';
+		$message_template = $this->load->view('admin/email_universal_to_admin', $data_mail_admin, TRUE);
+		send_email($to, $subject, $message_template);
 
 		echo json_encode($out);
 	}
@@ -490,18 +553,7 @@ class Album extends CI_Controller {
 				$out['status'] = 'gagal';
 			}
 		}else{
-			$data = [
-				'updated_at' 			=> date('Y-m-d H:i:s'),
-				'updated_by' 			=> $user_id,
-			];
-			
-			$result = $this->db->update('tb_order', $data, array('id' => $order_id));
-
-			if ($result > 0) {
-				$out['status'] = 'berhasil';
-			} else {
-				$out['status'] = 'gagal';
-			}
+			$out['status'] = 'gagal';
 		}
 
 		$user = $this->Ma_user->select_by_id($user_id);
@@ -527,5 +579,19 @@ class Album extends CI_Controller {
 		}
 		// echo json_encode($out);
 
+	}
+
+	public function cancelUpload()
+	{
+		$order_id = $_POST['order_id'];
+		$id_user 	= $this->session->userdata('id');
+
+		$result = $this->M_album->cancelUp($order_id, $id_user);
+
+		if ($result > 0) {
+			$out['status'] = 'berhasil';
+		} else {
+			$out['status'] = 'gagal';
+		}
 	}
 }

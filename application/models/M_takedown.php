@@ -29,7 +29,7 @@ class M_takedown extends CI_Model
 			CONCAT(title, '  - single') as title
 		FROM
 			single
-		WHERE user_id = '".$id_user."'";
+		WHERE is_album != 1 AND user_id = '".$id_user."'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

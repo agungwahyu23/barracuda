@@ -70,11 +70,25 @@ class M_album extends CI_Model
 		return $data->row();
 	}
 
+	function checkTitleExist($title, $id_user) {
+		return $this->db->get_where('single', ['title' => $title, 'user_id' => $id_user])->num_rows();
+	}
+
 	public function getOrder($id)
 	{
 		$sql = "SELECT *
 				FROM tb_order 
 				WHERE id = '".$id."'
+				ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
+	
+	public function getAlbumFromOrder($id)
+	{
+		$sql = "SELECT *
+				FROM album 
+				WHERE order_id = '".$id."'
 				ORDER BY id ASC";
 		$data = $this->db->query($sql);
 		return $data->row();
@@ -100,6 +114,17 @@ class M_album extends CI_Model
 	public function hapus($id)
 	{
 		$sql = "DELETE FROM album WHERE id='" . $id . "'";
+
+		$this->db->query($sql);
+
+		return $this->db->affected_rows();
+	}
+
+	public function cancelUp($order_id, $id_user)
+	{
+		$this->db->delete('album', array('user_id' => $id_user, 'order_id' => $order_id));
+
+		$sql = "DELETE FROM tb_order WHERE id='" . $order_id . "'";
 
 		$this->db->query($sql);
 

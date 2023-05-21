@@ -8,6 +8,7 @@ class Unclaim extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('email');
 		$this->load->library('session');
 		$this->load->model('M_unclaim');
 	}
@@ -97,7 +98,8 @@ class Unclaim extends CI_Controller {
 	{
 		// define all input
 		$id_user 	= $this->session->userdata('id');
-		$user_name 	= $this->session->userdata('user_name');
+		$user_name 	= $this->session->userdata('username');
+		$name 	= $this->session->userdata('name');
 		$take_down_type = $this->input->post('take_down_type');
 		$single = $this->input->post('single');
 		$email = $this->input->post('email');
@@ -109,7 +111,7 @@ class Unclaim extends CI_Controller {
 				'email' 				=> $email,
 				'single_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
-				'status' 				=> 0, //pending
+				// 'status' 				=> 0, //pending
 				'link' 					=> $this->input->post('link'), //pending
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
@@ -120,7 +122,7 @@ class Unclaim extends CI_Controller {
 				'email' 				=> $email,
 				'album_id' 			=> $single,
 				'month' 				=> date('Y-m-d'),
-				'status' 				=> 0, //pending
+				// 'status' 				=> 0, //pending
 				'link' 					=> $this->input->post('link'),
 				'created_at' 			=> date('Y-m-d H:i:s'),
 				'created_by' 			=> $id_user,
@@ -128,6 +130,18 @@ class Unclaim extends CI_Controller {
 		}
 		
 		$result = $this->M_unclaim->save_data($data);
+
+		$data_mail_admin = [
+			'name' 			=> $name,
+			'email' 		=> $email,
+			'user_id'		=> $id_user,
+			'title'			=> 'Notifikasi Request Unclaim',
+			'content'		=> 'Request Unclaim'
+		];
+		$to = 'admin@tomokoyuki.com';
+		$subject = 'Request Unclaim Baru';
+		$message_template = $this->load->view('admin/email_universal_to_admin', $data_mail_admin, TRUE);
+		send_email($to, $subject, $message_template);
 
 		if ($result > 0) {
 			$out = array('status'=>'berhasil');

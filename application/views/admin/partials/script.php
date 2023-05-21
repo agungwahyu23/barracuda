@@ -30,3 +30,13 @@
 
 <!-- Custom Js -->
 <script src="<?= base_url() ?>assets/admin/js/pages/medias/image-gallery.js"></script>
+
+<!-- JQuery Steps Plugin Js -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-steps/jquery.steps.js"></script>
+
+<!-- Custom Js -->
+<!-- <script src="<?= base_url() ?>assets/admin/js/admin.js"></script> -->
+<script src="<?= base_url() ?>assets/admin/js/pages/forms/form-wizard.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+
+<script src="<?= base_url() ?>assets/admin/js/wizard.js"></script>

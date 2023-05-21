@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Withdrawal List
+		Withdraw List
 	</h2>
 </div>
 

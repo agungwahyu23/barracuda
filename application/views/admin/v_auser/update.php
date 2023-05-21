@@ -80,8 +80,8 @@
 						<?php if ($user->proof_of_payment != '') { ?>
 							<div id="aniimated-thumbnials" class="list-unstyled row clearfix">
 								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-									<a href="<?= base_url('upload/profile/'). $user->proof_of_payment ?>" data-sub-html="<?= $user->proof_of_payment ?>">
-										<img class="img-responsive thumbnail" src="<?= base_url('upload/profile/'). $user->proof_of_payment ?>">
+									<a href="<?= base_url('/'). $user->proof_of_payment ?>" data-sub-html="<?= $user->proof_of_payment ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url('/'). $user->proof_of_payment ?>">
 									</a>
 								</div>
 							</div>

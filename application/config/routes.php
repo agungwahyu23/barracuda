@@ -82,6 +82,7 @@ $route['user/upload-payment-single/(:any)/(:any)'] = 'Single/payment/$1/$2';
 /* album */
 $route['user/album'] =   'Album/index';
 $route['user/album-add'] =   'Album/add';
+$route['user/album-add/(:any)/(:any)'] =   'Album/wizard/$1/$2';
 $route['user/album-update/(:any)'] =   'Album/update/$1';
 $route['user/album-detail/(:any)'] =   'Album/detail/$1';
 $route['user/upload-payment-album/(:any)/(:any)'] = 'Album/payment/$1/$2';
@@ -138,6 +139,22 @@ $route['v2/user/takedown-detail/(:any)'] =   'Admin_takedown/detail/$1';
 $route['v2/user/withdraw'] =   'Admin_withdraw/index';
 $route['v2/user/withdraw-add'] =   'Admin_withdraw/add';
 $route['v2/user/withdraw-detail/(:any)'] =   'Admin_withdraw/detail/$1';
+
+/* unclaim */
+$route['v2/user/unclaim'] =   'Admin_unclaim/index';
+$route['v2/user/unclaim-add'] =   'Admin_unclaim/add';
+$route['v2/user/unclaim-detail/(:any)'] =   'Admin_unclaim/detail/$1';
+
+/* donation */
+$route['v2/user/donation'] =   'Admin_donation/index';
+$route['v2/user/donation-add'] =   'Admin_donation/add';
+$route['v2/user/donation-detail/(:any)'] =   'Admin_donation/detail/$1';
+
+/* saldo */
+$route['v2/user/saldo'] =   'Admin_saldo/index';
+$route['v2/user/saldo-add'] =   'Admin_saldo/add';
+$route['v2/user/saldo-detail/(:any)'] =   'Admin_saldo/detail/$1';
+
 
 /* item manajemen */
 $route['item'] =   'Item/index';
