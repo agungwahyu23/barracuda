@@ -140,6 +140,12 @@ $route['v2/user/withdraw'] =   'Admin_withdraw/index';
 $route['v2/user/withdraw-add'] =   'Admin_withdraw/add';
 $route['v2/user/withdraw-detail/(:any)'] =   'Admin_withdraw/detail/$1';
 
+/* unclaim */
+$route['v2/user/unclaim'] =   'Admin_unclaim/index';
+$route['v2/user/unclaim-add'] =   'Admin_unclaim/add';
+$route['v2/user/unclaim-detail/(:any)'] =   'Admin_unclaim/detail/$1';
+
+
 /* item manajemen */
 $route['item'] =   'Item/index';
 $route['item-add'] =   'Item/add';
