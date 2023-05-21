@@ -51,6 +51,8 @@
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/toastr/toastr.css">
     <script src="<?php echo base_url(); ?>assets/admin/toastr/toastr.js"></script>
+    
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/wizard.css">
 
 	<style>
 		.swal2-popup {

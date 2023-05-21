@@ -70,11 +70,25 @@ class M_album extends CI_Model
 		return $data->row();
 	}
 
+	function checkTitleExist($title, $id_user) {
+		return $this->db->get_where('single', ['title' => $title, 'user_id' => $id_user])->num_rows();
+	}
+
 	public function getOrder($id)
 	{
 		$sql = "SELECT *
 				FROM tb_order 
 				WHERE id = '".$id."'
+				ORDER BY id ASC";
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
+	
+	public function getAlbumFromOrder($id)
+	{
+		$sql = "SELECT *
+				FROM album 
+				WHERE order_id = '".$id."'
 				ORDER BY id ASC";
 		$data = $this->db->query($sql);
 		return $data->row();

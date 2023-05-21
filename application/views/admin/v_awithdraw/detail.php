@@ -30,6 +30,7 @@
 					<div class="form-group form-float">
 						<label class="form-label">Request Amount</label>
 						<div class="form-line">
+							<input type="hidden" class="form-control" name="total_income" id="total_income" placeholder="0" value="<?= $user->total_income ?>">
 							<input type="text" class="form-control" name="amount_copy" id="amount" placeholder="0" value="<?= $withdraw->amount ?>" disabled>
 							<input type="hidden" class="form-control" name="amount" id="amount" placeholder="0" value="<?= $withdraw->amount ?>">
 						</div>
@@ -138,8 +139,14 @@
 
 $('#form_add').submit(function(e) {
 	// cek apakah input > total amount
-	var amount = $('#amount_copy').val();
-	var total = $('#total_amount').val();
+	var amount = $('#amount').val();
+	var total = $('#total_income').val();
+
+	if (total == '') {
+		total = 0;
+	}
+	console.log(total);
+	console.log(amount);
 
 	if (parseFloat(amount) > parseFloat(total)) {
 		Swal.fire({
@@ -181,7 +188,7 @@ $('#form_add').submit(function(e) {
                 gagal();
 
             }
-        })
+    })
     e.preventDefault();
 });
 </script>

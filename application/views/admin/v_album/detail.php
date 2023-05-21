@@ -108,17 +108,11 @@
 							<label class="form-label">Composser</label>
 						</div>
 					</div>
-					<!-- <div class="form-group form-float">
-						<div class="form-line">
-							<textarea name="description" cols="30" rows="5" class="form-control no-resize" disabled><?= $album->description ?></textarea>
-							<label class="form-label">Description</label>
-						</div>
-					</div> -->
 					<div class="form-group form-float">
 						<label class="form-label">Proof of payment</label>
 						<?php if (isset($album->attachment)) { ?>
 							<div id="preview_proof_payment">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/upload/proof_attachment/') . $album->attachment; ?>" alt="your image" />
+								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('/') . $album->attachment; ?>" alt="your image" />
 							</div>
 						<?php }else{ ?>
 							<div id="preview_proof_payment">

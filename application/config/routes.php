@@ -82,6 +82,7 @@ $route['user/upload-payment-single/(:any)/(:any)'] = 'Single/payment/$1/$2';
 /* album */
 $route['user/album'] =   'Album/index';
 $route['user/album-add'] =   'Album/add';
+$route['user/album-add/(:any)/(:any)'] =   'Album/wizard/$1/$2';
 $route['user/album-update/(:any)'] =   'Album/update/$1';
 $route['user/album-detail/(:any)'] =   'Album/detail/$1';
 $route['user/upload-payment-album/(:any)/(:any)'] = 'Album/payment/$1/$2';

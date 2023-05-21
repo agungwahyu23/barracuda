@@ -77,7 +77,7 @@
 							<select name="status" class="form-control" id="status">
 								<option value="0" <?= $album->status == 0 ? 'selected' : '' ?>>Pending</option>
 								<option value="1" <?= $album->status == 1 ? 'selected' : '' ?>>Terima</option>
-								<option value="2" <?= $single->status == 2 ? 'selected' : '' ?>>Reject</option>
+								<option value="2" <?= $album->status == 2 ? 'selected' : '' ?>>Reject</option>
 							</select>
 						</div>
 					</div>

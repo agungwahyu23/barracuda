@@ -73,8 +73,10 @@ $('#form_add').submit(function(e) {
 	// cek apakah input > total amount
 	var amount = $('#amount_copy').val();
 	var total = $('#total_amount').val();
-	console.log(amount);
-	console.log(total);
+
+	if (total == '') {
+		total = 0;
+	}
 
 	if (parseFloat(amount) > parseFloat(total)) {
 		Swal.fire({
@@ -117,7 +119,7 @@ $('#form_add').submit(function(e) {
                 gagal();
 
             }
-        })
+    })
     e.preventDefault();
 });
 </script>
