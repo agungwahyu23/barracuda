@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Detail Request Withdrawal
+		Detail Request Withdraw
 	</h2>
 </div>
 
@@ -43,8 +43,8 @@
 						<?php if (isset($withdraw->attachment)) { ?>
 							<div id="aniimated-thumbnials" class="list-unstyled row clearfix preview_attachment">
 								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-									<a href="<?= base_url('/upload/proof_attachment/') . $withdraw->attachment ?>" data-sub-html="<?= $withdraw->attachment ?>">
-										<img class="img-responsive thumbnail" src="<?= base_url('/upload/proof_attachment/') . $withdraw->attachment; ?>" alt="your image">
+									<a href="<?= base_url('/upload/withdraw_attachment/') . $withdraw->attachment ?>" data-sub-html="<?= $withdraw->attachment ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url('/upload/withdraw_attachment/') . $withdraw->attachment; ?>" alt="your image">
 									</a>
 								</div>
 							</div>

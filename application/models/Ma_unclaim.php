@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Ma_takedown extends CI_Model
+class Ma_unclaim extends CI_Model
 {
 
-	public function getData()
+	public function getData($id_user)
 	{
 		$sql = "SELECT
 		r.*,
@@ -15,31 +15,33 @@ class Ma_takedown extends CI_Model
 		LEFT JOIN album a ON
 			r.album_id = a.id
 		LEFT JOIN single s ON s.id = r.single_id 
-		WHERE r.type = 1
+		WHERE r.type = 2
 		ORDER BY
 			r.id ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 	
-	public function getSingle()
+	public function getSingle($id_user)
 	{
 		$sql = "SELECT
 			id,
 			CONCAT(title, '  - single') as title
 		FROM
-			single";
+			single
+		WHERE is_album != 1 AND user_id = '".$id_user."'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
-	public function getAlbum()
+	public function getAlbum($id_user)
 	{
 		$sql = "SELECT
 			id,
 			CONCAT(title, '  - album') as title
 		FROM
-			album";
+			album
+		WHERE user_id = '".$id_user."'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -63,7 +65,7 @@ class Ma_takedown extends CI_Model
 
 	public function update($data, $where)
 	{
-		$result = $this->db->update('request', $data, $where);
+		$result = $this->db->update('takedown', $data, $where);
 		return $result;
 	}
 

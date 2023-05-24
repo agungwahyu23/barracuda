@@ -45,20 +45,20 @@ Upload price per album IDR 250000
 								
 									<?php if($wizard == '' || $wizard == 1){ ?>
 									<form id="first_form" method="POST" enctype="multipart/form-data">
-									<input type="hidden" name="order_id1" id="order_id1" value="<?= $order_id ?? '' ?>">
+									<input type="hidden" name="order_id1" id="order_id1" value="<?= $order_id ? $order_id : '' ?>">
 									<div class="tab-pane active" role="tabpanel" id="step1">
 										<div class="step1">
 											<div class="form-group form-float">
 												<label class="form-label">Title Album*</label>
 												<div class="form-line">
-													<input type="text" class="form-control" name="title" value="<?= $data_album ? $data_album->title : '' ?>">
+													<input type="text" class="form-control" name="title" value="<?= $data_album ? $data_album->title : '' ?>" required>
 												</div>
 											</div>
 
 											<div class="form-group form-float">
 												<label class="form-label">Name of Artist*</label>
 												<div class="form-line">
-													<input type="text" class="form-control" name="artist" value="<?= $data_album ? $data_album->artist : '' ?>">
+													<input type="text" class="form-control" name="artist" value="<?= $data_album ? $data_album->artist : '' ?>" required>
 												</div>
 											</div>
 
@@ -77,7 +77,7 @@ Upload price per album IDR 250000
 											<div class="form-group form-float">
 												<label class="form-label">Release Date*</label>
 												<div class="form-line">
-													<input type="text" class="date-full form-control" name="release_date" value="<?= $data_album ? $data_album->release_date : '' ?>">
+													<input type="text" class="date-full form-control" name="release_date" value="<?= $data_album ? $data_album->release_date : '' ?>" required>
 												</div>
 											</div>
 
@@ -115,28 +115,28 @@ Upload price per album IDR 250000
 											<div class="form-group form-float">
 												<label class="form-label">Producer*</label>
 												<div class="form-line">
-													<input type="text" class="form-control" name="produser" value="<?= $data_album ? $data_album->produser : '' ?>">
+													<input type="text" class="form-control" name="produser" value="<?= $data_album ? $data_album->produser : '' ?>" required>
 												</div>
 											</div>
 
 											<div class="form-group form-float">
 												<label class="form-label">Composser*</label>
 												<div class="form-line">
-													<input type="text" class="form-control" name="composser" value="<?= $data_album ? $data_album->composser : '' ?>">
+													<input type="text" class="form-control" name="composser" value="<?= $data_album ? $data_album->composser : '' ?>" required>
 												</div>
 											</div>
 
 											<div class="form-group form-float">
 												<label class="form-label">Year of Production*</label>
 												<div class="form-line">
-													<input type="text" class="date-own form-control" name="year_production" value="<?= $data_album ? $data_album->year_production : '' ?>">
+													<input type="text" class="date-own form-control" name="year_production" value="<?= $data_album ? $data_album->year_production : '' ?>" required>
 												</div>
 											</div>
 
 											<div class="form-group form-float">
 												<span>Upload Cover (3000px x 3000px)*</span>
 												<input name="cover" id="cover" type="file" multiple style="margin-top:10px!important"
-													onchange="return fileValidation()"><br>
+													onchange="return fileValidation()" required><br>
 											
 												<?php if (isset($data_album->cover)) { ?>
 													<div id="slider">
@@ -151,10 +151,13 @@ Upload price per album IDR 250000
 												<?php } ?>
 											</div>
 										</div>
-										<ul class="list-inline pull-right">
-											<li><button type="submit" class="btn btn-primary">Save and continue</button>
-											</li>
-										</ul>
+										<hr>
+											<div class="col-md-6 col-sm-6 col-lg-6 text-right"></div>
+											<div class="col-md-6 col-sm-6 col-lg-6 text-right">
+												<a href="#" class="btn btn-warning cancel">Cancel</a>
+
+												<button type="submit" class="btn btn-primary">Save and continue</button>
+											</div>
 									</div>
 									</form>
 

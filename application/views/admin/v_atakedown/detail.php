@@ -12,6 +12,7 @@
 			</div>
 			<div class="body">
 				<form id="form_add" method="POST" enctype="multipart/form-data">
+				<input type="hidden" class="form-control" name="id" value="<?= $takedown->id ?>">
 					<div class="form-group form-float">
 						<label class="form-label">Email</label>
 						<div class="form-line">
@@ -59,3 +60,60 @@
 	</div>
 </div>
 <!-- #END# Basic Validation -->
+
+<script>
+	$('#form_add').submit(function(e) {
+    var data = $(this).serialize();
+    // var data = new FormData($(this)[0]);
+    $.ajax({
+            // method: 'POST',
+            beforeSend: function() {
+                $(".loading2").show();
+                $(".loading2").modal('show');
+            },
+            url: '<?php echo base_url('Admin_takedown/prosesUpdate'); ?>',
+            type: "post",
+            enctype: "multipart/form-data",
+            // data: data,
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            cache: false,
+        })
+        .done(function(data) {
+            var result = jQuery.parseJSON(data);
+            if (result.status == 'berhasil') {
+                document.getElementById("form_add").reset();
+                save_berhasil();
+            } else {
+                $(".loading2").hide();
+                $(".loading2").modal('hide');
+                gagal();
+
+            }
+        })
+    e.preventDefault();
+});
+
+function save_berhasil() {
+    Swal.fire({
+        title: "Data berhasil disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
+        icon: "success",
+        button: "Ok",
+    }).then(function() {
+        var link = '<?php echo base_url("admin_takedown") ?>';
+        window.location.replace(link);
+    });
+}
+
+function gagal() {
+    Swal.fire({
+        title: "Data gagal disimpan!",
+        text: "Klik Ok untuk melanjutkan!",
+        icon: "warning",
+        button: "Ok",
+        dangerMode: true,
+    });
+}
+</script>

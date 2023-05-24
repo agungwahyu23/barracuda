@@ -119,4 +119,15 @@ class M_album extends CI_Model
 
 		return $this->db->affected_rows();
 	}
+
+	public function cancelUp($order_id, $id_user)
+	{
+		$this->db->delete('album', array('user_id' => $id_user, 'order_id' => $order_id));
+
+		$sql = "DELETE FROM tb_order WHERE id='" . $order_id . "'";
+
+		$this->db->query($sql);
+
+		return $this->db->affected_rows();
+	}
 }
