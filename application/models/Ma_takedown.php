@@ -63,7 +63,7 @@ class Ma_takedown extends CI_Model
 
 	public function update($data, $where)
 	{
-		$result = $this->db->update('request', $data, $where);
+		$result = $this->db->update('takedown', $data, $where);
 		return $result;
 	}
 

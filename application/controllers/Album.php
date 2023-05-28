@@ -134,7 +134,7 @@ class Album extends CI_Controller {
 
 		$order_id1 = $this->input->post('order_id1');
 
-		if ($order_id1 != '') {
+		if (isset($order_id1)) {
 			$out = array('status'=>'berhasil', 'wizard'=>2, 'order_id'=>$order_id1);
 		}else{
 
@@ -579,19 +579,5 @@ class Album extends CI_Controller {
 		}
 		// echo json_encode($out);
 
-	}
-
-	public function cancelUpload()
-	{
-		$order_id = $_POST['order_id'];
-		$id_user 	= $this->session->userdata('id');
-
-		$result = $this->M_album->cancelUp($order_id, $id_user);
-
-		if ($result > 0) {
-			$out['status'] = 'berhasil';
-		} else {
-			$out['status'] = 'gagal';
-		}
 	}
 }

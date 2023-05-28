@@ -19,7 +19,7 @@
 						<thead>
 							<tr>
 								<th>Nama Album</th>
-								<!-- <th>Cover</th> -->
+								<th>Cover</th>
 								<th>Tanggal Dibuat</th>
 								<th>Genre</th>
 								<th>Status</th>

@@ -35,7 +35,7 @@
 								<th>Nama</th>
 								<th>Jenis Kelamin</th>
 								<th>Status</th>
-								<!-- <th>Status Konfirmasi</th> -->
+								<th>Status Konfirmasi</th>
 								<th>Level</th>
 								<th>Action</th>
 							</tr>

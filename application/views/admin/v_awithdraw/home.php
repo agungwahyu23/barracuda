@@ -1,6 +1,6 @@
 <div class="block-header">
 	<h2>
-		Withdraw List
+		Withdrawal List
 	</h2>
 </div>
 
@@ -93,7 +93,7 @@ function reload_table() {
 		var domainWithProtocol = window.location.origin;
 		let image = $(event.relatedTarget).data('image');
 		
-		var pathImage = domainWithProtocol + '/upload/withdraw_attachment/' + image
+		var pathImage = domainWithProtocol + '/barracuda/upload/withdraw_attachment/' + image
 		console.log(pathImage);
 
 		 // image holder

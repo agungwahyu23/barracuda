@@ -61,7 +61,7 @@ class Admin_user extends CI_Controller {
 			}else{
 				$verified_at = '-';
 			}
-			// $row[] = $verified_at;
+			$row[] = $verified_at;
 
 			$row[] = $user->level;
 

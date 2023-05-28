@@ -392,38 +392,4 @@ function gagal() {
         dangerMode: true,
     });
 }
-
-$(document).on("click", ".cancel", function() {
-    var order_id = $('#order_id1').val();
-    var file_name = $('#file_name').val();
-    Swal.fire({
-        title: 'Cancel upload album?',
-        text: "If you cancel a upload album, the changes will not be saved.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
-    }).then((result) => {
-        if (result.isConfirmed) {
-			if (order_id != '') {
-				$.ajax({
-					method: "POST",
-					url: "<?php echo base_url('Album/cancelUpload'); ?>",
-					data: {
-						"order_id": order_id
-					},
-					success: function(data) {
-						var link = '<?php echo base_url("album") ?>';
-						window.location.replace(link);
-					}
-				});
-			} else {
-				var link = '<?php echo base_url("album") ?>';
-				window.location.replace(link);
-			}
-            
-        }
-    })
-});
 </script>
