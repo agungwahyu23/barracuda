@@ -18,6 +18,7 @@ Upload price per single IDR 50000
 					<div class="form-group form-float">
 						<label class="form-label">Title*</label>
 						<div class="form-line">
+							<input type="hidden" class="form-control" name="title_copy" id="title_copy">
 							<input type="text" class="form-control" name="title" id="title" required>
 						</div>
 						<span id="title_result" style='color: red; font-size: 14px;'></span>
@@ -225,9 +226,11 @@ $('#title').change(function () {
 			if (result.status == 'exists') {
 				$('#title_result').html('Title is exist, please use other title.');
 				document.getElementById("pick").disabled = true;
+				$('#title_copy').val('exists');
 			}else{
 				$('#title_result').hide();
 				document.getElementById("pick").disabled = false;
+				$('#title_copy').val('notexists');
 			}
 		}
 	});
@@ -451,38 +454,50 @@ function validationSingle(fileInput) {
 }
 
 $('#form_validation').submit(function(e) {
-    var data = $(this).serialize();
-
-    $.ajax({
-            // method: 'POST',
-            beforeSend: function() {
-                showLoading();
-                $(".loading2").modal('show');
-				
-            },
-            url: '<?php echo base_url('Single/prosesAdd'); ?>',
-            type: "post",
-            enctype: "multipart/form-data",
-            // data: data,
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            cache: false,
-        })
-        .done(function(data) {
-			hideLoading();
-            var result = jQuery.parseJSON(data);
-            console.log(data);
-            if (result.status == 'berhasil') {
-                document.getElementById("form_validation").reset();
-                save_berhasil();
-            } else {
-                $(".loading2").hide();
-                $(".loading2").modal('hide');
-                gagal();
-
-            }
-    })
+	let title_copy = $('#title_copy').val();
+	if (title_copy == 'exists') {
+		Swal.fire({
+			title: "Failed!",
+			text: "The single title has already been used. Use another title!",
+			icon: "error",
+			button: "Ok",
+			dangerMode: true,
+		});
+		return false;
+	}else{
+		var data = $(this).serialize();
+	
+		$.ajax({
+				// method: 'POST',
+				beforeSend: function() {
+					showLoading();
+					$(".loading2").modal('show');
+					
+				},
+				url: '<?php echo base_url('Single/prosesAdd'); ?>',
+				type: "post",
+				enctype: "multipart/form-data",
+				// data: data,
+				data: new FormData(this),
+				processData: false,
+				contentType: false,
+				cache: false,
+			})
+			.done(function(data) {
+				hideLoading();
+				var result = jQuery.parseJSON(data);
+				console.log(data);
+				if (result.status == 'berhasil') {
+					document.getElementById("form_validation").reset();
+					save_berhasil();
+				} else {
+					$(".loading2").hide();
+					$(".loading2").modal('hide');
+					gagal();
+	
+				}
+		})
+	}
     e.preventDefault();
 });
 </script>
