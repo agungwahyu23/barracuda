@@ -18,7 +18,7 @@ Upload price per single IDR 50000
 					<div class="form-group form-float">
 						<label class="form-label">Title*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="title_copy" id="title_copy">
+							<input type="hidden" class="form-control" name="title_copy" id="title_copy">
 							<input type="text" class="form-control" name="title" id="title" required>
 						</div>
 						<span id="title_result" style='color: red; font-size: 14px;'></span>
