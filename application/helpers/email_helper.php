@@ -21,7 +21,7 @@ function send_email($to, $subject, $message)
 		'smtp_host' => 'mail.tomokoyuki.com',
 		'smtp_port' => 465,
 		'smtp_user' => 'admin@tomokoyuki.com',
-		'smtp_pass' => 'V!5]8o@R,yC6',
+		'smtp_pass' => 'desiani327',
 		'smtp_crypto' => 'ssl',
 		'mailtype'  => 'html', 
 		'charset'   => 'iso-8859-1',
