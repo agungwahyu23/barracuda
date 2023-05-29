@@ -169,7 +169,7 @@ Upload price per single IDR 50000
 						<span>Upload File Music* (The file name must match the title)</span>
                         <!-- <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple /> -->
 						<input type="hidden" name="order_id" id="order_id" class="mb-4"><br>
-						<input type="hidden" name="file_name" id="file_name" class="mb-4" required><br>
+						<input type="hidden" name="file_name" id="file_name" class="mb-4"><br>
 
 						<div id="list"></div>
 						<input type="button" id="pick" value="Upload">
@@ -455,6 +455,19 @@ function validationSingle(fileInput) {
 
 $('#form_validation').submit(function(e) {
 	let title_copy = $('#title_copy').val();
+	let file_name = $('#file_name').val();
+
+	if (file_name == '') {
+		Swal.fire({
+			title: "Failed!",
+			text: "You must be upload music file single!",
+			icon: "error",
+			button: "Ok",
+			dangerMode: true,
+		});
+		return false;
+	}
+
 	if (title_copy == 'exists') {
 		Swal.fire({
 			title: "Failed!",
