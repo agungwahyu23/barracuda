@@ -110,7 +110,7 @@ Upload price per single IDR 50000
 					<div class="form-group form-float">
 						<label class="form-label">Whatsapp Number*</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="contact_person" placeholder="+62 857xxx" onkeypress="return hanyaAngka(event)">
+							<input type="text" class="form-control" name="contact_person" placeholder="+62 857xxx" onkeypress="return hanyaAngka(event)" required>
 						</div>
 					</div>
 
@@ -169,7 +169,7 @@ Upload price per single IDR 50000
 						<span>Upload File Music* (The file name must match the title)</span>
                         <!-- <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple /> -->
 						<input type="hidden" name="order_id" id="order_id" class="mb-4"><br>
-						<input type="hidden" name="file_name" id="file_name" class="mb-4"><br>
+						<input type="hidden" name="file_name" id="file_name" class="mb-4" required><br>
 
 						<div id="list"></div>
 						<input type="button" id="pick" value="Upload">
@@ -177,7 +177,7 @@ Upload price per single IDR 50000
 
 					<div class="form-group form-float">
 						<span>Upload identity card/KTP*</span>
-                        <input name="ktp" id="ktp" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationKtp()" ><br>
+                        <input name="ktp" id="ktp" type="file" multiple style="margin-top:10px!important" onchange="return fileValidationKtp()" required><br>
 
 						<div id="sliderKtp">
 							<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
