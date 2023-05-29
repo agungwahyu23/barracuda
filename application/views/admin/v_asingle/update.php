@@ -89,9 +89,15 @@
 						<span>Bukti Transfer</span><br>
                         <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-								<a href="<?= base_url(''). $single->attachment ?>" data-sub-html="<?= $single->attachment ?>">
-									<img class="img-responsive thumbnail" src="<?= base_url(''). $single->attachment ?>">
+								<?php if ($single->attachment == '') { ?>
+									<a href="<?= base_url('assets/admin/images/tidak-ada.png') ?>" data-sub-html="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
 								</a>
+								<?php }else{?>
+									<a href="<?= base_url(''). $single->attachment ?>" data-sub-html="<?= $single->attachment ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url(''). $single->attachment ?>">
+									</a>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
