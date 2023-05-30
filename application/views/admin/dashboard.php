@@ -22,7 +22,7 @@
 			</div>
 			<div class="content">
 				<div class="text">TOTAL ALBUM</div>
-				<div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"><?= $single->result ?></div>
+				<div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"><?= $album->result ?></div>
 			</div>
 		</div>
 	</div>
