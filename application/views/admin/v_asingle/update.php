@@ -102,6 +102,38 @@
 						</div>
 					</div>
 					<div class="form-group form-float">
+						<span>KTP</span><br>
+                        <div class="list-unstyled row clearfix animated-thumbnials2">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+								<?php if ($single->ktp == '') { ?>
+									<a href="<?= base_url('assets/admin/images/tidak-ada.png') ?>" data-sub-html="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+								</a>
+								<?php }else{?>
+									<a href="<?= base_url(''). $single->ktp ?>" data-sub-html="<?= $single->ktp ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url(''). $single->ktp ?>">
+									</a>
+								<?php } ?>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<span>Cover</span><br>
+                        <div class="list-unstyled row clearfix animated-thumbnials2">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+								<?php if ($single->cover == '') { ?>
+									<a href="<?= base_url('assets/admin/images/tidak-ada.png') ?>" data-sub-html="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+								</a>
+								<?php }else{?>
+									<a href="<?= base_url(''). $single->cover ?>" data-sub-html="<?= $single->cover ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url(''). $single->cover ?>">
+									</a>
+								<?php } ?>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-float">
 						<label class="form-label">Status</label>
 						<div class="form-line">
 							<select name="status" class="form-control" id="status">

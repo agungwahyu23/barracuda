@@ -33,15 +33,19 @@
 					</div>
 					<div class="form-group form-float">
 						<label class="form-label">Cover (300px x 300px)</label><br>
-						<?php if (isset($album->cover)) { ?>
-							<div id="slider">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url('') . $album->cover; ?>" alt="your image" />
+						<div class="list-unstyled row clearfix animated-thumbnials2">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+								<?php if ($album->cover == '') { ?>
+									<a href="<?= base_url('assets/admin/images/tidak-ada.png') ?>" data-sub-html="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+								</a>
+								<?php }else{?>
+									<a href="<?= base_url(''). $album->cover ?>" data-sub-html="<?= $album->cover ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url(''). $album->cover ?>">
+									</a>
+								<?php } ?>
 							</div>
-						<?php }else{ ?>
-							<div id="slider">
-								<img class="img-thumbnail" width="200px" height="200px" src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="your image" />
-							</div>
-						<?php } ?>
+						</div>
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
@@ -63,11 +67,17 @@
 					</div>
 					<div class="form-group form-float">
 						<span>Bukti Transfer</span><br>
-                        <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                        <div class="list-unstyled row clearfix animated-thumbnials2">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-								<a href="<?= base_url(''). $album->attachment ?>" data-sub-html="<?= $album->attachment ?>">
-									<img class="img-responsive thumbnail" src="<?= base_url(''). $album->attachment ?>">
+								<?php if ($album->attachment == '') { ?>
+									<a href="<?= base_url('assets/admin/images/tidak-ada.png') ?>" data-sub-html="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
+									<img class="img-responsive thumbnail" src="<?= base_url('assets/admin/images/tidak-ada.png') ?>">
 								</a>
+								<?php }else{?>
+									<a href="<?= base_url(''). $album->attachment ?>" data-sub-html="<?= $album->attachment ?>">
+										<img class="img-responsive thumbnail" src="<?= base_url(''). $album->attachment ?>">
+									</a>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
