@@ -144,7 +144,7 @@
 						</div>
 					</div>
 					<button class="btn btn-primary waves-effect" type="submit">Kirim</button>
-					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Kembali</a>
+					<a href="<?= site_url('v2/user/single') ?>" class="btn btn-warning waves-effect">Kembali</a>
 				</form>
 			</div>
 		</div>
