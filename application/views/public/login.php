@@ -1,9 +1,16 @@
 <!DOCTYPE html>
   <html lang="en">
     <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Tomoko Yuki</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik</title>
+		<meta content="tomokoyuki, release, agregator, music distribution" name="keywords">
+		<meta content="Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" name="description">
+		<meta property="og:type" content="website" />
+		<meta property = "og: title" content = "Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik" />
+		<meta property="og:description" content = "Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" />
+		<meta name="google-site-verification" content="ghlXfT2A6dsK0JM0QtD71OzenAWIPGgaVU2yNMdmMVg" />
+		<link rel="canonical" href="https://tomokoyuki.com/" />
 			<link rel="icon" href="<?= base_url() ?>assets/public/assets/img/logo-removebg-preview.png">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	  <link rel="stylesheet" href="<?= base_url() ?>assets/public/mystyle.css">
