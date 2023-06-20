@@ -1,13 +1,15 @@
 <head>
-    <title>Tomoko Yuki</title>
+    <title>Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta content="agregator, music distribution, barracuda, release" name="keywords">
-		<meta content="Release musik Anda ke seluruh dunia dengan mudah dan efektif melalui barracuda, agregator distribusi musik yang terkemuka. Bergabunglah dengan kami hari ini untuk memperluas jangkauan musik Anda dan menjangkau lebih banyak pendengar" name="description">
-		<meta property = "og: title" content = "Barracuda: Agregator Distribusi Musik untuk Rilisan Anda" />
-		<meta property="og:description" content = "Release musik Anda ke seluruh dunia dengan mudah dan efektif melalui barracuda, agregator distribusi musik yang terkemuka. Bergabunglah dengan kami hari ini untuk memperluas jangkauan musik Anda dan menjangkau lebih banyak pendengar" />
+		<meta content="tomokoyuki, release, agregator, music distribution" name="keywords">
+		<meta content="Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" name="description">
+		<meta property="og:type" content="website" />
+		<meta property = "og: title" content = "Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik" />
+		<meta property="og:description" content = "Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" />
 		<meta name="google-site-verification" content="ghlXfT2A6dsK0JM0QtD71OzenAWIPGgaVU2yNMdmMVg" />
+		<link rel="canonical" href="https://tomokoyuki.com/" />
 
     <!-- carousel CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/public/assets/css/owl.carousel.min.css">

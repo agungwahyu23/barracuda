@@ -64,7 +64,7 @@
                     Your payment will be validated by admin. Wait for the next email.
                 </p>
                 <div class="d-flex justify-content-center">
-                    <a href="<?= base_url('home') ?>" class="btn btn-view d-inline-flex text-white">
+                    <a href="<?= base_url('') ?>" class="btn btn-view d-inline-flex text-white">
                         Back to Home
                     </a>
                 </div>
