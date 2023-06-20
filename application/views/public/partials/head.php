@@ -3,11 +3,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta content="tomokoyuki, release, agregator, music distribution" name="keywords">
-		<meta content="Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" name="description">
+		<meta content="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" name="keywords">
+		<meta content="Tomokuki adalah agregator musik terbaik di Indonesia. Temukan ribuan lagu dari berbagai genre musik di Indonesia melalui platform kami. Distribusikan musik digital Anda dan jangkau lebih banyak pendengar dengan Tomokuki, agregator Spotify terpercaya." name="description">
 		<meta property="og:type" content="website" />
 		<meta property = "og: title" content = "Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik" />
-		<meta property="og:description" content = "Release music Anda ke seluruh dunia dengan mudah dan efektif melalui tomokoyuki, agregator music distribution yang terkemuka. Jelajahi kemudahan music distribution dan raih kesuksesan dengan agregator musik yang dapat diandalkan" />
+		<meta property="og:description" content = "Tomokuki adalah agregator musik terbaik di Indonesia. Temukan ribuan lagu dari berbagai genre musik di Indonesia melalui platform kami. Distribusikan musik digital Anda dan jangkau lebih banyak pendengar dengan Tomokuki, agregator Spotify terpercaya." />
 		<meta name="google-site-verification" content="ghlXfT2A6dsK0JM0QtD71OzenAWIPGgaVU2yNMdmMVg" />
 		<link rel="canonical" href="https://tomokoyuki.com/" />
 
