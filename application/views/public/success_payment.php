@@ -3,8 +3,14 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Barracuda</title>
+      <title>Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik</title>
+	  <meta content="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" name="keywords">
+		<meta content="Tomokuki adalah agregator musik terbaik di Indonesia. Temukan ribuan lagu dari berbagai genre musik di Indonesia melalui platform kami. Distribusikan musik digital Anda dan jangkau lebih banyak pendengar dengan Tomokuki, agregator Spotify terpercaya." name="description">
+		<meta property="og:type" content="website" />
+		<meta property = "og: title" content = "Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik" />
+		<meta property="og:description" content = "Tomokuki adalah agregator musik terbaik di Indonesia. Temukan ribuan lagu dari berbagai genre musik di Indonesia melalui platform kami. Distribusikan musik digital Anda dan jangkau lebih banyak pendengar dengan Tomokuki, agregator Spotify terpercaya." />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	  <link rel="canonical" href="https://tomokoyuki.com/" />
     </head>
     <body>
        <section class="h-100 w-100" style="box-sizing: border-box; background-image: linear-gradient(to bottom, rgba(31, 29, 43, 1), rgba(39, 37, 53, 1));">
