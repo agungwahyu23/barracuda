@@ -169,7 +169,7 @@ width: 100% !important;
 
 													<div id="slider">
 														<img class="img-thumbnail" width="200px" height="200px"
-															src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" />
+															src="<?php echo base_url(); ?>/assets/admin/images/tidak-ada.png" alt="Agregator Musik tomokoyuki" />
 													</div><br>
 
 													<button class="btn btn-primary waves-effect" type="submit">Submit</button>

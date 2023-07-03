@@ -34,8 +34,8 @@
 		}
 
 		.logos {
-			width: 90px;
-			height: 40px;
+			width: 155px;
+			height: 60px;
 		}
 
 		.logos video{
@@ -400,22 +400,22 @@
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/logo1.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" height="50">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo1.png" alt="Agregator Musik Tomokoyuki" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/logo2.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" height="50">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo2.png" alt="agregator musik di indonesia tomokoyuki" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/logo3.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" height="50">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo3.png" alt="Agregator Musik tomokoyuki" height="50">
                             </div>
                         </div>
                         <div class="single-logo-wrapper">
                             <div class="single-item">
-                                <img src="<?= base_url() ?>assets/public/assets/img/logo4.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" height="50">
+                                <img src="<?= base_url() ?>assets/public/assets/img/logo4.png" alt="Agregator Musik tomokoyuki" height="50">
                             </div>
                         </div>
                     </div>
@@ -487,7 +487,7 @@
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-footer">
                         <div class="logo-area footer">
-                            <img src="<?= base_url() ?>assets/public/assets/img/logo-removebg-preview.png" alt="">
+                            <img src="<?= base_url() ?>assets/public/assets/img/logo-removebg-preview.png" alt="agregator musik indonesia">
                         </div>
                     </div>
                 </div>

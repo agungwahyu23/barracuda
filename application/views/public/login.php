@@ -64,7 +64,7 @@
 				<div class="row">
 					<div class="col-lg-6 px-md-0 my-auto">
 						<div class="headline">
-						<img class="img-fluid" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-6.png" alt="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki">
+						<img class="img-fluid" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-6.png" alt="Agregator Musik tomokoyuki">
 						</div>
 					</div>
 					<div class="col-lg-6 mt-5 mt-md-0">
