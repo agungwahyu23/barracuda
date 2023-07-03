@@ -13,7 +13,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/speaker.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/speaker.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="single-about-text">
 						<h4>Publish Single</h4>
@@ -24,7 +24,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/music-album.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/music-album.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="single-about-text">
 						<h4>Publish Album</h4>
@@ -35,7 +35,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/distribution.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/distribution.png" alt="Music Distribution">
 					</div>
 					<div class="single-about-text">
 						<h4>Distribusi</h4>
@@ -48,7 +48,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/customer-support.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/customer-support.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="single-about-text">
 						<h4>Customer Service Support</h4>
@@ -59,7 +59,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/megaphone.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/megaphone.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="single-about-text">
 						<h4>Promosi</h4>
@@ -70,7 +70,7 @@
 			<div class="col-lg-4">
 				<a href="#" class="single-about">
 					<div class="single-about-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/data-analytics.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/data-analytics.png" alt="Music Distribution tomokoyuki">
 					</div>
 					<div class="single-about-text">
 						<h4>Request Report</h4>

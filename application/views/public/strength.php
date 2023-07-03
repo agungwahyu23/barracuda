@@ -14,7 +14,7 @@
 			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/fast-processing.png" alt=""
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/fast-processing.png" alt="Agregator Musik tomokoyuki"
 							style="width: 100px!important">
 					</div>
 					<div class="space-30"></div>
@@ -27,7 +27,7 @@
 			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/headphones.png" alt=""
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/headphones.png" alt="Music Distribution tomokoyuki"
 							style="width: 100px!important">
 					</div>
 					<div class="space-30"></div>
@@ -41,7 +41,7 @@
 			<div class="col-12 col-md-6 col-lg-4 px-4">
 				<div class="single-team">
 					<div class="single-team-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/icon/tag.png" alt=""
+						<img src="<?= base_url() ?>assets/public/assets/img/icon/tag.png" alt="Agregator Musik tomokoyuki"
 							style="width: 100px!important">
 					</div>
 					<div class="space-30"></div>

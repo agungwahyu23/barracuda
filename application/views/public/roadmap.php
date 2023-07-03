@@ -17,7 +17,7 @@
 			<div class="roadmap-item">
 				<div class="single-roadmap text-center road-left">
 					<div class="single-roadmap-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-1.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-1.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="space-30"></div>
 					<div class="roadmap-text">
@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class="col-5 align-self-center">
 							<div class="single-roadmap-img">
-								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-2.png" alt="">
+								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-2.png" alt="agregator musik di indonesia">
 							</div>
 						</div>
 						<div class="col-7">
@@ -51,7 +51,7 @@
 			<div class="roadmap-item">
 				<div class="single-roadmap text-center road-left">
 					<div class="single-roadmap-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-4.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-4.png" alt="Agregator Musik tomokoyuki">
 					</div>
 					<div class="space-30"></div>
 					<div class="roadmap-text">
@@ -68,7 +68,7 @@
 					<div class="row">
 						<div class="col-5 align-self-center">
 							<div class="single-roadmap-img">
-								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-5.png" alt="">
+								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-5.png" alt="agregator musik di indonesia">
 							</div>
 
 						</div>
@@ -86,7 +86,7 @@
 			<div class="roadmap-item">
 				<div class="single-roadmap text-center road-left">
 					<div class="single-roadmap-img">
-						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-4.png" alt="">
+						<img src="<?= base_url() ?>assets/public/assets/img/roadmap-4.png" alt="Music Distribution">
 					</div>
 					<div class="space-30"></div>
 					<div class="roadmap-text">
@@ -103,7 +103,7 @@
 					<div class="row">
 						<div class="col-5 align-self-center">
 							<div class="single-roadmap-img">
-								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-5.png" alt="">
+								<img src="<?= base_url() ?>assets/public/assets/img/roadmap-5.png" alt="Music Distribution">
 							</div>
 
 						</div>

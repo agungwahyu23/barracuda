@@ -55,7 +55,7 @@
 
     <div class="empty-4-2" style="font-family: 'Poppins', sans-serif;">    
         <div class="mx-auto d-flex align-items-center justify-content-center flex-column">
-            <img class="img" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-7.png" alt="">                       
+            <img class="img" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-7.png" alt="Agregator Musik tomokoyuki">                       
             <div class="text-center w-100">
                 <h1 class="title-text text-white">
                     Your Payment Will be Processed

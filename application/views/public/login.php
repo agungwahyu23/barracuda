@@ -64,7 +64,7 @@
 				<div class="row">
 					<div class="col-lg-6 px-md-0 my-auto">
 						<div class="headline">
-						<img class="img-fluid" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-6.png" alt="">
+						<img class="img-fluid" src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-6.png" alt="Agregator Musik tomokoyuki">
 						</div>
 					</div>
 					<div class="col-lg-6 mt-5 mt-md-0">
