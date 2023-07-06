@@ -164,3 +164,8 @@ $route['list-item-material/(:any)'] = 'Item/list_material_item/$1';
 $route['item-update/(:any)'] =   'Item/update/$1';
 $route['item-detail/(:any)'] =   'Item/detail/$1';
 
+/* news */
+$route['v2/user/news'] =   'Admin_news/index';
+$route['v2/user/news-add'] =   'Admin_news/add';
+$route['v2/user/news-update/(:any)'] =   'Admin_news/update/$1';
+$route['v2/user/news-detail/(:any)'] =   'Admin_news/detail/$1';
