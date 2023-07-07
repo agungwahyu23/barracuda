@@ -14,6 +14,18 @@
 				<form id="form_validation" method="POST" enctype="multipart/form-data">
 					<div class="form-group form-float">
 						<div class="form-line">
+							<input type="text" class="form-control" name="keyword">
+							<label class="form-label">Kata Kunci</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
+							<input type="text" class="form-control" name="description">
+							<label class="form-label">Meta Deskripsi</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
 							<input type="text" class="form-control" name="title" required>
 							<label class="form-label">Judul*</label>
 						</div>

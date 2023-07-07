@@ -109,6 +109,8 @@ class Admin_news extends CI_Controller {
 			$path['link']= "upload/artikel/";
 
 			$data = [
+				'keyword' 				=> $this->input->post('keyword'),
+				'description' 			=> $this->input->post('description'),
 				'title' 				=> $this->input->post('title'),
 				'slug' 					=> $slug,
 				'content' 				=> $this->input->post('content'),
@@ -127,6 +129,8 @@ class Admin_news extends CI_Controller {
 			}
 		}else{
 			$data = [
+				'keyword' 				=> $this->input->post('keyword'),
+				'description' 			=> $this->input->post('description'),
 				'title' 				=> $this->input->post('title'),
 				'slug' 					=> $slug,
 				'content' 				=> $this->input->post('content'),
