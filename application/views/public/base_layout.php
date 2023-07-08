@@ -4,8 +4,8 @@
 <style>
 	/* @media only screen and (min-width: 991px) { */
 		.logos {
-			width: 180px;
-			height: 80px;
+			width: 190px;
+			height: 90px;
 			border-radius: 100px;
 			background-color: #FFBB13ff;
 			overflow: hidden;
@@ -16,7 +16,7 @@
     	top: 0;
     	left: 0; */
 			object-fit: revert;
-			width: 185px;
+			width: 190px;
 			height: 100%;
 			transform: scale(1.2);
 		}
@@ -117,8 +117,8 @@
 			#welcome-screen-logo {
 			position: relative;
 			overflow: hidden;
-			width: 120px;
-			height: 120px;
+			width: 550px;
+			height: 550px;
 			flex: 0 0 auto;
 			display: flex;
 			align-items: center;
