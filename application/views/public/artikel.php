@@ -23,7 +23,7 @@
 					<?php } ?>
 					</div>
 					<div class="single-blog-text">
-						<a href="single-blog.html"><?= $artikel->title ?></a>
+						<a href="<?= site_url('article/'.$artikel->slug) ?>"><?= $artikel->title ?></a>
 						<div class="space-10"></div>
 						<small> <i class="fa fa-clock-o"></i> <?= date_indo(date('Y-m-d', strtotime($artikel->created_at))) ?></small>
 					</div>

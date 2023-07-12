@@ -65,6 +65,8 @@ $route['test_email'] =   'Login/send_example_email';
 $route['payment/(:any)'] =   'Login/payment/$1';
 $route['success_payment'] =   'Login/success';
 
+$route['article/(:any)'] =   'News/show/$1';
+
 //member area
 /* user */
 $route['user/profile'] =   'Profile/index';

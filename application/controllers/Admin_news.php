@@ -139,6 +139,8 @@ class Admin_news extends CI_Controller {
 				'created_by' 			=> $this->session->userdata('name'),
 				
 			];
+			// var_dump($data);
+			// die;
 			
 			$result = $this->Ma_news->save_data($data);
 

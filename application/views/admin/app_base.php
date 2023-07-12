@@ -54,7 +54,8 @@
     <script src="<?php echo base_url(); ?>assets/admin/toastr/toastr.js"></script>
     
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/wizard.css">
-	<script src="<?php echo base_url()?>assets/admin/plugins/tinymce/tinymce.min.js"></script>
+	<!-- <script src="<?php echo base_url()?>assets/admin/plugins/tinymce/tinymce.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.5/tinymce.min.js"></script>
 
 	<style>
 		.swal2-popup {
