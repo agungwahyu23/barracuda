@@ -162,8 +162,14 @@
 						<span>Saldo</span>
 					</a>
 				</li>
+				<li>
+					<a href="<?= site_url('v2/user/news') ?>">
+						<i class="material-icons">newspaper</i>
+						<span>Artikel</span>
+					</a>
+				</li>
 				<!-- <li>
-					<a href="<?= site_url('v2/user/album') ?>">
+					<a href="<?= site_url('v2/user/news') ?>">
 						<i class="material-icons">list</i>
 						<span>News</span>
 					</a>

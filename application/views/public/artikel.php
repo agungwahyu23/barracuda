@@ -10,41 +10,34 @@
 			</div>
 		</div>
 		<div class="row">
+			<?php  
+			foreach ($artikels as $key => $artikel) {
+			?>
+
 			<div class="col-12 col-lg-4">
 				<div class="single-blog wow fadeInUp">
-					<div class="single-blog-image blog-bg-1"></div>
+					<?php if ($artikel->thumbnail == '') { ?>
+						<div class="single-blog-image" style="background: url('assets/admin/images/tidak-ada.png');">
+					<?php }else{ ?>
+						<div class="single-blog-image" style="background: url('upload/artikel/<?=$artikel->thumbnail?>');">
+					<?php } ?>
+					</div>
 					<div class="single-blog-text">
-						<a href="single-blog.html">How Should You Think Before Starting a Project .</a>
+						<a href="<?= site_url('article/'.$artikel->slug) ?>"><?= $artikel->title ?></a>
 						<div class="space-10"></div>
-						<small> <i class="fa fa-clock-o"></i> January 12th, 2018</small>
+						<small> <i class="fa fa-clock-o"></i> <?= date_indo(date('Y-m-d', strtotime($artikel->created_at))) ?></small>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-lg-4">
-				<div class="single-blog wow fadeInUp">
-					<div class="single-blog-image blog-bg-2"></div>
-					<div class="single-blog-text">
-						<a href="single-blog.html">How Vue.js Become popular in 2018. so much productive. </a>
-						<div class="space-10"></div>
-						<small> <i class="fa fa-clock-o"></i> January 12th, 2018</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-lg-4">
-				<div class="single-blog wow fadeInUp">
-					<div class="single-blog-image blog-bg-3"></div>
-					<div class="single-blog-text">
-						<a href="single-blog.html">10 Tools who can make you so much productive.</a>
-						<div class="space-10"></div>
-						<small> <i class="fa fa-clock-o"></i> January 12th, 2018</small>
-					</div>
-				</div>
-			</div>
+
+			<?php } ?>
 		</div>
-		<div class="space-50"></div>
-		<div class="blog-blog-btn text-center">
-			<a href="#" class="gradient-btn">learn more</a>
-		</div>
+		<?php if ($countArtikel > 3) {?>
+			<div class="space-50"></div>
+			<div class="blog-blog-btn text-center">
+				<a href="#" class="gradient-btn">learn more</a>
+			</div>
+		<?php } ?>
 	</div>
 </div>
 </div>
