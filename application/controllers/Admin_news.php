@@ -139,8 +139,6 @@ class Admin_news extends CI_Controller {
 				'created_by' 			=> $this->session->userdata('name'),
 				
 			];
-			// var_dump($data);
-			// die;
 			
 			$result = $this->Ma_news->save_data($data);
 
@@ -156,24 +154,10 @@ class Admin_news extends CI_Controller {
 		echo json_encode($out);
 	}
 
-	public function detail($id)
-	{
-		$data['page'] = "Detail News";
-		$data['genre'] 	= $this->Ma_album->getGenre();
-		$data['news'] = $this->Ma_album->select_by_id($id);
-		$data['id'] = $id;
-
-		$data['content'] 	= "admin/v_anews/detail";
-
-		$this->loadkonten('admin/app_base',$data);
-	}
-
-	public function Update($id)
+	public function update($id)
 	{
 		$data['page'] = "Update News";
-		$data['genre'] 	= $this->Ma_album->getGenre();
-		$data['news'] = $this->Ma_album->select_by_id($id);
-		$data['single'] = $this->Ma_album->select_detail_single($id);
+		$data['news'] = $this->Ma_news->select_by_id($id);
 		$data['id'] = $id;
 
 		$data['content'] 	= "admin/v_anews/update";
@@ -183,26 +167,68 @@ class Admin_news extends CI_Controller {
 
 	public function prosesUpdate()
 	{
-			$where = [
-				'id' 		   => $this->input->post('id')
-			];
+			$id = $this->input->post('id');
 
-			$order_id =  $this->input->post('order_id');
+			$judul = $this->input->post('title');
+			$slug = str_replace(" ", "_", strtolower($judul));
+			$newnamefile = 'artikel_' . str_replace(" ", "_", strtolower($judul));
+			$config['upload_path'] = './upload/artikel';
+			$config['allowed_types'] = 'jpg|png|gif|jpeg';
+			$config['max_size'] = '102400';
+			$config['max_width'] = 0;
+			$config['max_height'] = 0;
+			$config['overwrite'] = TRUE;
+			$config['remove_spaces'] = TRUE;
+			$config['file_ext_tolower'] = TRUE;
+			$config['file_name'] = $newnamefile;
 
-			$id_user 	= $this->session->userdata('id');
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
 
-			$data_order = [
-				'status' 				=> $this->input->post('status'),
-			];
-			
-			$result = $this->db->update('tb_order', $data_order, array('id' => $order_id));
-
-			if ($result > 0) {
-				$out = array('status'=>'berhasil');
-			} else {
-				$out['status'] = 'gagal';
-			}
-			
+			if ($this->upload->do_upload('thumbnail')){
+				$album_file = $this->upload->data();
+				$path['link']= "upload/artikel/";
+	
+				$data = [
+					'keyword' 				=> $this->input->post('keyword'),
+					'description' 			=> $this->input->post('description'),
+					'title' 				=> $this->input->post('title'),
+					'slug' 					=> $slug,
+					'content' 				=> $this->input->post('content'),
+					'thumbnail'       		=> $album_file['file_name'],
+					'is_publish' 			=> $this->input->post('is_publish'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $this->session->userdata('name'),				
+				];
+				
+				$result = $this->db->update('news', $data, array('id' => $id));
+	
+				if ($result > 0) {
+					$out = array('status'=>'berhasil');
+				} else {
+					$out['status'] = 'gagal';
+				}
+			}else{
+				$data = [
+					'keyword' 				=> $this->input->post('keyword'),
+					'description' 			=> $this->input->post('description'),
+					'title' 				=> $this->input->post('title'),
+					'slug' 					=> $slug,
+					'content' 				=> $this->input->post('content'),
+					'is_publish' 			=> $this->input->post('is_publish'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'created_by' 			=> $this->session->userdata('name'),
+					
+				];
+				
+				$result = $this->db->update('news', $data, array('id' => $id));
+	
+				if ($result > 0) {
+					$out = array('status'=>'berhasil');
+				} else {
+					$out['status'] = 'gagal';
+				}
+			}		
 
 		echo json_encode($out);
 	}
@@ -210,7 +236,7 @@ class Admin_news extends CI_Controller {
 	public function delete()
 	{
 		$id = $_POST['id'];
-		$result = $this->Ma_album->hapus($id);
+		$result = $this->Ma_news->hapus($id);
 
 		if ($result > 0) {
 			$out['status'] = 'berhasil';

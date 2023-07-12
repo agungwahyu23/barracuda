@@ -21,11 +21,8 @@ class Ma_news extends CI_Model
 	
 	public function select_by_id($id)
 	{
-		$sql = "SELECT a.*, g.genre, u.name, o.attachment, o.status 
+		$sql = "SELECT a.*
 				FROM news a 
-				LEFT JOIN genre g ON a.genre_id = g.id 
-				LEFT JOIN user u ON u.id = a.user_id
-				LEFT JOIN tb_order o ON o.id = a.order_id
 				WHERE a.id = '".$id."'
 				ORDER BY a.id ASC";
 		$data = $this->db->query($sql);

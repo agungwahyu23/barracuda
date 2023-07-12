@@ -137,7 +137,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="welcome-header">
-                        <h1><?= $content->title ?></h1>
+                        <h1 class="text-white"><?= $content->title ?></h1>
                         <div class="space-10"></div>
                         <a href="<?= base_url() ?>">home</a> <i class="fa fa-angle-right"></i> <a href="<?= site_url('news') ?>">artikel</a> <i class="fa fa-angle-right"></i><?= $content->title ?>
                     </div>
