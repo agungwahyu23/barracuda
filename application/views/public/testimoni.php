@@ -4,9 +4,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12 text-center">
-					<div class="heading">
+					<div class="head_title">
 						<div class="space-10"></div>
-						<h1>Testimonial </h1>
+						<h2>Testimonial </h2>
 					</div>
 					<div class="space-60"></div>
 				</div>
