@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<div class="heading">
+				<div class="head_title">
 					<div class="space-10"></div>
 					<h1>Artikel </h1>
 				</div>

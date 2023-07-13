@@ -3,8 +3,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<div class="heading">
-					<h1>Our Services</h1>
+				<div class="head_title">
+					<h2>Our Services</h2>
 					<p>Services Provided by Tomoko Yuki</p>
 				</div>
 			</div>

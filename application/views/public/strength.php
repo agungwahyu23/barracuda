@@ -3,8 +3,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<div class="heading">
-					<h1>Why Choose Us</h1>
+				<div class="head_title">
+					<h2>Why Choose Us</h2>
 					<p>Why should Tomoko Yuki</p>
 				</div>
 				<div class="space-60"></div>

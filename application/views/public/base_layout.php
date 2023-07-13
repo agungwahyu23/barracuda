@@ -3,6 +3,11 @@
 
 <style>
 	/* @media only screen and (min-width: 991px) { */
+		.head_title h2{
+			font-weight: 700;
+			font-size: 28px;
+		}
+
 		.logos {
 			width: 190px;
 			height: 90px;
@@ -453,9 +458,9 @@
     			<div class="single-blog-contact">
     				<div class="row">
     					<div class="col-12 text-center">
-    						<div class="heading">
+    						<div class="head_title">
     							<div class="space-10"></div>
-    							<h1>Contact Us </h1>
+    							<h2>Contact Us </h2>
     						</div>
     						<div class="space-60"></div>
     					</div>

@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<div class="heading">
+				<div class="head_title">
 					<h5>history Timeline</h5>
 					<div class="space-10"></div>
 					<h1>Development Roadmap</h1>
