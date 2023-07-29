@@ -16,8 +16,8 @@
 						<label class="form-label">Input Amount</label>
 						<div class="form-line">
 							<input type="hidden" class="form-control" name="total_amount" id="total_amount" value="<?= $user->total_income ?>">
-							<input type="text" class="form-control" name="amount_copy" id="amount" placeholder="0">
-							<input type="hidden" class="form-control" name="amount" id="amount_copy">
+							<input type="text" class="form-control format-number" name="amount_copy" data-id_input_real="amount" id="amount_copy" placeholder="0">
+							<input type="hidden" class="form-control" name="amount" id="amount">
 						</div>
 					</div>
 					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
@@ -32,14 +32,10 @@
 <script type="text/javascript">
 	var rupiah = document.getElementById('amount');
 	var amount_copy = document.getElementById("amount_copy");
-	rupiah.addEventListener('keyup', function(e){
-		// tambahkan 'Rp.' pada saat form di ketik
-		// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-		// rupiah.value = formatRupiah(this.value, 'Rp. ');
-		// amount_copy.value = rupiah.value.replace(/\D/g,'');
-		rupiah.value = this.value;
-		amount_copy.value = rupiah.value.replace(/\D/g,'');
-	});
+	// rupiah.addEventListener('keyup', function(e){
+	// 	rupiah.value = this.value;
+	// 	amount_copy.value = rupiah.value.replace(/\D/g,'');
+	// });
 
 	/* Fungsi formatRupiah */
 	function formatRupiah(angka, prefix){
@@ -71,7 +67,7 @@
 
 $('#form_add').submit(function(e) {
 	// cek apakah input > total amount
-	var amount = $('#amount_copy').val();
+	var amount = $('#amount').val();
 	var total = $('#total_amount').val();
 
 	if (total == '') {

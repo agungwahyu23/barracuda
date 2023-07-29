@@ -104,3 +104,8 @@ function format_rupiah($angka){
     $rupiah = number_format($angka,0,',','.');
     return "Rp ".$rupiah;
 }
+
+function format_dolar($angka){
+    // $rupiah = number_format($angka,0,'.','.');
+    return "$ ".$angka;
+}

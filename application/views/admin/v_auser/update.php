@@ -50,8 +50,9 @@
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
-							<input type="text" class="form-control" name="total_income" value="<?= $user->total_income ?>">
-							<label class="form-label">Total Pendapatan</label>
+							<input type="text" class="form-control format-number formatCurrencyJs" name="total_income_preview" data-id_input_real="total_income" id="total_income_preview" value="<?= format_dolar($user->total_income) ?>">
+							<input type="hidden" class="form-control" id="total_income" name="total_income" value="<?= $user->total_income ?>">
+							<label class="form-label">Total Pendapatan (Dollar)</label>
 						</div>
 					</div>
 					<!-- <div class="form-group form-float">

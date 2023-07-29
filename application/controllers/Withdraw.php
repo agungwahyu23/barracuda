@@ -42,7 +42,7 @@ class Withdraw extends CI_Controller {
 
 			$no++;
 			$row = array();
-			$row[] = $withdraw->amount;
+			$row[] = '$ '.$withdraw->amount;
 			$row[] = $withdraw->created_at;
 
 			$status = '';

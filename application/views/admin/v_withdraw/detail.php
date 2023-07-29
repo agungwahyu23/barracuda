@@ -15,7 +15,7 @@
 					<div class="form-group form-float">
 						<label class="form-label">Request Amount</label>
 						<div class="form-line">
-							<input type="text" class="form-control" name="amount_copy" id="amount" placeholder="0" value="<?= format_rupiah($withdraw->amount) ?>" disabled>
+							<input type="text" class="form-control" name="amount_copy" id="amount" placeholder="0" value="<?= format_dolar($withdraw->amount) ?>" disabled>
 						</div>
 					</div>
 
