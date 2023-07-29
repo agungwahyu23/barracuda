@@ -8,6 +8,8 @@ class Admin_user extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		$this->load->helper('email');
+		$this->load->helper('app');
 		$this->load->library('session');
 		$this->load->model('Ma_user');
 	}

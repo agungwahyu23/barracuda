@@ -40,7 +40,7 @@ class Admin_withdraw extends CI_Controller {
 			$no++;
 			$row = array();
 			$row[] = $withdraw->name;
-			$row[] = $withdraw->amount;
+			$row[] = '$ '.$withdraw->amount;
 			$row[] = $withdraw->created_at;
 
 			$status = '';

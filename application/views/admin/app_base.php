@@ -206,6 +206,7 @@
     </section>
 
     <?php include('partials/script.php') ?>
+    <?php include('partials/numbers_js.php') ?>
 </body>
 
 </html>
