@@ -89,7 +89,14 @@ class Admin_news extends CI_Controller {
 	{
 		$id_user 	= $this->session->userdata('id');
 		$judul = $this->input->post('title');
-		$slug = str_replace(" ", "_", strtolower($judul));
+
+		if ($this->input->post('slug') != null) {
+			$slug = $this->input->post('slug');
+		}else{
+			$slug = str_replace(" ", "-", strtolower($judul));
+		}
+
+		
 		$newnamefile = 'artikel_' . str_replace(" ", "_", strtolower($judul));
 		$config['upload_path'] = './upload/artikel';
 		$config['allowed_types'] = 'jpg|png|gif|jpeg';
@@ -170,7 +177,13 @@ class Admin_news extends CI_Controller {
 			$id = $this->input->post('id');
 
 			$judul = $this->input->post('title');
-			$slug = str_replace(" ", "_", strtolower($judul));
+
+			if ($this->input->post('slug') != null) {
+				$slug = $this->input->post('slug');
+			}else{
+				$slug = str_replace(" ", "-", strtolower($judul));
+			}
+
 			$newnamefile = 'artikel_' . str_replace(" ", "_", strtolower($judul));
 			$config['upload_path'] = './upload/artikel';
 			$config['allowed_types'] = 'jpg|png|gif|jpeg';

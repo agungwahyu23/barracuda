@@ -156,7 +156,9 @@
                         <div class="space-10"></div>
                         <small>by <?= $content->created_by ?> <span><i class="fa fa-clock-o"></i> <?= date_indo(date('Y-m-d', strtotime($content->created_at))) ?></span></small>
                         <div class="space-20"></div>
-
+							<div class="image-thumbnail">
+								<img src="<?= base_url('/upload/artikel/'.$content->thumbnail); ?>" alt="" style=" width: 100%; height: 400px; object-fit: contain; margin-bottom: 20px;">
+							</div>
                         <?= $content->content; ?>
                     </div>
                 </div>
