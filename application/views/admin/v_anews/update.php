@@ -21,6 +21,12 @@
 					</div>
 					<div class="form-group form-float">
 						<div class="form-line">
+							<input type="text" class="form-control" name="slug" value="<?= isset($news->slug) ? $news->slug : '' ?>">
+							<label class="form-label">Slug</label>
+						</div>
+					</div>
+					<div class="form-group form-float">
+						<div class="form-line">
 							<input type="text" class="form-control" name="description" value="<?= isset($news->description) ? $news->description : '' ?>">
 							<label class="form-label">Meta Deskripsi</label>
 						</div>
