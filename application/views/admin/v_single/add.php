@@ -274,7 +274,7 @@ window.onload = () => {
 			return false;
 		}
 
-		if (file.size > 10 * 1024 * 1024) {
+		if (file.size > 104857600) {
 			toastr.error('Maximum file size 100Mb.', 'Warning', {
 				timeOut: 5000
 			}, toastr.options = {
@@ -293,7 +293,7 @@ window.onload = () => {
 			var fileName = file.name;
 			var newFileName = fileName.split(".")[0];
 
-			if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 10 * 1024 * 1024) && (newFileName == title)) {
+			if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 104857600) && (newFileName == title)) {
 			  let row = document.createElement("div");
 			  row.id = file.id;
 			  row.innerHTML = `${file.name} (${plupload.formatSize(file.size)}) <strong></strong>`;
@@ -307,7 +307,7 @@ window.onload = () => {
 		var title = $('#title').val();
 		var fileName = file.name;
 		var newFileName = fileName.split(".")[0];
-		if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 10 * 1024 * 1024) && (newFileName == title)) {
+		if (!(allowedTypes.indexOf(file.type) === -1) && (file.size < 104857600) && (newFileName == title)) {
         document.querySelector(`#${file.id} strong`).innerHTML = `${file.percent}%`;
 		}
       },
