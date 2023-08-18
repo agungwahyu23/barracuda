@@ -114,7 +114,7 @@
 									<input type="text" class="form-control mt-2 text-white" placeholder="Ex: Jl. Mawar No.xx, Surabaya, Kec. Wonocolo" name="address" required>
 								</label>
 							</div>
-							<button type="submit" class="btn btn-card">
+							<button type="submit" class="btn btn-card" id="btn_submit">
 								Daftar
 							</button>
 							<div class="text-white mt-2">
@@ -142,6 +142,9 @@
 			const email = $('#email').val();
 			const regex = /@gmail\.com$/i;
 
+			var button = document.getElementById("btn_submit");
+            button.setAttribute("disabled", true);
+
 			if (regex.test(email)) {				
 				var data = $(this).serialize();
 				$.ajax({
@@ -157,6 +160,7 @@
 					contentType: false,
 					cache: false,
 				}).done(function(data) {
+					button.setAttribute("disabled", false);
 					var result = jQuery.parseJSON(data);
 					console.log(data);
 					if (result.status == 'berhasil') {

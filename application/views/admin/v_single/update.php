@@ -86,7 +86,7 @@
                         <input name="file" id="file" type="file" onchange="return validationSingle(this)" multiple style="padding-top:10px!important"/>
 						<small style="color:red">*Leave blank if you don't want to change the uploaded file</small>
 					</div>
-					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<button class="btn btn-primary waves-effect" type="submit" id="btn_submit">Submit</button>
 					<a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a>
 				</form>
 			</div>
@@ -155,6 +155,8 @@ function myFunction() {
 }
 
 $('#form_validation').submit(function(e) {
+	var button = document.getElementById("btn_submit");
+    button.setAttribute("disabled", true);
     var data = $(this).serialize();
     // var data = new FormData($(this)[0]);
     $.ajax({
@@ -173,6 +175,7 @@ $('#form_validation').submit(function(e) {
             cache: false,
         })
         .done(function(data) {
+			button.setAttribute("disabled", false);
 			hideLoading();
             var result = jQuery.parseJSON(data);
             console.log(data);
