@@ -191,7 +191,7 @@ Upload price per single IDR 50000
 						</div>
 					</div> -->
 					
-					<button class="btn btn-primary waves-effect" type="submit">Submit</button>
+					<button class="btn btn-primary waves-effect" type="submit" id="btn_submit">Submit</button>
 					<!-- <a href="<?= site_url('user/single') ?>" class="btn btn-warning waves-effect">Cancel</a> -->
 					<a href="#" class="btn btn-warning waves-effect back">Cancel</a>
 				</form>
@@ -454,6 +454,9 @@ function validationSingle(fileInput) {
 }
 
 $('#form_validation').submit(function(e) {
+	var button = document.getElementById("btn_submit");
+    button.setAttribute("disabled", true);
+
 	let title_copy = $('#title_copy').val();
 	let file_name = $('#file_name').val();
 
@@ -467,6 +470,7 @@ $('#form_validation').submit(function(e) {
 		});
 		return false;
 	}
+	button.setAttribute("disabled", false);
 
 	if (title_copy == 'exists') {
 		Swal.fire({
@@ -477,6 +481,7 @@ $('#form_validation').submit(function(e) {
 			dangerMode: true,
 		});
 		return false;
+		button.setAttribute("disabled", false);
 	}else{
 		var data = $(this).serialize();
 	
@@ -497,9 +502,9 @@ $('#form_validation').submit(function(e) {
 				cache: false,
 			})
 			.done(function(data) {
+				button.setAttribute("disabled", false);
 				hideLoading();
 				var result = jQuery.parseJSON(data);
-				console.log(data);
 				if (result.status == 'berhasil') {
 					document.getElementById("form_validation").reset();
 					save_berhasil();
