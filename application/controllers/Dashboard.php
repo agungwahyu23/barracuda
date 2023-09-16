@@ -24,9 +24,9 @@ class Dashboard extends CI_Controller {
 
 		$data['page'] 		= "Dashboard";
 		$data['content'] 	= "admin/dashboard";
-		$data['album'] 		= $this->db->query("SELECT COUNT(album.id) as result FROM album LEFT JOIN tb_order ON tb_order.id = album.order_id WHERE tb_order.status = 1 AND album.user_id = '".$id."'")->row();
+		$data['album'] 		= $this->db->query("SELECT COUNT(album.id) as result FROM album LEFT JOIN tb_order ON tb_order.id = album.order_id WHERE album.user_id = '".$id."'")->row();
 
-		$data['single'] 		= $this->db->query("SELECT COUNT(single.id) as result FROM single LEFT JOIN tb_order ON tb_order.id = single.order_id WHERE tb_order.status = 1 AND  (single.is_album != 1 OR single.is_album IS null) AND single.user_id = '".$id."'")->row();
+		$data['single'] 		= $this->db->query("SELECT COUNT(single.id) as result FROM single LEFT JOIN tb_order ON tb_order.id = single.order_id WHERE (single.is_album != 1 OR single.is_album IS null) AND single.user_id = '".$id."'")->row();
 		
 		$data['income'] 		= $this->db->query("SELECT total_income as result FROM user where id = '".$id."'")->row();
 
