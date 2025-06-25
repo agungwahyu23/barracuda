@@ -3,7 +3,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta content="Agregator Musik,agregator musik di indonesia,aggregator spotify,Music Distribution,Digital Music,Agregator digital,agregator indonesia, tomokoyuki" name="keywords">
+	<meta content="<?= $content->keyword ?>" name="keywords">
 	<meta content="Tomokuki adalah agregator musik terbaik di Indonesia. Temukan ribuan lagu dari berbagai genre musik di Indonesia melalui platform kami. Distribusikan musik digital Anda dan jangkau lebih banyak pendengar dengan Tomokuki, agregator Spotify terpercaya." name="description">
 	<meta property="og:type" content="website" />
 	<meta property = "og: title" content = "Tomokoyuki - Agregator Musik Terbaik untuk Distribusi dan Rilis Musik" />

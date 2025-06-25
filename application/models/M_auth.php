@@ -9,6 +9,19 @@ class M_auth extends CI_Model
 		return $result;
 	}
 
+	public function cek_email($email)
+	{
+		$sql = "SELECT * FROM user WHERE email = '$email'";
+		$query = $this->db->query($sql);
+		$user = $query->row();
+		if (!empty($user)) {
+			return $query->result_array();
+		} else {
+			return FALSE;
+		}
+
+	}
+
 	public function cek_login($username, $password)
 	{
 		$sql = "SELECT * FROM user WHERE email = '$username' AND password = '$password'";

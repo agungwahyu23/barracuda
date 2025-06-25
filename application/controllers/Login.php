@@ -37,41 +37,48 @@ class Login extends CI_Controller {
 		$random_chr = uniqid();
 		$password = md5($random_chr);
 
-		$data = [
-			'name' 			=> $this->input->post('name'),
-			'email' 		=> $this->input->post('email'),
-			'username' 		=> $this->input->post('email'),
-			'password' 		=> $password,
-			'gender' 		=> $this->input->post('gender'),
-			'phone' 		=> $this->input->post('phone'),
-			'address' 		=> $this->input->post('address'),
-			'level' 		=> '2',
-			'is_active'		=> '1',
-			'total_income'	=> '0',
-			'created_at' 	=> date('Y-m-d H:i:s'),
-			
-		];
-		$result = $this->M_auth->register($data);
-		$user_id = $this->db->insert_id();
+		// lakukan cek email, sudah terdaftar atau belum
+		$cek_email = $this->M_auth->cek_email($email);
 
-		$data_mail = [
-			'email' 		=> $this->input->post('email'),
-			'password' 		=> $random_chr,
-			'user_id'		=> $this->encryption_lib->encode($user_id),
-		];
-
-		$to = $email;
-        $subject = 'Pembuatan Akun Baru';
-		$message_template = $this->load->view('public/email_template', $data_mail, TRUE);
-		send_email($to, $subject, $message_template);
-
-		if ($result > 0) {
-			$out = array('status'=>'berhasil');
-		} else {
-			$out['status'] = 'gagal';
+		if (!empty($cek_email)) {
+			$out['status'] = 'emailregistered';
+			echo json_encode($out);
+		}else{
+			$data = [
+				'name' 			=> $this->input->post('name'),
+				'email' 		=> $this->input->post('email'),
+				'username' 		=> $this->input->post('email'),
+				'password' 		=> $password,
+				'gender' 		=> $this->input->post('gender'),
+				'phone' 		=> $this->input->post('phone'),
+				'address' 		=> $this->input->post('address'),
+				'level' 		=> '2',
+				'is_active'		=> '1',
+				'total_income'	=> '0',
+				'created_at' 	=> date('Y-m-d H:i:s'),
+				
+			];
+			$result = $this->M_auth->register($data);
+			$user_id = $this->db->insert_id();
+	
+			$data_mail = [
+				'email' 		=> $this->input->post('email'),
+				'password' 		=> $random_chr,
+				'user_id'		=> $this->encryption_lib->encode($user_id),
+			];
+	
+			$to = $email;
+			$subject = 'Pembuatan Akun Baru';
+			$message_template = $this->load->view('public/email_template', $data_mail, TRUE);
+			send_email($to, $subject, $message_template);
+	
+			if ($result > 0) {
+				$out = array('status'=>'berhasil');
+			} else {
+				$out['status'] = 'gagal';
+			}
+			echo json_encode($out);
 		}
-
-		echo json_encode($out);
 	}
 
     public function cek_login()

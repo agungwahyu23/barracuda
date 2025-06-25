@@ -143,7 +143,7 @@
 			const regex = /@gmail\.com$/i;
 
 			var button = document.getElementById("btn_submit");
-            button.setAttribute("disabled", true);
+			button.setAttribute("disabled", true);
 
 			if (regex.test(email)) {				
 				var data = $(this).serialize();
@@ -160,7 +160,7 @@
 					contentType: false,
 					cache: false,
 				}).done(function(data) {
-					button.setAttribute("disabled", false);
+					button.removeAttribute("disabled");
 					var result = jQuery.parseJSON(data);
 					console.log(data);
 					if (result.status == 'berhasil') {
@@ -174,16 +174,25 @@
 							var link = '<?php echo base_url("login/") ?>';
 							window.location.replace(link);
 						});
-					} else {
+					}else if(result.status == 'emailregistered'){
+						$(".loading2").hide();
+						$(".loading2").modal('hide');
+						emailregistered();
+						button.removeAttribute("disabled");
+					}else {
 						$(".loading2").hide();
 						$(".loading2").modal('hide');
 						gagal();
-
+						button.removeAttribute("disabled");
 					}
-				})
+				}).fail(function() {
+					gagal();
+					button.removeAttribute("disabled");
+				});
 				
 			} else {
 				emailValidation();
+				button.removeAttribute("disabled");
 			}
 			e.preventDefault();
 		});
@@ -202,6 +211,16 @@
 			swal({
 				title: "Gagal!",
 				text: "Email harus menggunakan akun gmail!",
+				type: 'error',
+				button: "Ok",
+				dangerMode: true,
+			});
+		}
+
+		function emailregistered() {
+			swal({
+				title: "Gagal!",
+				text: "Email telah terdaftar!",
 				type: 'error',
 				button: "Ok",
 				dangerMode: true,
